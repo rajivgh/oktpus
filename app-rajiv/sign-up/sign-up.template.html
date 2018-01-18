@@ -1,0 +1,84 @@
+<!-- *************   Sign Up  *************** -->
+<div class="home-background">
+<div class="search-header"><header-pane2></header-pane2></div>
+	<div class="signup-page" id="top">
+		<div ng-show="menuShow==true" class = "menu-bg" ng-click="menuOutClick()"></div>
+		<!-- <div class="close-button">
+			<a ng-click="hideSignUp()" href="javascript: void(0)">
+				<img src="assets/images/close.png" alt="Close Icon">
+			</a>
+		</div> -->
+		<div class="col-xs-12">
+			<div class="logo-wrapper">
+				<img ng-src="assets/images/logo_red.png" alt="Oktpus Logo" src="assets/images/logo_red.png">
+			</div>
+			<div class="border"></div>
+			<p class="page-heading">Create Your Free Account</p>
+			<p class="find-car">And find the car that fits your budget and taste</p>
+			<!-- <ul class="signup-text">
+				<li><span><img src="assets/images/bullet.png"></span> Lorem ipsum dolor sit amet, consectetur</li>
+				<li><span><img src="assets/images/bullet.png"></span> Lorem ipsum dolor sit amet, consectetur</li>
+				<li><span><img src="assets/images/bullet.png"></span> Lorem ipsum dolor sit amet, consectetur</li>
+			</ul> -->
+			<p ng-if='status == 0' style="color:red">{{message}}</p>
+			<p ng-if='status == 1' style="color:#008000" >{{message}}</p>
+			<div class="form-wrapper">
+				<form name="signUpForm" ng-submit="signUpSubmit()" role="form" novalidate>				
+
+					<div class="input-wrapper">
+						<input required placeholder="Email" ng-model="email" type="email" name="email" id="email" class="input-field" ng-pattern="emailFormat" autocomplete="off">
+					     <div ng-messages="signUpForm.email.$error" ng-if="signUpForm.email.$valid == false">
+							<span ng-show="(signUpForm.email.$dirty && signUpForm.email.$error.required) || (signUpForm.email.$touched) || (submitted && signUpForm.email.$untouched)">
+								<div ng-message="required" class="error-msg">{{errorEmailMsg}}</div>
+							 </span>
+						</div>
+					</div>
+
+					<div class="input-wrapper signup-password">	
+						<input required placeholder="Password" ng-model="password1" type="{{inputType}}" name="password1" id="password1" class="input-field " autocomplete="off">	
+						<div ng-messages="signUpForm.password1.$error" ng-if="signUpForm.password1.$valid == false">
+							<span ng-show="(signUpForm.password1.$dirty && signUpForm.password1.$error.required) || (signUpForm.password1.$touched) || (submitted && signUpForm.password1.$untouched)">
+								<div ng-message="required" class="error-msg">{{errorPassword1Msg}}</div>
+							</span>
+						</div>
+						<div class="pass-suggestion">Passwords must contain at least six characters.</div>
+
+						<span class="img-change-block" ng-click="hideShowPassword()">							
+							<img ng-show="showtext == false" type="image" src="assets/images/hide_o.png"/>
+    						<img ng-show="showtext" type="image" src="assets/images/show_o.png" />
+						</span>
+					</div>
+					<div class="buton-wrapper">
+						<button type="submit" class="button button-large button-reverse"> Create Account </button>				
+					</div>
+                </form>
+                <div class="have-account"><a href="" ng-click = "showLogIn()">Already have an account?</a></div>
+				<div class="border2"></div>
+				<div class="signup-icon">
+					<div class="img-container"><a href=""><img src="assets/images/good_deal.png"></a></div>
+					<div class="signup-content"><span class="bold-text">Easily find good deals</span><span class="normal-text"> with your below market average filter.</span></div>
+				</div>
+				<div class="signup-icon">
+					<div class="img-container"><a href=""><img src="assets/images/single_search.png"></a></div>
+					<div class="signup-content"><span class="bold-text">All used car sites in one</span><span class="normal-text"> single search.</span></div>
+				</div>
+				<div class="signup-icon notification">
+					<div class="img-container"><a href=""><img src="assets/images/notification.png"></a></div>
+					<div class="signup-content"><span class="bold-text">Never miss a deal</span><span class="normal-text"> thank you to real time notification</span></div>				
+				</div>
+				<div class="back-top">
+					<a href="" ng-click="scrollToTop()">Back to top >></a>
+				</div>
+				<!-- <div class="more">
+					<div class="terms-condition">By sigining up you agree to our <br/>
+						<a ng-click="showTnC()" href="javascript: void(0)">Terms and Conditions </a>
+					</div>	
+				</div> -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-show="menuShow==true">
+	<menu-list></menu-list>
+</div>

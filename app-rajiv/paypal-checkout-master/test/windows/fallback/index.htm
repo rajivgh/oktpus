@@ -1,0 +1,16 @@
+
+<body>
+    <h1>Fallback</h1>
+
+    <script>
+        window.mockDomain = 'mock://www.paypal.com';
+        var parentWindow = (window.opener || window.parent);
+        window.__coverage__ = parentWindow.__coverage__;
+    </script>
+
+    <script src="/base/node_modules/babel-polyfill/dist/polyfill.js"></script>
+    <script src="/base/src/load.js" data-paypal-checkout></script>
+    <script src="./index.js"></script>
+
+    <p>merchantpaymentweb</p>
+</body>

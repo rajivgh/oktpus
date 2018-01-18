@@ -1,0 +1,68 @@
+<div class="inside-profile-page" ng-init="onEnter()" ng-class="tempClassForMenu" ng-style="{'height' : '{{popupHeight}}'}">
+<div class="setting-page">
+	<div class="search-header">
+		<header-pane2></header-pane2>
+	</div>
+	<div ng-show="menuShow==true" class = "menu-bg" ng-click="menuOutClick()"></div>
+	<div class="setting-div">
+		<div class="back-button" ng-click="backButtonClicked()">
+			<img class="back-icon" src="assets/images/arrow.png">
+		</div>
+		<h2 class="page-heading">Settings</h2>
+	</div>
+	<div class="settings-email-id">
+		<span><img class="email-icon" src="assets/images/user-icon-setting-page.png"> </span> 
+		<span>{{emailId}} </span> 
+	</div>
+	<div class="col-xs-12">
+		<div class="form-wrapper">
+			<h4>Change Password</h4>
+			<form name="userSettingsForm" ng-submit="userSettingsSubmit()" role="form" novalidate>
+<!--
+				<div class="input-wrapper">
+					<label ng-class = "{'effect':(hasFocus_email==true || confirmEmail.length > 0 )}">Confirm E-mail</label>
+					<input class="input-field"  required ng-model="confirmEmail" ng-focus="hasFocus_email=true" ng-blur="hasFocus_email=true" type="email" name="confirmEmail" id="confirmEmail" ng-pattern="emailFormat" >
+					<div ng-messages="userSettingsForm.confirmEmail.$error" ng-if="userSettingsForm.confirmEmail.$valid == false">
+							<span ng-show="(userSettingsForm.confirmEmail.$dirty && userSettingsForm.confirmEmail.$error.required) || (userSettingsForm.confirmEmail.$touched) || (submitted && userSettingsForm.confirmEmail.$untouched)">
+								<div ng-message="required" class="error-msg">{{errorEmailMsg}}</div>
+							 </span>
+						</div>	
+
+				</div>
+-->
+				<div class="input-wrapper">
+					<label ng-class = "{'effect':(hasFocus_pass1==true || newpassword.length > 0 )}">Choose Password</label>
+					<input class="input-field" required ng-model="newpassword" ng-focus="hasFocus_pass1=true" ng-blur="hasFocus_pass1=true" type="password" name="newpassword" id="new-password">
+					<div ng-messages="userSettingsForm.newpassword.$error" ng-if="userSettingsForm.newpassword.$valid == false">
+							<span ng-show="(userSettingsForm.newpassword.$dirty && userSettingsForm.newpassword.$error.required) || (userSettingsForm.newpassword.$touched) || (submitted && userSettingsForm.newpassword.$untouched)">
+								<div ng-message="required" class="error-msg">{{errorPassword1Msg}}</div>
+							 </span>
+					</div>
+					<div class="pass-suggestion">Passwords must contain at least six characters.</div>
+				</div>
+				<div class="input-wrapper input-field-retype-pass">
+					<label ng-class = "{'effect':(hasFocus_pass2==true || newpassword2.length > 0 )}">Re-type Password</label>
+					<input class="input-field" required ng-model="newpassword2" ng-focus="hasFocus_pass2=true" ng-blur="hasFocus_pass2=true" type="password" name="newpassword2" id="new-password2">
+					<div ng-messages="userSettingsForm.newpassword2.$error" ng-if="userSettingsForm.newpassword2.$valid == false">
+							<span ng-show="(userSettingsForm.newpassword2.$dirty && userSettingsForm.newpassword2.$error.required) || (userSettingsForm.newpassword2.$touched) || (submitted && userSettingsForm.newpassword2.$untouched)">
+								<div ng-message="required" class="error-msg">{{errorPassword2Msg}}</div>
+							 </span>
+					</div>
+				</div>
+				<div class="success-msg" ng-style="status === 1 && {'color':'green'} || {'color':'red'}">
+					{{message}}
+				</div>
+				<div class="buton-wrapper">
+					<button class="button button-large button-reverse"> Save </button>				
+				</div>						
+			</form>
+			
+		</div>
+	</div>
+	</div>
+</div>
+
+<div ng-show="menuShow==true">
+	<menu-list></menu-list>
+</div>
+<!-- <footer-pane></footer-pane> -->

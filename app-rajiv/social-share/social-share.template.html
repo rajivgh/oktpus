@@ -1,0 +1,333 @@
+<div class="social-menu-container">
+		<div class="social-close-button" ng-click = "closeSharePopUp()">
+			<button><span>X</span></button>
+		</div>
+		<div class="social-content-wrapper">
+			<div class="social-heading">
+				<h3>Share</h3>
+				<!-- <form>
+					<div class="social-input-field-wrapper">
+						<input type="text" name="" placeholder="Find a service">
+						<span class="search-icon"></span>
+					</div>
+				</form> -->
+			</div>
+			<div class="social-icon-wrapper">
+				<!-- <span>TOP SERVICES</span> -->
+				<div class="image">
+					<ul>
+					
+						<li>
+							<div
+								socialshare
+								socialshare-provider="buffer"
+								socialshare-text="{{$parent.title}}"
+								socialshare-url="{{$parent.url}}"
+								socialshare-media="{{$parent.media}}"
+								socialshare-popup-height="500"
+								socialshare-popup-width="700"
+								socialshare-trigger="click"><img src="assets/images/icons/Buffer.png"><br><span>Buffer</span>
+							</div>
+						</li>
+						
+						<li>
+							<div
+								socialshare
+								socialshare-provider="digg"
+								socialshare-text="{{$parent.title}}"
+								socialshare-url="{{$parent.url}}"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Digg.png"><br><span>Digg</span>
+							</div>
+						</li>
+						
+						<li>
+							<div
+								socialshare
+								socialshare-provider="email"
+								socialshare-body="{{$parent.url}}"
+								socialshare-to=""
+								socialshare-cc=""
+								socialshare-media="{{$parent.media}}"
+								socialshare-subject="Find the car that fits your budget and taste on Oktpus"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400">
+								<img src="assets/images/icons/Email.png"><br><span>Email</span>
+							</div>
+						</li>
+						
+						<li>
+							<div
+								socialshare
+								socialshare-provider="evernote"
+								socialshare-url="{{$parent.url}}"
+								socialshare-text="{{$parent.title}}"
+								socialshare-popup-height="800"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Evernote.png"><br><span>Evernote</span>
+							</div>
+						</li>
+						
+						<li>
+							<div
+								socialshare
+								socialshare-provider="facebook"
+								socialshare-type="share"
+								socialshare-via="145634995501895"
+								socialshare-media="{{$parent.media}}"
+								socialshare-quote="Find the car that fits your budget and taste on Oktpus."
+								socialshare-hashtags="#{{$parent.make}}"
+								socialshare-title="{{$parent.title}}"
+								socialshare-mobileiframe = "true"
+								socialshare-caption="{{$parent.city}}"
+								socialshare-url="{{$parent.url}}"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Facebook.png"><br><span>Facebook</span>
+							</div>
+						</li>
+						
+						<li>
+							<div>
+							<a
+							   socialshare
+							   socialshare-provider="facebook-messenger"
+							   socialshare-url="{{$parent.url}}"
+							   socialshare-trigger="click"><img src="assets/images/icons/FB-Messanger.png"><br><span>Messanger</span>
+							</a>
+							</div>
+						</li>
+					
+						<li>
+							<div
+								socialshare
+								socialshare-provider="flipboard"
+								socialshare-url="{{$parent.url}}"
+								socialshare-text="{{$parent.title}}"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Flipboard.png"><br><span>Flipboard</span>
+							</div>
+						</li>	
+						
+						<li>
+							<div
+								socialshare
+								socialshare-provider="google"
+								socialshare-url="{{$parent.url}}"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Google-+.png"><br><span>Google+</span>
+							</div>
+						</li>
+						
+						<li>
+							<div
+								socialshare
+								socialshare-provider="hackernews"
+								socialshare-url="{{$parent.url}}"
+								socialshare-text="{{$parent.title}}"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Hacker-news.png"><br><span>Hacker-news</span>
+							</div>
+						</li>
+						
+						<li>
+							<div
+								socialshare
+								socialshare-provider="linkedin"
+								socialshare-text="{{$parent.title}}"
+								socialshare-url="{{$parent.url}}"
+								socialshare-description="Search engine for used cars at your fingertips."
+								socialshare-source="www.Oktpus.com"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/linkedin.png"><br><span>Linkedin</span>
+							</div>
+						</li>
+						
+						<li>
+							<div
+								socialshare
+								socialshare-provider="ok"
+								socialshare-text="{{$parent.title}}"
+								socialshare-url="{{$parent.url}}"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Odnoklassniki.png"><br><span>Ok</span>
+							</div>
+						</li>
+						
+						<li>
+							<div
+								socialshare
+								socialshare-media="{{$parent.media}}"
+								socialshare-provider="pinterest"
+								socialshare-text="{{$parent.title}}"
+								socialshare-url="{{$parent.url}}"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Pinterest.png"><br><span>Pintrest</span>
+							</div>
+						</li>	
+						
+						<li>
+							<div
+								socialshare
+								socialshare-provider="pocket"
+								socialshare-text="{{$parent.title}}"
+								socialshare-url="{{$parent.url}}"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Pocket.png"><br><span>Pocket</span>
+							</div>
+						</li>
+						
+						<li>
+							<div
+								socialshare
+								socialshare-provider="reddit"
+								socialshare-text="{{$parent.title}}"
+								socialshare-url="{{$parent.url}}"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Reddit.png"><br><span>Reddit</span>
+							</div>
+						</li>
+						
+						<li><div
+								socialshare
+								socialshare-provider="skype"
+								socialshare-url="{{$parent.url}}"
+								socialshare-text="{{$parent.title}}"
+								socialshare-popup-height="800"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Skype.png"><br><span>Skype</span>
+							</div>
+						</li>
+						
+						<li>
+							<div>
+							<a
+							   socialshare
+							   socialshare-provider="sms"
+							   socialshare-text="{{$parent.title}}"
+							   socialshare-url="{{$parent.url}}"><img src="assets/images/icons/Sms.png"><br><span>Sms</span>
+							</a>
+							</div>
+						</li>			
+								
+						<li>
+							<div
+								socialshare
+								socialshare-provider="stumbleupon"
+								socialshare-text="{{$parent.title}}"
+								socialshare-url="{{$parent.url}}"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Stumble.png"><br><span>Stumble</span>
+							</div>
+						</li>
+						
+						<li>
+							<div
+								socialshare
+								socialshare-provider="telegram"
+								socialshare-url="{{$parent.url}}"
+								socialshare-text="{{$parent.title}}"
+								socialshare-trigger="click"><img src="assets/images/icons/Telegram.png"><br><span>Telegram</span>
+							</button>
+						</li>
+						
+						<li><div
+								socialshare
+								socialshare-provider="tumblr"
+								socialshare-type="link"
+								socialshare-text="{{$parent.title}}"
+								socialshare-url="{{$parent.url}}"
+								socialshare-popup-height="300"
+								socialshare-popup-width="540"
+								socialshare-trigger="click"><img src="assets/images/icons/Tumblr.png"><br><span>Tumblr</span>
+							</div>
+						</li>
+						
+						<li><div
+								socialshare
+								socialshare-provider="twitter"
+								socialshare-hashtags="{{$parent.make}}, {{$parent.model}}"
+								socialshare-via="twitter"
+								socialshare-text="{{$parent.title}}"
+								socialshare-url="{{$parent.url}}"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Twitter.png"><br><span>Twitter</span>
+							</div>
+						</li>	
+						
+						<li>
+							<div>
+							<a
+							   socialshare
+							   socialshare-provider="viber"
+							   socialshare-url="{{$parent.url}}"
+							   socialshare-text="{{$parent.title}}"
+							   socialshare-trigger="click"><img src="assets/images/icons/Viber.png"><br><span>Viber</span>				 
+							</a>
+							</div>
+						</li>
+						
+						<li>
+							<div
+								socialshare
+								socialshare-provider="vk"
+								socialshare-text="{{$parent.title}}"
+								socialshare-url="{{$parent.url}}"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Vkontakte.png"><br><span>Vkontakte</span>
+							</div>
+						</li>
+						
+						<li>
+							<div>
+							<a
+							   socialshare
+							   socialshare-provider="whatsapp"
+							   socialshare-text="{{$parent.title}}"
+							   socialshare-url="{{$parent.url}}"
+							   socialshare-trigger="click"><img src="assets/images/icons/Whatsapp.png"><br><span>Whatsapp</span>
+							 </a>
+							 <div>
+						</li>	
+						
+						<li>
+							<div
+								socialshare
+								socialshare-provider="wordpress"
+								socialshare-text="{{$parent.title}}"
+								socialshare-url="{{$parent.url}}"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Wordpress.png"><br><span>Wordpress</span>
+							</div>
+						</li>		
+							
+						<li>
+							<div
+								socialshare
+								socialshare-provider="xing"
+								socialshare-url="{{$parent.url}}"
+								socialshare-follow=""
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"
+								socialshare-trigger="click"><img src="assets/images/icons/Xing.png"><br><span>Xing</span>
+							</div>
+						</li>	
+					</ul>
+				</div>
+			</div>
+		</div>
+	
+</div>

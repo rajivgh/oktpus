@@ -1,0 +1,34 @@
+<!-- *************   Header Pane  *************** -->
+<header>		
+	<div class="col-xs-12 header1">
+		<div class="col-logo">	
+			<a ng-click="showLogIn()" href="javascript: void(0)" class="">
+				<img ng-src="assets/images/user-icon.png" alt="User Icon">
+			</a>
+		</div>
+		<div class="col-burger-menu">	
+			<a ng-click="showMenu()" href="javascript: void(0)" class="burger-menu">
+				<img ng-src="assets/images/col-burger-white.png" alt="Menu">
+			</a>
+		</div>
+
+		<div class="col-logo desktop">	
+			<a ng-click="showLogIn()" href="javascript: void(0)" class="">
+				<img ng-src="assets/images/logo_desktop.png" alt="User Icon">
+			</a>
+		</div>
+
+		<div class="home-nav-bar desktop" ng-show="!$parent.isLogin">
+			<div class="nav-menu" ng-repeat = "menuItem in $ctrl.menu.menuItem" ng-class="navClass('{{menuItem.state}}')" ng-show="hideAboutTerms('{{menuItem.state}}')">
+				<span class="menu-hover on-hover" ng-click="redirectToUrl(menuItem.state)" href="javascript: void(0)" id="{{menuItem.id}}"  ng-init="itemsrc = menuItem.icon" ng-mouseover="itemsrc = menuItem.hover" ng-mouseout="itemsrc = menuItem.icon" >
+				<img ng-src="{{itemsrc}}"> {{menuItem.name}}</span>
+
+				<span class="menu-hover no-hover" ng-click="redirectToUrl(menuItem.state)" href="javascript: void(0)" id="{{menuItem.id}}"  ng-init="itemsrc = menuItem.icon" ng-show="hideAboutTerms('{{menuItem.state}}')">
+				<img ng-src="{{itemsrc}}"> {{menuItem.name}}</span>
+				<!-- <span class="menu-name" ng-click="redirectToUrl(menuItem.state)" href="javascript: void(0)" id="{{menuItem.id}}">{{menuItem.name}}</span> -->				
+			</div>
+		</div>
+	</div>
+</header>
+
+

@@ -1,0 +1,46 @@
+<!--************** Search Form  **************** -->
+<div class="search-page remove-padding">
+	<div class="search-container">
+		<div ng-init="loadAttributeData('partial');" class="search-form-container">
+			<div class="remove-padding">
+				<div class="col-xs-12 remove-padding">
+					<div class="clear-buton-wrapper">
+						<div ng-click="hideSearchForm('partial')" class="collapse-arrow" du-smooth-scroll="homepage" du-scrollspy>
+							<img src="assets/images/down-arrow-menu.png">
+						</div>
+					</div>
+					<div class="search-form">
+						<form name="searchForm" ng-submit="partialFormAction('search')" role="form" id="search-form">
+							<div class="form-field-sec">
+								<div ng-click="dropDownClick('city')" directive-id="citylistid" multi-select-drop-down open-drop-down="openCityList" close-drop-down="closeCityList" object-to-inject="clearCityList" on-item-click="listSelect('city', 'partial')" input-model="cityList" output-model="selectedCity" max-height="166px" button-label="value" is-count-required=false item-label="value" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangCity" min-search-length="1" output-properties="id integer_representation group value">
+								</div>
+								<div class="select-item"></div>
+								
+								<div ng-click="dropDownClick('make')" directive-id="makelistid" multi-select-drop-down open-drop-down="openMakeList" close-drop-down="closeMakeList" object-to-inject="clearMakeList" on-item-click="listSelect('make', 'partial')" input-model="makeList" output-model="selectedMake" max-height="166px" button-label="value" is-count-required=true item-label="value count" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangMake" min-search-length="1" output-properties="id integer_representation group value">
+								</div>
+								<div class="select-item"></div>
+
+								<div data-disable-element="isModelDisabled">
+									<div ng-click="dropDownClick('model')" directive-id="modellistid" multi-select-drop-down object-to-inject="clearModelList" open-drop-down="openModelList" close-drop-down="closeModelList" change-display-label ="changeModelLabel" on-item-click="listSelect('model', 'partial')" input-model="modelList" output-model="selectedModel" max-height="166px" button-label="value" is-count-required=true item-label="value count" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangModel" min-search-length="1" output-properties="id integer_representation group value">
+									</div>
+								</div>
+								<div class="select-item"></div>
+							</div>
+							
+							<div ng-click="partialFormAction('showmore')" class="form-field-sec border-top" du-smooth-scroll="fullSearchScroll" du-scrollspy>
+								<input type="button" class="button button-large button-default more-btn" value="More Options"/>
+								<div class="plus-sign"></div>
+							</div>
+							
+							<div class="col-xs-12 condition-wrapper">
+								<div class="buton-wrapper">
+									<button type="submit" class="button button-large button-default"> Search </button>		
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

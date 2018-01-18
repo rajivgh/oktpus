@@ -1,0 +1,444 @@
+
+.showHideMenu {
+    position: relative !important;
+    left: 0;
+    /*overflow: hidden;*/
+}
+.location-popup.search-shortcut .geo-heading span{
+    top: -30px;
+}
+.geo-heading span {
+    float: right;
+    position: relative;
+    right: 10px;
+    top: -28px;
+}
+
+.search-border {
+    border-color: transparent transparent #febd69 !important;
+    border-style: none none solid !important;
+    border-width: 0 0 3px !important;
+}
+
+.clicked-btn{
+    position: relative;
+}
+
+.localCity{
+    text-decoration: underline !important;
+    color: #2b333d;
+}
+.geo-location img{
+    margin: 0 0 8px;
+    width: 16px;
+    cursor: pointer;
+}
+.geo-location {
+    color: #2b333d !important;
+    font-size: 15px;
+}
+
+.wall-deals h2{
+    /*color: #fed669;*/
+    color: #febd69;
+    font-family: roboto-bold,sans-serif;
+    font-size: 32px;
+    font-weight: normal;
+    line-height: 14px;
+    margin-top: 0;
+}
+
+.wall-deals p{
+    color: #808080;
+    font-family: oswald-bold;
+    font-size: 18px;
+}
+.got-it-button {
+    background-color: #cccccc !important;
+    border-color: #cccccc !important;
+    color: #fff;
+    padding: 7px 12px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.clear-buton-wrapper{
+   /* display: none;*/
+}
+
+.location-image {
+    position: relative;
+}
+.location-popup {
+    background: #fff none repeat scroll 0 0;
+    border-color: #c7c8c9 #c7c8c9 -moz-use-text-color;
+    border-radius: 2px;
+    border-style: solid solid none;
+    border-width: 1px 1px 0;
+    left: 50%;
+    min-width: 155px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-67%, 6%);
+    width: 100%;
+    z-index: 998;
+    border-color: #e2e2e2 !important;
+    /*display: none;*/
+}
+
+.location-popup.search-shortcut  {
+     min-width: 260px;
+    transform: translate(10%, -28%);
+}
+.location-popup.search-shortcut > p{
+    padding: 10px 15px;
+}
+.location-popup.search-shortcut::after{
+    background-image: url("../images/color_left.png");
+    background-repeat: no-repeat;
+    height: 25px;
+    left: -4%;
+    top: 20%;
+    width: 100%;
+}
+.location-popup.receive-notification::after {
+    /*right: 42% !important;
+    top: 96% !important;
+    transform: rotate(180deg);*/
+    background-image: url("../images/popup_downarrow.png");
+    top: 253px;
+    left: 114px;
+}
+
+.location-popup.receive-notification.location-popup-after-login::after {
+   top: 182px !important; 
+}
+
+.location-popup.receive-notification {
+    min-width: 230px !important;
+    transform: translate(-56%, -110%);
+}
+.location-popup.receive-notification > p {
+    color: #808080 !important;
+    font-family: Roboto-Regular;
+    text-transform: none;
+    font-size: 15px!important;
+    padding: 6px 12px;
+}
+.location-popup.receive-notification a{
+    color: #337ab7 !important;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.receive-notification span {
+    float: right;
+    position: relative;
+    right: 10px;
+    top: -32px;
+}
+.location-popup.geo{
+    transform: translate(-55%, 11%);
+}
+
+.location-popup.alert{
+    min-width: 171px;
+    transform: translate(-90%, 11%);
+    padding: 0 !important;
+}
+
+.location-popup.geo::after{
+    right: -48.5%;
+    top: -4%;
+}
+
+.location-popup.alert::after {
+    right: -83.5%;
+    top: -8px;
+}
+
+.location-popup::after {
+     background-image: url("../images/location-popup.png");
+    background-repeat: no-repeat;
+    content: "";
+    height: 20px;
+    position: absolute;
+    right: -61%;
+    top: -3.5%;
+    width: 100%;
+}
+
+.location-popup.price::after{
+    /*bottom: -8px;
+    right: 26%;
+    transform: rotate(180deg);
+    top: unset;*/
+    background-image: url("../images/popup_downarrow.png");
+    left: 26px;
+    top: 187px;
+}
+.location-popup.price-average::after{
+    background-image: url("../images/popup_downarrow.png");
+    left: 95px;
+    top: 166px;
+}
+
+.location-popup.price{
+    transform: translate(-25%, -115%);
+}
+
+.location-popup.price-average{
+    transform: translate(-70%, -115%);
+}
+
+.location-popup h3 {
+    background: #f0f0f0 none repeat scroll 0 0;
+    font-family: Oswald-Light;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 auto;
+    padding: 8px 15px;
+}
+.location-popup > p {
+    color: #9d9da1;
+    font-size: 16px;
+    margin: 0;
+    padding: 5px 15px;
+}
+.location-finder img{
+    padding: 0 15px;
+    width: 100%;
+}
+.question-icon{
+    position: relative;
+}
+
+.new-header-content .tag-content span{
+    cursor: pointer;
+}
+
+
+/*.full-search-page:hover::-webkit-scrollbar {
+    width: 8px !important;
+    background-color:#fff;
+}
+
+.full-search-page:hover::-webkit-scrollbar-thumb {
+    background-color: gray;
+     background-color: #818B99;
+    border-radius: 9px;
+    background-clip: content-box;
+    min-height: 30px !important;
+    max-height: 30px !important;
+
+} 
+
+.full-search-page:hover::-webkit-scrollbar-track {
+    background-clip: content-box;
+}
+*/
+
+/********************d start**************************/
+
+.yscroll{overflow-y: scroll;}
+
+.xcomponent-outlet{
+    width: 100% !important;
+}
+.car-worth-page{
+    position: fixed;
+    left:0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+.selects.model-bg{ background: #f0f0f0 none repeat scroll 0 0 !important; }
+.valuation-button{
+    /*padding-top: 5px;
+    border-radius: 4px;*/
+    padding-top: 7px;
+    border-radius: 4px;
+    font-size: 16px !important;
+}
+
+.form-container{
+     max-height: 565px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background: #fff none repeat scroll 0 0 !important;
+}
+.car-worth-input-field.custom-position{
+    float: left !important;
+    width: 100%;
+}
+.custom-width-input-set input{
+    width: 350px;
+    background: transparent;
+    height: 35px;
+    border: 1px solid #cccccc;
+    padding-left: 5px;
+    border-radius: 4px;
+}
+.mileage input{
+    border: 1px solid #cccccc !important;
+    border-radius: 4px !important;
+    width: 257px !important;
+    padding-left: 5px;
+}
+.mileage .selects{
+    width: 85px !important;
+}
+
+.car-worth-heading{
+    float: left;
+    }
+ .car-worth-heading-2 span{
+        font-weight: 600;
+        font-size: 18px !important;
+
+}
+.input-field-row{
+    padding: 0 15px;
+}
+.car-worth-page .form-container .form-sub-container {
+      width: 100% !important;
+      padding: 0 20px;
+      float: left;
+      margin: 17px auto auto !important;
+}
+
+.line_break{
+        width:100%;
+        text-align: center;
+        margin-top: 10px !important;
+        margin-bottom: 0 !important;
+        color: #dedede !important;
+        border-bottom: 1px solid #dedede;
+}
+.car-worth-heading-2{
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto 15px;
+}
+.car-worth-heading-1 h2{
+    text-align: center;
+}
+.car-worth-heading-2 span {
+          
+          text-align: center;
+}
+.feature_block{
+    padding: 0 15px;
+    float: left;
+    width: 100%
+}
+.features{
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+}
+.checkbox_img {
+        float: left;
+      }
+
+.features_text {
+        float: left;
+        width: 92%;
+      } 
+.features_text >p{
+            margin: 0 0 0 10px !important;
+      }    
+.selects{
+    background: transparent !important;
+    border: 1px solid #cccccc !important;
+    border-radius: 4px !important;
+     -webkit-padding-start: 5px;
+     width: 350px;
+    height: 35px;
+}
+.custom-valuation-btn{
+    width: 100% !important;
+}
+.filter-type-name{
+    width: 100%;
+    color: #9e9e9e !important;
+}
+.wmcw-heading-wrapper{
+    color: #000;
+    font-family: Oswald-Bold;
+    text-transform: uppercase;
+    float: left;
+    width: 100%;
+     margin: auto;
+}
+.wmcw-heading{
+    color: #2b333d;
+    font-size: 22px;
+    margin-left: 38px;
+    position: relative;
+    top: 7px;
+}
+.input-field-row {
+    padding: 0 15px !important;
+}
+
+.wmcw-heading-wrapper.fixed-to-top {
+    background: white none repeat scroll 0 0;
+    position: fixed;
+    z-index: 9999;
+}
+
+
+
+/***********************************mobile view******************************************/
+@media only screen and (min-width: 1025px) and (max-width: 1061px) {
+    .input-field-row{
+        padding: 0px;
+    }
+    
+}
+
+@media only screen and (max-width: 339px) {
+.wall-deals h2{font-size: 27px !important}
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1116px) {
+.form-container {width: 55% !important;}
+.img-container{width: 45% !important;}
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1300px) {
+    .form-container {max-height:525px !important; }
+}
+
+@media only screen and (min-width: 319px) and (max-width: 1024px) {
+    .car-worth-page{
+        overflow-y: scroll;
+    }
+    .form-container{
+        max-height: unset !important;
+        overflow-y: auto;
+    }
+    .custom-width-input-set input{
+        width: 100%;
+    }
+    .car-worth-page .form-container .form-sub-container .car-worth-form .input-field-row .car-worth-input-field.mileage .selects{
+        max-width: 26% !important;
+    }
+    .wmcw-back-btn{
+        cursor: pointer;
+        float: left;
+         padding: 15px 0 0 17px;
+    }
+    .mileage input{
+        width: 70% !important;
+    }
+    
+    
+    
+
+    
+}
+
+/********************d ends***************************/
+

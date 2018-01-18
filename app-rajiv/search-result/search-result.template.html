@@ -1,0 +1,160 @@
+<!--************** Search Result  **************** -->
+<div ng-class="tempClassForMenu">
+<div class="search-result">
+	<header-pane2></header-pane2>
+</div>
+
+<div class="search-result-page">
+	<div class="input-wrapper">
+		<input type="text" name="search" placeholder='Eg. "white bmw suv"' class="search-input">
+		<span class="search-icon micro-phone">
+			<img class="mic" onclick="startDictation()" src="assets/images/mic-icon.png" />
+			<img ng-src="assets/images/search-icon.png" alt="assets/images/search-icon.png">
+		</span>
+	</div>
+</div>
+
+<div class="search-div" ng-init="onEnter();">
+	<div class="container-fluid search-result-page">
+		<div class="content-view">
+			<div class="menu-wrapper-btn" ng-click="hideSearchPage()">
+				<img src="assets/images/arrow-with-bg.png">
+			</div>
+			<div class="right-content">
+				<div class="result-no">
+					{{totalCount | number}} results
+				</div>
+				<div class="filter-wrapper btn-group">
+					<button data-toggle="dropdown" class="multiselect dropdown-toggle" type="button" title="Newest Arrivals">
+						<span class="multiselect-selected-text">
+							DATE: NEWEST
+						</span> 
+						<b class="caret"></b>
+					</button>
+					<ul class="multiselect-container dropdown-menu">
+						<li class="multiselect_sort_checkbox multiselect-checkbox active">
+							
+							<label class="radio">
+								<a tabindex="0">
+									<input type="radio" value="post_date desc" name="sort[post_date]" id="sort[post_date][desc]" class="multiselect_sort_checkbox multiselect-checkbox date-newest"> <p class="label-name" name="date-newest">Date Newest</p>
+								</a>
+							</label>
+							
+						</li>
+						<li class="multiselect_sort_checkbox multiselect-checkbox">
+							
+							<label class="radio">
+								<a tabindex="0">
+									<input type="radio" value="heuristic desc" name="sort[heuristic]" id="sort[heuristic][desc]" class="multiselect_sort_checkbox multiselect-checkbox most-relevant"> <p class="label-name" name="most-relevant">Most Relevant</p>
+								</a>
+							</label>
+							
+						</li>
+						<li class="multiselect_sort_checkbox multiselect-checkbox">
+							
+							<label class="radio">
+								<a tabindex="0">
+									<input type="radio" value="price asc" name="sort[price]" id="sort[price][asc]" class="multiselect_sort_checkbox multiselect-checkbox low-price"> <p class="label-name" name="low-price">Price: Low to High</p>
+								</a>
+							</label>
+							
+						</li>
+						<li class="multiselect_sort_checkbox multiselect-checkbox">
+							<label class="radio">
+								<a tabindex="0">
+									<input type="radio" value="price desc" name="sort[price]" id="sort[price][desc]" class="multiselect_sort_checkbox multiselect-checkbox high-price"> <p class="label-name" name="high-price">Price: High to Low</p>								
+								</a>
+							</label>
+						</li>
+						<li class="multiselect_sort_checkbox multiselect-checkbox">
+							
+							<label class="radio">
+								<a tabindex="0">
+									<input type="radio" value="year asc" name="sort[year]" id="sort[year][asc]" class="multiselect_sort_checkbox multiselect-checkbox old-year"> <p class="label-name" name="old-year">Year: Old to New</p>
+								</a>
+							</label>
+						</li>
+						<li class="multiselect_sort_checkbox multiselect-checkbox">
+							
+							<label class="radio">
+								<a tabindex="0">
+									<input type="radio" value="year desc" name="sort[year]" id="sort[year][desc]" class="multiselect_sort_checkbox multiselect-checkbox new-year"> <p class="label-name" name="new-year">Year: New to Old</p>								
+								</a>
+							</label>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="product-view" scroll-load-data='loadMore()' scroll-load-data-disabled='busy' scroll-load-data-distance='1'>
+				<div ng-if="totalCount != 0">
+					<ul>
+						<li ng-repeat="(key, value) in searchResult" class="list-group-item">
+							<div class="product-wrapper">
+								<div class="image-wrapper">
+									<a href="{{value.href_url}}" target="_blank">
+										<img class="car-image" ng-src="{{value.image0}}" err-src="{{value.image0_default}}">
+									</a>
+								</div>
+								<div class="car-details">
+									<div class="car-info">
+										<div class="car-name">
+											<a href="{{value.href_url}}" target="_blank">{{value.item_title}}</a> 
+											<div class="date-location">
+												{{value.post_date}} in {{value.city}}
+											</div>
+										</div>
+									</div>
+									<div class="car-price-details">
+										<a href="{{value.href_url}}" target="_blank">
+											<div class="sell-price">
+												<div>
+													{{value.price_list.USD}}
+												</div>
+												<!-- <div>
+													price
+												</div> -->
+											</div>
+										</a>
+										<div class="kilometer">
+											<div>
+												{{value.kilometers_list.kilometers}}
+											</div>
+											<!-- <div>
+												kilometers
+											</div> -->
+										</div>
+										<div class="current-price">
+											<div class="price-value">
+												Below market by
+											</div>
+
+											<div class="current-price-amount">
+												{{value.ma_difference_list.USD}}
+											</div>
+											
+										</div>
+									</div>
+									<div class="car-parts">
+										<a href="">Car Parts > </a>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			
+				<div class="bottom-loder-wrapper" ng-show='scrollLoadData.busy'>
+					<div class="loader-bottom">
+						<img src="assets/images/spinner.gif"><span> Loading more results... </span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<div ng-show="menuShow==true">
+	<menu-list></menu-list>
+</div>

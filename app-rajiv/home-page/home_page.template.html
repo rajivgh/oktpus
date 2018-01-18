@@ -1,0 +1,134 @@
+<!-- *************   Home  *************** -->
+<div class="home-background front-page" id="homepage" ng-init="onEnter()" ng-class="tempClassForMenu" ng-show="showHomePage == true" >
+	<header-pane1></header-pane1>
+	
+	<div ng-show="menuShow==true" class = "menu-bg" ng-click="menuOutClick()"></div>
+
+	<div class="col-xs-12 desktop">
+		<div class="logo-wrapper">
+			<img ng-src="assets/images/logo_white.png" alt="Oktpus Logo">
+		</div>
+	</div>
+	
+	<div class="search-container container-position">
+		<h4> Search engine for used cars at your fingertips.</h4>
+		<div class="input-wrapper padding-effect">
+			<!-- <form id="labnol" method="get" action="https://www.google.com/search"> -->
+			<div class="speech">
+				<form class="form-btn" id="labnol" name="searchForm" ng-submit="searchSubmitKeyword('searchform')" role="form" method="post">
+					<input type="text" id="transcript" name="search" placeholder='Eg. "white bmw suv"' class="search-input" ng-model="keywordSearchValue" autocomplete = "off">
+					<span class="micro-phone">						
+						<img class="mic" ng-click="startDictation()" src="assets/images/mic-icon.png" ng-show="(os == 'linux' || os == 'windows' || os == 'android') && (browser == 'chrome') && (!keywordSearchValue.length)"/>
+						<span class="clear-text-btn" ng-show="keywordSearchValue.length" ng-click="clearSearchText()" ><img src="assets/images/clear-text.png"></span>
+					</span>
+					<button class="search-icon">
+						<img ng-src="assets/images/search-icon.png" alt="Search Icon">
+					</button>
+				</form>
+				<div ng-message="required" class="search-bar-msg">{{emptySearchValue}}</div>
+			</div>
+			<!-- </form> -->
+
+			<!-- <form id="labnol" method="get" action="https://www.google.com/search">
+			  <div class="speech">
+			    <input type="text" name="q" id="transcript" placeholder="Speak" />
+			    <img onclick="startDictation()" src="//i.imgur.com/cHidSVu.gif" />
+			  </div>
+			</form> -->
+
+		</div>
+		<div class="buton-wrapper padding-effect">
+			<button ng-click="showSearch('search')" class="button button-large button-default" du-smooth-scroll="refinedSearchScroll" du-scrollspy> 
+				Refined Search
+			</button>				
+		</div>
+		<!-- <div class="more">
+			<a ng-click="showLearnMore()" href="javascript: void(0)" id="learn-more"> Learn more</a>
+		</div> -->
+	</div>
+
+</div>
+
+
+<div ng-show="menuShow==true">
+	<menu-list></menu-list>
+</div>
+<!--
+<div ng-show="refinedSearch==true" id="refinedSearchScroll">
+	<search-form-partial></search-form-partial>
+</div> -->
+
+<footer-pane></footer-pane>
+
+<div class="modal-bg" ng-click="onClickFunction('outside')" ng-style="popup" ng-hide = "modelPopUp"></div>
+<div class="modal-bg-load" ng-show = "modelPopUpLoad"></div>
+
+<div class="another-modal" ng-init="functionLoad()" ng-show="anotherModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<center>
+					<img class="okt-modal-logo" src="assets/images/logo_red.png">
+				</center>
+			</div>
+			<div class="modal-body">
+				<div>
+					<h1>Search engine for used cars at your fingertips.</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 
+
+<div class="modal" ng-style="popup" ng-hide = "modelPopUp">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" type="button" ng-click="onClickFunction('closeButton')">X</button>
+				<center>
+					<img class="okt-modal-logo" src="assets/images/logo_red.png">
+				</center>
+			</div>
+			<div class="modal-body">
+				<table>
+					<tr class="okt-modal-bull">
+						<td colspan="2">
+							<h1>Find the car that fits your budget and taste on Oktpus.</h1>
+						</td>
+					</tr>
+					<tr class="okt-modal-bull">
+						<td>
+							<img class="okt-modal-img" src="assets/images/good_deal.png">
+						</td>
+						<td>
+							<b>Easily find good deals</b>
+							  with our below market average filter.
+						</td>
+					</tr>
+					<tr class="okt-modal-bull">
+						<td>
+							<img class="okt-modal-img" src="assets/images/single_search.png">
+						</td>
+						<td>
+							<b>All used car sites in one</b>
+							  single search.
+						</td>
+					</tr>
+					<tr class="okt-modal-bull">
+						<td>
+							<img class="okt-modal-img" src="assets/images/notification.png">
+						</td>
+						<td>
+							<b>Never miss a deal</b>
+							  thanks to real time notifications.
+						</td>
+					</tr>
+				</table>
+			</div>
+		<div class="modal-footer">
+			<button class="button button-large button-default wall" ng-click = "showSearch('wall-of-deals')">WALL OF DEALS</button>
+			<button class="button button-large button-default search" ng-click = "showSearch('search')">SEARCH</button>
+		</div>
+	</div>
+</div>
+

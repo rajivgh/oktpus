@@ -1,0 +1,73 @@
+@font-face {
+  font-family: Roboto-Light;
+  src: url(../fonts/Roboto/Roboto-Light.ttf); 
+}
+
+@font-face {
+ font-family: Roboto-Regular;
+ src: url(../fonts/Roboto/Roboto-Regular.ttf); 
+}
+@font-face {
+ font-family: Roboto-Medium;
+ src: url(../fonts/Roboto/Roboto-Medium.ttf); 
+}
+@font-face {
+ font-family: Roboto-Bold;
+ src: url(../fonts/Roboto/Roboto-Bold.ttf); 
+}
+
+@font-face {
+ font-family: Oswald-Bold;
+ src: url(../fonts/Oswald/Oswald-Bold.ttf); 
+}
+
+@font-face {
+ font-family: Oswald-Light;
+ src: url(../fonts/Oswald/Oswald-Light.ttf); 
+}
+
+@font-face {
+ font-family: Oswald-Regular;
+ src: url(../fonts/Oswald/Oswald-Regular.ttf); 
+}
+
+body{
+	font-family: $primary-font !important;
+	font-size: 16px;
+}
+a {
+	color:$color-default !important;
+}
+h1{
+	
+}
+h2{
+	
+}
+h3{
+	
+}
+h4{
+	color: #fff !important;
+	text-align: center;
+}
+h5{
+	
+}
+h6{
+	
+}
+
+ul{
+	margin: 0 !important;
+	padding: 0!important;
+}
+li{
+	list-style-type: none;	
+}
+%input {
+    height: 37px;
+    padding: 10px 25px 10px 10px;
+    display: inline-block;
+    width: 100%;
+}

@@ -1,0 +1,329 @@
+<!--************** Search Form  **************** -->
+<div ng-class="tempClassForMenu" ng-show="showSearchForm == true">
+<div class="search-header"><header-pane2></header-pane2></div>
+
+<div class="search-page" ng-init="onEnter();">
+	<div class="input-wrapper">
+		<input type="text" name="search" placeholder='Eg. "white bmw suv"' class="search-input">
+		<span class="search-icon micro-phone">
+			<img ng-src="assets/images/search-icon.png" alt="assets/images/search-icon.png">
+		</span>
+	</div>
+
+	<div class="search-container">
+		<div ng-init="loadAttributeData('full');" class="search-form-container">
+			<div class="row remove-padding">
+				<div class="col-xs-12 remove-padding">
+					<div class="clear-buton-wrapper full-search-form">
+						<div class="clear-button" ng-show="showClearButton == true">
+							<button ng-click="clearForm()" class="button-default button-small">Clear Form</button>
+						</div>
+						<div class="clear-button" ng-show="showNewSearchButton == true">
+							<button ng-click="newSearchForm()" class="button-default button-small">New Search</button>
+						</div>
+						<div ng-click="hideSearchForm('full')" class="collapse-arrow" du-smooth-scroll="homepage" du-scrollspy>
+							<img src="{{searchAttributeData.imageUrlLeftArrow}}">
+						</div>
+					</div>
+
+					<div class="search-form full-search-form">
+						<div class="border-top"></div>
+						<form name="searchForm" ng-submit="searchSubmit('full')" role="form" id="search-form">
+							<div class="form-field-sec">
+								<div ng-click="dropDownClick('city')" multi-select-drop-down object-to-inject="clearCityList" on-item-click="listSelect('city', 'full')" input-model="cityList" output-model="selectedCity" max-height="166px" button-label="value" item-label="count" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangCity" min-search-length="1" output-properties="id integer_representation group value">
+								</div>
+								<div ng-click="dropDownClick('make')" multi-select-drop-down object-to-inject="clearMakeList" on-item-click="listSelect('make', 'full')" input-model="makeList" output-model="selectedMake" max-height="166px" button-label="value" item-label="value count" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangMake" min-search-length="1" output-properties="id integer_representation group value">
+								</div>
+								<div data-disable-element="isModelDisabled">
+									<div ng-click="dropDownClick('model')" multi-select-drop-down close-drop-down="closeModelList" object-to-inject="clearModelList" on-item-click="listSelect('model', 'full')" input-model="modelList" output-model="selectedModel" max-height="166px" button-label="value" item-label="value count" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangModel" min-search-length="1" output-properties="id integer_representation group value">
+									</div>
+								</div>
+							
+								<div class="search-by-price">
+									<div class="border-top"></div>
+									<div class="search-heading" ng-click="dropDownClick('price')">
+										<div class="heading-wrapper">
+											<h1> {{multiUnitData.price.displayFormat.price.label}} </h1>
+										</div>
+									</div>
+									<div class="oktpus-price-menu" ng-show="price">
+										<ul class="slider-range-wrapper">
+											<li>
+												<rzslider rz-slider-model="multiUnitData.price.newValue.min" rz-slider-high="multiUnitData.price.newValue.max" rz-slider-options="multiUnitData.price.options"></rzslider>
+											</li>
+										</ul>
+										<ul class="price-dropdown-list">
+											<li>
+												<input type="text" id="price1" ng-model="minPrice" ng-focus="onFocusInputBox('minprice')" ng-blur="onBlurInputBox('minprice')" ng-change="onChangeInputBox('minprice')">
+  												<input type="text" id="price2" ng-model="maxPrice" ng-focus="onFocusInputBox('maxprice')" ng-blur="onBlurInputBox('maxprice')" ng-change="onChangeInputBox('maxprice')">
+											</li>
+											<li>
+												<div ng-click="changeMultiUnit('price')" class="change-currency">
+													<span>Change to </span>
+													{{multiUnitData.price.units.two}}
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								
+								<div class="search-by-price">
+									<div class="search-heading"  ng-click="dropDownClick('year')">
+										<div class="heading-wrapper">
+											<h1> Year </h1>
+										</div>
+									</div>
+									<div class="oktpus-price-menu" ng-show="year">
+										<ul class="slider-range-wrapper">
+											<li>
+												<rzslider rz-slider-model="multiUnitData.year.newValue.min" rz-slider-high="multiUnitData.year.newValue.max" rz-slider-options="multiUnitData.year.options"></rzslider>
+											</li>
+										</ul>
+										<ul class="price-dropdown-list">
+											<li>
+												<input type="text" id="year1" ng-model="minYear" ng-focus="onFocusInputBox('minyear')" ng-blur="onBlurInputBox('minyear')" ng-change="onChangeInputBox('minyear')">
+  												<input type="text" id="year2" ng-model="maxYear" ng-focus="onFocusInputBox('maxyear')" ng-blur="onBlurInputBox('maxyear')" ng-change="onChangeInputBox('maxyear')">
+											</li>
+										</ul>
+									</div>
+								</div>
+								
+								<div class="search-by-price">
+									<div class="search-heading" ng-click="dropDownClick('kilometers')">
+										<div class="heading-wrapper">
+											<h1> {{multiUnitData.kilometers.displayFormat.kilometers.label}} </h1>
+										</div>
+									</div>
+									<div class="oktpus-price-menu" ng-show="kilometers">
+										<ul class="slider-range-wrapper">
+											<li>
+												<rzslider rz-slider-model="multiUnitData.kilometers.newValue.min" rz-slider-high="multiUnitData.kilometers.newValue.max" rz-slider-options="multiUnitData.kilometers.options"></rzslider>
+											</li>
+										</ul>
+										<ul class="price-dropdown-list">
+											<li>
+												<input type="text" id="kilometers1" ng-model="minKilometers" ng-focus="onFocusInputBox('minkilometers')" ng-blur="onBlurInputBox('minkilometers')" ng-change="onChangeInputBox('minkilometers')">
+  												<input type="text" id="kilometers2" ng-model="maxKilometers" ng-focus="onFocusInputBox('maxkilometers')" ng-blur="onBlurInputBox('maxkilometers')" ng-change="onChangeInputBox('maxkilometers')">
+											</li>
+											<li>
+												<div ng-click="changeMultiUnit('kilometers')" class="change-currency">
+													<span>Change to </span>
+													{{multiUnitData.kilometers.units.two}}
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								
+								<!--Pop up-->
+								<div class="search-popup popup" ng-show = "isPopupVisible==true">
+									<div ng-click="hidePopup()">X</div>
+									<p>{{popupMessage}}</p>
+									<div class="popup-btn" ng-click="hidePopup()">Ok</div>
+								</div>
+								
+								<div class="select-by-body">
+									<div class="border-top"></div>	
+									<div ng-click="dropDownClick('body')" multi-select-drop-down object-to-inject="clearBodyList" on-item-click="listSelect('body', 'full')" input-model="bodyList" output-model="selectedBody" max-height="166px" button-label="value" item-label="value count" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangBody" min-search-length="1" output-properties="id integer_representation group value">
+									</div>
+									<div ng-click="dropDownClick('transmission')" multi-select-drop-down object-to-inject="clearTransmissionList" on-item-click="listSelect('transmission', 'full')" input-model="transmissionList" output-model="selectedTransmission" max-height="166px" button-label="value" item-label="value count" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangTransmission" min-search-length="1" output-properties="id integer_representation group value">
+									</div>
+									<div ng-click="dropDownClick('colour')" multi-select-drop-down object-to-inject="clearColourList" on-item-click="listSelect('colour', 'full')" input-model="colourList" output-model="selectedColour" max-height="166px" button-label="value" item-label="value count" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangColour" min-search-length="1" output-properties="id integer_representation group value">
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 condition-wrapper">
+								<div class="buton-wrapper" ng-show='isSaveSearchEnable == true'>
+									<button type="submit" class="button button-large button-default"> Search </button>		
+								</div>
+								<div class="buton-wrapper" ng-show='isSaveSearchEnable != true'>
+									<button type="submit" class="button button-large button-default"> Save and Search </button>		
+								</div>
+								
+								<ul class="search-terms">
+									<li ng-show='isSaveSearchEnable == true'>
+										<div class="select-checkbox">
+											<span> Save this search</span>
+											<label class="switch">		
+												<input type="checkbox" name="checkbox" ng-model="checkStatus">			
+												<div class="slider round"></div>
+											</label>
+										</div>
+									</li>
+									<li>
+										<div class="select-checkbox">
+											<span> Receive notifications*</span>
+											<label class="switch">	
+												<input type="checkbox" name="checkbox" ng-model="checkNotificationStatus">
+												<div class="slider round"></div>
+											</label>
+										</div>
+									</li>
+									<li>
+										<span>*Registration is required to receive notifications. If you decide to 'Receive Notifications' for this search, you will start receiving email notifications when new car arrivals match your filters.</span>
+									</li>
+									<li>
+										<img class="arrow-up" src="assets/images/back_up_arrow.jpg" ng-click="scrollToTop()">
+									</li>
+								</ul>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<!--************** Search Result  **************** -->
+<div ng-class="tempClassForMenu" ng-show="showSearchResult == true">
+<div class="search-result">
+	<header-pane2></header-pane2>
+</div>
+
+<div class="search-result-page">
+	<div class="input-wrapper">
+		<input type="text" name="search" placeholder='Eg. "white bmw suv"' class="search-input">
+		<span class="search-icon micro-phone">
+			<img ng-src="assets/images/search-icon.png" alt="assets/images/search-icon.png">
+		</span>
+	</div>
+</div>
+
+<div class="search-div" ng-init="onEnter();">
+	<div class="container-fluid search-result-page">
+		<div class="content-view">
+			<div class="menu-wrapper-btn" ng-click="hideSearchResult()">
+				<img src="assets/images/arrow-with-bg.png">
+			</div>
+			<div class="right-content">
+				<div class="result-no">
+					{{totalCount | number}} results
+				</div>
+				<div class="filter-wrapper btn-group">
+					<button data-toggle="dropdown" class="multiselect dropdown-toggle" type="button" title="Newest Arrivals">
+						<span class="multiselect-selected-text">
+							DATE: NEWEST
+						</span> 
+						<b class="caret"></b>
+					</button>
+					<ul class="multiselect-container dropdown-menu">
+						<li class="multiselect_sort_checkbox multiselect-checkbox active">
+							<a tabindex="0">
+								<label class="radio">
+									<input type="radio" value="post_date desc" name="sort[post_date]" id="sort[post_date][desc]" class="multiselect_sort_checkbox multiselect-checkbox"> <p class="label-name">Date Newest</p>
+								</label>
+							</a>
+						</li>
+						<li class="multiselect_sort_checkbox multiselect-checkbox">
+							<a tabindex="0">
+								<label class="radio">
+									<input type="radio" value="heuristic desc" name="sort[heuristic]" id="sort[heuristic][desc]" class="multiselect_sort_checkbox multiselect-checkbox"> <p class="label-name">Most Relevant</p>
+								</label>
+							</a>
+						</li>
+						<li class="multiselect_sort_checkbox multiselect-checkbox">
+							<a tabindex="0">
+								<label class="radio">
+									<input type="radio" value="price asc" name="sort[price]" id="sort[price][asc]" class="multiselect_sort_checkbox multiselect-checkbox"> <p class="label-name">Price: Low to High</p>
+								</label>
+							</a>
+						</li>
+						<li class="multiselect_sort_checkbox multiselect-checkbox">
+							<a tabindex="0">
+								<label class="radio">
+									<input type="radio" value="price desc" name="sort[price]" id="sort[price][desc]" class="multiselect_sort_checkbox multiselect-checkbox"> <p class="label-name">Price: High to Low</p>
+								</label>
+							</a>
+						</li>
+						<li class="multiselect_sort_checkbox multiselect-checkbox">
+							<a tabindex="0">
+								<label class="radio">
+									<input type="radio" value="year asc" name="sort[year]" id="sort[year][asc]" class="multiselect_sort_checkbox multiselect-checkbox"> <p class="label-name">Year: Old to New</p>
+								</label>
+							</a>
+						</li>
+						<li class="multiselect_sort_checkbox multiselect-checkbox">
+							<a tabindex="0">
+								<label class="radio">
+									<input type="radio" value="year desc" name="sort[year]" id="sort[year][desc]" class="multiselect_sort_checkbox multiselect-checkbox"> <p class="label-name">Year: New to Old</p>
+								</label>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="product-view" scroll-load-data='loadMore()' scroll-load-data-disabled='busy' scroll-load-data-distance='1'>
+				<div ng-if="totalCount != 0">
+					<ul>
+						<li ng-repeat="(key, value) in searchResult" class="list-group-item">
+							<div class="product-wrapper">
+								<div class="image-wrapper">
+									<a href="{{value.href_url}}" target="_blank">
+										<img class="car-image" ng-src="{{value.image0}}" err-src="{{value.image0_default}}">
+									</a>
+								</div>
+								<div class="car-details">
+									<div class="car-info">
+										<div class="car-name">
+											<a href="{{value.href_url}}" target="_blank">{{value.item_title}}</a> 
+											<div class="date-location">
+												{{value.post_date}} in {{value.city}}
+											</div>
+										</div>
+	
+										<div class="car-parts">
+											<a href="">Car Parts > </a>
+										</div>
+									</div>
+									<div class="car-price-details">
+										<a href="{{value.href_url}}" target="_blank">
+											<div class="sell-price">
+												<div>
+													{{value.price_list.USD}}
+												</div>
+												<div>
+													price
+												</div>
+											</div>
+										</a>
+										<div class="kilometer">
+											<div>
+												{{value.kilometers_list.kilometers}}
+											</div>
+											<div>
+												kilometers
+											</div>
+										</div>
+										<div class="current-price">
+											<div class="current-price-amount">
+												{{value.ma_difference_list.USD}}
+											</div>
+											<div class="price-value">
+												Below market
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			
+				<div class="bottom-loder-wrapper" ng-show='scrollLoadData.busy'>
+					<div class="loader-bottom">
+						<img src="assets/images/spinner.gif"><span> Loading more results... </span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+
+<div ng-show="menuShow==true">
+	<menu-list></menu-list>
+</div>

@@ -1,0 +1,20 @@
+<div class="dialog-contents" style="text-align: center">
+	<h1>SUCCESS</h1>
+	<div>
+		<img src="assets/images/success_tick.png" style="width: 70px; height: 70px;">
+	</div>
+	<div>
+		<h5>
+			Payment ID : {{paymentData.id}}<br/>
+			Create Date: {{paymentData.create_time}}<br/><br/><br/>
+		</h5>
+	</div>
+	<div>
+		<h3>
+		  	Transaction Successful<br/>
+		  	You will receive an email shortly!
+		</h3>
+	</div>
+
+    <button class="btn btn-primary" ng-click="closeThisDialog(); scroll()">DONE</button>
+</div>

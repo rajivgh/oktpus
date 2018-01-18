@@ -1,0 +1,228 @@
+{
+	"menuImage": {
+		"component":"MenuImage",
+		"imageUrl":"assets/images/close.png",
+		"imageAfterLoginUrl":"assets/images/close.png",
+		"userIconAfterLoginUrl":"assets/images/user-icon.png",
+		"name":"Menu",
+		"id":""
+	},
+	"emailIcon": {
+		"icon" : "assets/images/user-icon.png",
+		"hover" : "assets/images/user-icon_hover.png"
+	},
+    "menuItem": [
+	{
+		"component":"SignUp",
+		"actionUrl":"/signup",
+		"state":"signup",
+		"stateChangeFn":"showSignUp()",
+		"name":"Sign-up",
+		"id":"signup-page",
+		"icon" : "assets/images/user_desktop.png",
+		"hover" : "assets/images/user_desktop_hover.png",
+		"icon_mobile" : "assets/images/signup_mobile.png"
+	},
+	{
+		"component":"Login",
+		"actionUrl":"/login",
+		"state":"login",
+		"stateChangeFn":"showLogIn()",
+		"name":"Login",
+		"id":"login-page",
+		"icon" : "assets/images/login_desktop.png",
+		"hover" : "assets/images/login_desktop_hover.png",
+		"icon_mobile" : "assets/images/login_mobile.png"
+
+	},
+	{
+		"component":"Search",
+		"actionUrl":"/search",
+		"state":"search",
+		"stateChangeFn":"showSearch('search')",
+		"name":"Search",
+		"id":"search-page",
+		"icon" : "assets/images/search_desktop.png",
+		"hover" : "assets/images/search_desktop_hover.png",
+		"icon_mobile" : "assets/images/search_mobile.png"
+	},			
+	{
+		"component":"WallOfDeals",
+		"actionUrl":"/wall-of-deals",
+		"state":"wall-of-deals",
+		"stateChangeFn":"showSearch('wall-of-deals')",
+		"name":"Wall Of Deals",
+		"id":"search-page",
+		"icon" : "assets/images/deals_desktop.png",
+		"hover" : "assets/images/deals_desktop_hover.png",
+		"icon_mobile" : "assets/images/deals_mobile.png"
+	},
+       {
+		"component":"compare",
+		"actionUrl":"/compare",
+		"state":"compare",
+		"stateChangeFn":"showCompare()",
+		"name":"Compare",
+		"id":"compare-page",
+		"icon" : "assets/images/compare_icon.png",
+                "hover" : "assets/images/compare_icon.png",
+		"icon_mobile": "assets/images/compare_icon1.png"
+ 	},
+	{
+		"component":"About",
+		"actionUrl":"/learnmore",
+		"state":"learnmore",
+		"stateChangeFn":"showLearnMore()",
+		"name":"About",
+		"id":"learnmore-page",
+		"icon" : "assets/images/deals_desktop.png",
+                "hover" : "assets/images/deals_desktop_hover.png",
+		"icon_mobile": ""
+ 	},
+	{
+		"component":"TnC",
+		"actionUrl":"/terms",
+		"state":"terms",
+		"stateChangeFn":"showTermsConditions()",
+		"name":"Terms & Conditions",
+		"id":"terms-and-conditions",
+		"icon" : "assets/images/terms_conditions.png",
+		"hover" : "assets/images/terms_conditions_hover.png",
+		"icon_mobile" : ""
+	},
+	{
+		"component":"WMCW",
+		"actionUrl":"/wmcw",
+		"state":"wmcw",
+		"stateChangeFn":"showWMCW()",
+		"name":"What's my Car Worth?",
+		"id":"whats-my-car-worth",
+		"icon" : "assets/images/wmcw_desktop.png",
+		"hover" : "assets/images/wmcw_desktop_hover.png",
+		"icon_mobile" : "assets/images/wmcw_mobile.png"
+	}
+	],
+    "menuAfterLogin" :[	  
+    {
+		"component":"Settings",
+		"actionUrl":"/settings",
+		"state":"settings",
+		"stateChangeFn":"showSettings()",
+		"name":"Settings",
+		"id":"settings-page",
+		"icon" : "assets/images/setting_desktop.png",
+		"hover" : "assets/images/setting_desktop_hover.png",
+		"icon_mobile" : "assets/images/setting_mobile.png"
+	},	
+	{
+		"component":"Search",
+		"actionUrl":"/search",
+		"state":"search",
+		"stateChangeFn":"showSearch('search')",
+		"name":"Search",
+		"id":"search-page",
+		"icon" : "assets/images/search_desktop.png",
+		"hover" : "assets/images/search_desktop_hover.png",
+		"icon_mobile" : "assets/images/search_mobile.png"
+	},			
+	{
+		"component":"WallOfDeals",
+		"actionUrl":"/wall-of-deals",
+		"state":"wall-of-deals",
+		"stateChangeFn":"showSearch('wall-of-deals')",
+		"name":"Wall Of Deals",
+		"id":"search-page",
+		"icon" : "assets/images/deals_desktop.png",
+		"hover" : "assets/images/deals_desktop_hover.png",
+		"icon_mobile" : "assets/images/deals_mobile.png"
+	},
+	{
+		"component":"SavedSearch",
+		"actionUrl":"/savedsearch",
+		"state":"savedsearch",
+		"stateChangeFn":"showSavedSearch()",
+		"name":"Saved Searches",
+		"id":"savedSearch-page",
+		"icon" : "assets/images/savesearch_desktop.png",
+		"hover" : "assets/images/savesearch_desktop_hover.png",
+		"icon_mobile" : "assets/images/savedsearch_mobile.png"
+	},
+	{
+		"component":"Garage",
+		"actionUrl":"/garage",
+		"state":"garage",
+		"stateChangeFn":"showGarage()",
+		"name":"Garage",
+		"id":"garage-page",
+		"icon" : "assets/images/garage_desktop.png",
+		"hover" : "assets/images/garage_desktop_hover.png",
+		"icon_mobile" : "assets/images/garage_mobile.png"
+	},
+	{
+		"component":"Notifications",
+		"actionUrl":"/notification",
+		"state":"notification",
+		"stateChangeFn":"showNotifications()",
+		"name":"Notification History",
+		"id":"notifications-page",
+		"icon" : "assets/images/notification_desktop.png",
+		"hover" : "assets/images/notification_desktop_hover.png",
+		"icon_mobile" : "assets/images/notification_mobile.png"
+	},
+	 {
+		"component":"compare",
+		"actionUrl":"/compare",
+		"state":"compare",
+		"stateChangeFn":"showCompare()",
+		"name":"Compare",
+		"id":"compare-page",
+		"icon" : "assets/images/compare_icon.png",
+                "hover" : "assets/images/compare_icon.png",
+		"icon_mobile": "assets/images/compare_icon1.png"
+ 	},
+	{
+		"component":"Logout",
+		"actionUrl":"/logout",
+		"state":"logout",
+		"stateChangeFn":"showLogout()",
+		"name":"Log Out",
+		"id":"logout-page",
+		"icon" : "assets/images/logout_icon.png",
+		"icon_mobile" : "assets/images/logout_icon.png"
+	},
+	{
+		"component":"About",
+		"actionUrl":"/learnmore",
+		"state":"learnmore",
+		"stateChangeFn":"showLearnMore()",
+		"name":"About",
+		"id":"learnmore-page",
+		"icon" : "assets/images/deals_desktop.png",
+                "hover" : "assets/images/deals_desktop_hover.png",
+		"icon_mobile": ""
+ 	},
+	{
+		"component":"TnC",
+		"actionUrl":"/terms",
+		"state":"terms",
+		"stateChangeFn":"showTermsConditions()",
+		"name":"Terms & Conditions",
+		"id":"terms-and-conditions",
+		"icon" : "assets/images/terms_conditions.png",
+		"hover" : "assets/images/terms_conditions_hover.png",
+		"icon_mobile" : ""
+	},
+	{
+		"component":"WMCW",
+		"actionUrl":"/wmcw",
+		"state":"wmcw",
+		"stateChangeFn":"showWMCW()",
+		"name":"What's my Car Worth?",
+		"id":"whats-my-car-worth",
+		"icon" : "assets/images/terms_conditions.png",
+		"hover" : "assets/images/terms_conditions_hover.png",
+		"icon_mobile" : "assets/images/wmcw_mobile.png"
+	}
+	]
+
+}

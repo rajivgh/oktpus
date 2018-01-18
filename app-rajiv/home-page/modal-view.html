@@ -1,0 +1,72 @@
+<div class="modal-bg" ng-click="onClickFunction('outside')" ng-style="popup" ng-show = "modelPopUp"></div>
+<div class="modal-bg-load" ng-show = "modelPopUpLoad"></div>
+
+<div class="another-modal" ng-init="functionLoad()" ng-show="anotherModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<center>
+					<img class="okt-modal-logo" src="assets/images/logo_red.png">
+				</center>
+			</div>
+			<div class="modal-body">
+				<div>
+					<h1>Search engine for used cars at your fingertips.</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 
+
+<div class="modal" ng-style="popup" ng-show = "modelPopUp">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" type="button" ng-click="onClickFunction('closeButton')">X</button>
+				<center>
+					<img class="okt-modal-logo" src="assets/images/logo_red.png">
+				</center>
+			</div>
+			<div class="modal-body">
+				<table>
+					<tr class="okt-modal-bull">
+						<td colspan="2">
+							<h1>Find the car that fits your budget and taste on Oktpus.</h1>
+						</td>
+					</tr>
+					<tr class="okt-modal-bull">
+						<td>
+							<img class="okt-modal-img" src="assets/images/good_deal.png">
+						</td>
+						<td>
+							<b>Easily find good deals</b>
+							  with our below market average filter.
+						</td>
+					</tr>
+					<tr class="okt-modal-bull">
+						<td>
+							<img class="okt-modal-img" src="assets/images/single_search.png">
+						</td>
+						<td>
+							<b>All used car sites in one</b>
+							  single search.
+						</td>
+					</tr>
+					<tr class="okt-modal-bull">
+						<td>
+							<img class="okt-modal-img" src="assets/images/notification.png">
+						</td>
+						<td>
+							<b>Never miss a deal</b>
+							  thanks to real time notifications.
+						</td>
+					</tr>
+				</table>
+			</div>
+		<div class="modal-footer">
+			<button class="button button-large button-default wall" ng-click = "showSearch()">WALL OF DEALS</button>
+			<button class="button button-large button-default search" ng-click = "showSearch()">SEARCH</button>
+		</div>
+	</div>
+</div>
+

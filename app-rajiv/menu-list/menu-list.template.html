@@ -1,0 +1,56 @@
+<!-- *************  Menu Page  *************** -->
+<div class="home-menu-page inside-menu-page" ng-class = "$parent.isLogin ? 'inside-menu-page': ''" ng-init="onEnter();" ng-disable-scroll="$parent.menuShow==true">
+	<div class="login-email-wrapper">
+		<div class="close-button">
+			<a ng-click="hideMenu()" href="javascript: void(0)">
+				<img ng-src="{{$ctrl.menu.menuImage.imageUrl}}" alt="{{$ctrl.menu.menuImage.name}}">
+			</a>
+		</div>
+		<div class="circle-img"><img src="assets/images/login_image.png"></div>
+		<div class="login-email" ng-show="$parent.isLogin">
+			<span>{{emailId}}</span>
+		</div>
+	</div>
+	
+	<div class="menu-wrapper" ng-show="!$parent.isLogin">				
+		<ul class="home-menu">
+			<li ng-repeat = "menuItem in $ctrl.menu.menuItem" ng-click="$eval(menuItem.stateChangeFn)" >				
+				<a href="javascript: void(0)" id="{{menuItem.id}}" ng-show="('{{menuItem.state}}' != 'learnmore') && ('{{menuItem.state}}' != 'terms')">
+				 <img class="email-icon"  ng-src="{{menuItem.icon_mobile}}" alt="User Icon"> {{menuItem.name}} </a>
+				 <a ng-click="$eval(menuItem.stateChangeFn)" href="javascript: void(0)" id="{{menuItem.id}}" ng-show="('{{menuItem.state}}' == 'learnmore') || ('{{menuItem.state}}' == 'terms')">{{menuItem.name}}</a>
+			</li>
+		</ul>
+	</div>	
+
+	<div class="menu-wrapper" ng-show="$parent.isLogin">				
+		<ul class="home-menu">				
+			<li ng-repeat = "menuAfterLogin in $ctrl.menu.menuAfterLogin"  ng-click="$eval(menuAfterLogin.stateChangeFn)">
+				<a href="javascript: void(0)" id="{{menuAfterLogin.id}}" ng-show="('{{menuAfterLogin.state}}' != 'learnmore') && ('{{menuAfterLogin.state}}' != 'terms')">   
+				<img class="email-icon" ng-src="{{menuAfterLogin.icon_mobile}}" alt="User Icon"> {{menuAfterLogin.name}} </a>
+				<a ng-click="$eval(menuAfterLogin.stateChangeFn)" href="javascript: void(0)" id="{{menuAfterLogin.id}}" ng-show="('{{menuAfterLogin.state}}' == 'learnmore') || ('{{menuAfterLogin.state}}' == 'terms')">{{menuAfterLogin.name}}</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<!--
+<div class="home-menu-page inside-menu-page" ng-show="$parent.isLogin" ng-init="onEnter();">
+	<div class="close-button">
+		<a ng-click="hideMenu()" href="javascript: void(0)">
+			<img ng-src="{{$ctrl.menu.menuImage.imageAfterLoginUrl}}" alt="{{$ctrl.menu.menuImage.name}}">
+		</a>
+	</div>
+	<div class="menu-wrapper">				
+		<ul class="home-menu">	
+			<li class="login-email">
+				<span><img class="email-icon" src="assets/images/user-icon-setting-page.png" alt="User Icon"> </span> 
+				<span>{{emailId}}</span>
+			</li>
+			<li ng-repeat = "menuAfterLogin in $ctrl.menu.menuAfterLogin">
+				<a ng-click="$eval(menuAfterLogin.stateChangeFn)" href="javascript: void(0)" id="{{menuAfterLogin.id}}">   
+				<img class="email-icon" src="assets/images/user-icon-setting-page.png" alt="User Icon"> {{menuAfterLogin.name}} </a>
+			</li>
+		</ul>
+	</div>
+</div>
+-->

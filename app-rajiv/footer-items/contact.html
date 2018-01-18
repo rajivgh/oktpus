@@ -1,0 +1,29 @@
+<div class="search-header">
+	<header-pane2></header-pane2>
+</div>
+
+<div ng-show="menuShow==true" class = "menu-bg" ng-click="menuOutClick()"></div>
+
+<div class="contact-container" ng-style="{'height' : '{{popupHeight}}'}" ng-init="onEnter('contact')">
+	<h2>Contact Us</h2>
+	<div class="welcome">
+		<h3>We Welcome Your Feedback and Comments</h3>
+		<div class="content-data">
+			<span>
+				Do you have questions or comments for us? We'd love to hear them! Fill out the form and we will get back to you right away. 
+				<p>If you need help with any aspect of the</p>
+			</span>
+			<span class="right-para">
+				search and notification process, please don't hesistate to ask us. Our customer service representatives will be happy to assist you in any way - we're here to help you get the customer service you deserve. 
+			</span>
+		</div>
+	</div>
+    <div class="inquiry"> 
+		<h3>Make an Inquiry</h3> 
+		<a href="">info@oktpus.com</a>
+	</div>
+</div>
+<div ng-show="menuShow==true">
+	<menu-list></menu-list>
+</div>
+<footer-pane></footer-pane>	

@@ -1,0 +1,40 @@
+<!-- *************   Learn More  *************** -->
+<div class="home-background">
+<div class="search-header"><header-pane2></header-pane2></div>
+	<div class="learn-more-page" ng-init="onEnter()">
+		<!-- <div class="close-button">
+			<a ng-click="hideLearnMore()" href="javascript: void(0)">
+				<img ng-src="assets/images/close.png" alt="Close Icon">
+			</a>
+		</div> -->
+	 <div ng-show="menuShow==true" class = "menu-bg" ng-click="menuOutClick()"></div>
+	<div class="col-xs-12">
+			<div class="logo-wrapper">
+				<img ng-src="assets/images/logo_red.png" alt="Logo" class="logo-more-info">
+		    </div>
+		<div class="border"></div>
+	<div class="learn-more-text">
+		<!--  adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
+		<ul>
+			<li><span><img src="assets/images/bullet.png"></span> Lorem ipsum dolor sit amet, consectetur</li>
+			<li><span><img src="assets/images/bullet.png"></span> Lorem ipsum dolor sit amet, consectetur</li>
+			<li><span><img src="assets/images/bullet.png"></span> Lorem ipsum dolor sit amet, consectetur</li>
+		</ul>
+	</div>				
+</div>
+
+<div class="buton-wrapper">
+	<button class="button button-large button-reverse" ng-click="startSearch('wall-of-deals')">Wall of Deals</button>
+	<button class="button button-large button-blue" ng-click="startSearch('search')">Search</button>		
+	<div class="link-btn" ng-show="!isLogin" >
+		<a class="login" href="" ng-click="showLogIn()">Login</a>
+		<a class="signup" href="" ng-click="showSignUp()">Sign-up</a>
+	</div>
+
+</div>
+</div>
+</div>
+<div ng-show="menuShow==true">
+	<menu-list></menu-list>
+</div>
+<footer-pane></footer-pane>

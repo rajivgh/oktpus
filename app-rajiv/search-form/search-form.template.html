@@ -1,0 +1,855 @@
+<!-- <div class="searchform-searchresult-container" ng-class="searchScroller" ng-disable-scroll = "(showSharePopUp || browserScrollHide)"  ng-click="onClickFunction()"> -->
+<div class="searchform-searchresult-container" ng-class="isSeeCarPartsClicked ? 'car-parts-overflow' : ''"ng-disable-scroll = "(showSharePopUp || browserScrollHide)"  ng-click="onClickFunction()">
+<div ng-show="isPopUpOpen" ng-class="tempClassForPopUpOpen">
+</div>
+
+<div class="search-header-wrapper">
+	<div class="search-header" ng-class = "((direction == 'down') ? stickyHeader : '') || ((direction == 'up') ? stickyHeader : '')">
+		<header-pane2></header-pane2>				
+		
+		<div class="tab-button">
+			<span class="clicked-btn">
+				<button class="filter" ng-click="hideSearchResult()" ng-class= "showSearchResult != true ? 'search-border' : ''">Search Filters</button>
+			</span>
+			<span class="clicked-btn">
+				<button class="result" ng-click="hideSearchForm('full')" ng-class= "showSearchResult == true ? 'search-border' : ''">Search Results</button>
+			</span>
+		</div>
+	</div>
+	<div class="header-detail mobile-view">
+		<div class="new-header-content">
+
+			<div class="geo-location">
+				<div class="wall-deals" ng-show = "wallOfDeals && showSearchResult">
+					<h2>WALL OF DEALS <span class="question-icon"><img style="width: 18px !important; margin-top: 4px; " src="assets/images/question.png"   ng-click = "modelPopupFunction()"></h2>
+					<p>All cars 10% below market average</p>
+				</div>
+				Searching in and around  <a class="localCity" href="">{{defaultCity}}</a>
+				<span class="location-image">
+					<img src="assets/images/geo_ic.png" ng-click="getGeoLocation(true)">
+			<!--	<div class="location-popup geo" ng-style="popup">
+					    <div class="geo-heading">
+					    	<h3>Location</h3>
+					    	<span><img src="assets/images/geo-close.png"></span>
+					    </div>						
+						<p>Click this icon to get your precise location. Click "allow" when prompted</p>
+						<div class="got-it-button">GOT IT</div>
+					</div> -->
+				</span>
+				<span class="location-image"  ng-show="geoLocationError">
+					<img src="assets/images/alert.png" ng-click="showGeoLocationErrorAlert()">
+					<div class="location-popup geo-subpart alert" ng-style ='geoLocationErrorPopup'>
+					    <div class="geo-heading">
+					    	<h3>Location Setting</h3>
+					    	<span><img src="assets/images/geo-close.png"></span>
+					    </div>						
+						<p>{{geoErrorMessage}}</p> 
+						<div class="location-finder" ng-show = "accessDenied">
+							<img src="assets/images/location.jpg">
+						</div>
+						<div class="got-it-button" ng-show = "accessDenied">GOT IT</div>
+					</div> 	
+			<!--		<div class="location-popup alert" ng-show = "positionUnavailable == true" ng-style ='unavailablePopup'>
+						<div class="geo-heading">
+					    	<h3>Location Setting</h3>
+					    	<span><img src="assets/images/geo-close.png"></span>
+					    </div>
+						<p>Location information is unavailable. Please try aain later or select your city manually.</p>
+					</div> -->
+				</span>						
+			</div>
+			<div class="input-wrapper mobile">
+				<form class="form-btn" name="searchForm" ng-submit="searchSubmitKeyword('searchform')" role="form" method="post">
+					<input type="text" id="transcript" name="search" placeholder='Eg. "white bmw suv"' class="search-input" ng-model="keywordSearchValue" autocomplete="off">
+					<span class="micro-phone">
+						<img class="mic" ng-click="startDictation()" src="assets/images/mic-icon.png" ng-show="(os == 'linux' || os == 'windows' || os == 'android') && (browser == 'chrome') && !keywordSearchValue.length"/>
+						<span class="clear-text-btn" ng-show="keywordSearchValue.length" ng-click="clearSearchText()"><img src="assets/images/clear-text.png"></span>
+					</span>
+					<button class="search-icon">
+						<img ng-src="assets/images/search-icon.png" alt="assets/images/search-icon.png">
+					</button>
+				</form>
+				<div ng-message="required" class="search-bar-msg">{{emptySearchValue}}</div>
+			</div>
+			<div class="tag-list">
+				<span class="new-search-clear" ng-show="showNewSearchButton && !isDesktop && !showSearchResult">
+					<button ng-click="newSearchForm()" class="new-search-button">New Search</button>
+				</span> 
+				<span class="tag-content" ng-repeat="city in cityList" ng-if="city.ticked == true" ng-click="closeTag('city', city.integer_representation, searchSubmit, showSearchResult)">
+					<label class="tag-name">{{splitCity(city.value)}}</label>
+					<span> X</span>
+				</span>
+				<span class="tag-content" ng-repeat="country in countryList" ng-if="country.ticked == true" ng-click="closeTag('country', country.integer_representation, searchSubmit, showSearchResult)">
+					<label class="tag-name">{{country.value}}</label>
+					<span> X</span>
+				</span>
+				<span class="tag-content" ng-repeat="make in makeList" ng-if="make.ticked == true" ng-click="closeTag('make', make.integer_representation, searchSubmit, showSearchResult)">
+					<label class="tag-name">{{make.value}}</label>
+					<span> X</span>
+				</span>
+				<span class="tag-content" ng-repeat="model in modelList" ng-if="model.ticked == true" ng-click="closeTag('model', model.integer_representation, searchSubmit, showSearchResult)">
+					<label class="tag-name">{{model.value}}</label>
+					<span> X</span>
+				</span>
+				<span class="tag-content" ng-repeat="doors in doorsList" ng-if="doors.ticked == true" ng-click="closeTag('doors', doors.integer_representation, searchSubmit, showSearchResult)">
+					<label class="tag-name">{{doors.value}}</label>
+					<span> X</span>
+				</span>
+				<span class="tag-content" ng-repeat="drivetrain in drivetrainList" ng-if="drivetrain.ticked == true" ng-click="closeTag('drivetrain', drivetrain.integer_representation, searchSubmit, showSearchResult)">
+					<label class="tag-name">{{drivetrain.value}}</label>
+					<span> X</span>
+				</span>
+				<span class="tag-content" ng-repeat="usertype in userTypeList" ng-if="usertype.ticked == true" ng-click="closeTag('usertype', usertype.integer_representation, searchSubmit, showSearchResult)">
+					<label class="tag-name">{{usertype.value}}</label>
+					<span> X</span>
+				</span>
+				<span class="tag-content" ng-repeat="body in bodyList" ng-if="body.ticked == true" ng-click="closeTag('body', body.integer_representation, searchSubmit, showSearchResult)">
+					<label class="tag-name">{{body.value}}</label>
+					<span> X</span>
+				</span>
+				<span class="tag-content" ng-repeat="transmission in transmissionList" ng-if="transmission.ticked == true"  ng-click="closeTag('transmission', transmission.integer_representation, searchSubmit, showSearchResult)">
+					<label class="tag-name">{{transmission.value}}</label>
+					<span> X</span>
+				</span>
+				<span class="tag-content" ng-repeat="colour in colourList" ng-if="colour.ticked == true" ng-click="closeTag('colour', colour.integer_representation, searchSubmit, showSearchResult)">
+					<label class="tag-name">{{colour.value}}</label>
+					<span> X</span>
+				</span>
+				<span class="tag-content" ng-if="isPriceChanged" ng-click="closeTag('price','', searchSubmit, showSearchResult)">
+					<label class="tag-name">{{minPrice}} - {{maxPrice}}</label>
+					<span> X</span>
+				</span>
+				<span class="tag-content" ng-if="isYearChanged" ng-click="closeTag('year','', searchSubmit, showSearchResult)">
+					<label class="tag-name">{{minYear}} - {{maxYear}}</label>
+					<span> X</span>
+				</span>
+				<span class="tag-content" ng-if="isKmChanged" ng-click="closeTag('kilometers','', searchSubmit, showSearchResult)">
+					<label class="tag-name">{{minKilometers}} - {{maxKilometers}}</label>
+					<span> X</span>
+				</span>
+				<span class="tag-content" ng-if="isBmaChanged" ng-click="closeTag('belowmarket','', searchSubmit, showSearchResult)">
+					<label class="tag-name">{{minBelowMarket}} - {{maxBelowMarket}}</label>
+					<span> X</span>
+				</span>
+				<span class="tag-content clear-all-button" ng-show = "showHideClearAllButton()">
+					<label class="tag-name" ng-click="clearForm()">Clear All</label>				
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="compare-popup-show-hide" ng-mouseover= "displayCamparePopup()" ng-mouseleave = "hideCamparePopup()" ng-show = "compareCars.length > 0 ">
+	<div>COMPARE <div class="count-item">{{selectedCarCount}}</div></div>
+</div>
+<div class="compare-popup"  ng-class = "isCompareClicked ?'compare-popup-show':''"  ng-style="comparePopup"  ng-mouseover= "displayCamparePopup()" ng-mouseleave = "selectedCarCount && hideCamparePopup()">
+	<div class="selected-product">Compare Vehicles ({{selectedCarCount}} of 4)</div>
+	<div class = "compare-alert" ng-show = 'isCompareCarsMessage'>{{compareCarsMessage}}</div>
+	<ul class="compare-popup-sub-container">
+		<li class="product-detail" ng-repeat="(key, value) in compareCars">
+			<div class="close-product"><button ng-click = "removeProductIdFromCompareList(value.product_id)">x</button></div>
+			<div class="product-img">
+				<a href="{{value.url}}" target="_blank">
+					<img class="car-image" ng-src="{{value.image}}" err-src="">
+				</a>
+			</div>
+			<div class="product-name-price">
+                <a href="{{value.url}}" target="_blank">{{value.title}}</a> 
+				<span><br>{{value.price}}</span>
+			</div>
+		</li>
+	</ul>
+	<div class="compare-button-wrapper">
+		<button class="clear-button" ng-click="removeAllCompareCars()" ng-show="(selectedCarCount >= 1)">Clear All</button> 
+		<button class="compare-button" ng-show="(selectedCarCount > 1)" ng-click = "compareCarsList()"> compare</button>
+	</div>
+	<div class="no-selection" ng-show="(selectedCarCount == 0)">{{compareCarsMessage}}</div>
+</div>
+
+<div ng-show="menuShow==true" class = "menu-bg" ng-click="menuOutClick()"></div>
+
+<!--************** Search Form  **************** -->
+<div class="search-searchresult-container" ng-style="searchResultScroller">
+
+<!-- <div class="modal-bg"></div> -->
+
+	<div class="full-search-page" ng-class="tempClassForMenu" ng-show="showSearchForm == true">
+
+		<div class="search-page" ng-init="onEnter();">		
+
+			<div class="search-container">
+				<div ng-init="loadAttributeData('full');" class="search-form-container">
+					<div class="row remove-padding">
+						<div class="col-xs-12 remove-padding">
+							<div class="clear-buton-wrapper full-search-form">
+								 <div class="clear-button" ng-show = "isDesktop && !showNewSearchButton">
+									<button ng-click="clearForm()" class="button-default button-small">Clear form</button>
+								</div>
+								<div class="clear-button" ng-show="showNewSearchButton && isDesktop">
+									<button ng-click="newSearchForm()" class="button-default button-small">New Search</button>
+								</div> 
+								<div ng-click="hideSearchForm('full')" ng-show = "!rightArrowImage" class="collapse-arrow" du-smooth-scroll="homepage" du-scrollspy> 
+									<img src="assets/images/slide-left-arrow.png">
+								</div>
+							</div>
+
+							<div class="search-form full-search-form">
+								<div class="border-top"></div>
+								<form name="searchForm" ng-submit="searchSubmit('full')" role="form" id="search-form">
+								    <div class="searchform-scroll">
+									<div class="form-field-sec" ng-class = "formFieldMargin">
+										<div data-disable-element="isCityDisabled">
+											<div ng-click="dropDownClick('city')" popup-name="Select City" directive-id="citylistid" secondary-lable-for-caller=defaultCity multi-select-drop-down open-drop-down="openCityList" close-drop-down="closeCityList" object-to-inject="clearCityList" change-display-label ="changeCityLabel" on-item-click="listSelect('city', 'full')" refresh-button-text="refreshButtonTextCity" is-desktop="isDesktop" input-model="cityList" output-model="selectedCity" max-height="166px" button-label="value" is-count-required=false item-label="value" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangCity" min-search-length="1" output-properties="id integer_representation group value">
+											</div>
+										</div>
+										<div ng-click="dropDownClick('country')" popup-name="Select Country" directive-id="countryid" multi-select-drop-down open-drop-down="openCountryList" close-drop-down="closeCountryList" object-to-inject="clearCountryList" on-item-click="listSelect('country', 'full')" refresh-button-text="refreshButtonTextCountry" is-desktop="isDesktop" input-model="countryList" output-model="selectedCountry" max-height="166px" button-label="value" is-count-required=false item-label="value" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangCountry" min-search-length="1" output-properties="id integer_representation group value">
+										</div>										
+										<div ng-click="dropDownClick('make')" popup-name="Select Make" directive-id="makelistid" multi-select-drop-down open-drop-down="openMakeList" close-drop-down="closeMakeList" object-to-inject="clearMakeList" on-item-click="listSelect('make', 'full')" refresh-button-text="refreshButtonTextMake" is-desktop="isDesktop" input-model="makeList" output-model="selectedMake" max-height="166px" button-label="value" is-count-required=true item-label="value count" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangMake" min-search-length="1" output-properties="id integer_representation group value">
+										</div>
+										<div data-disable-element="isModelDisabled">
+											<div ng-click="dropDownClick('model')" popup-name="Select Model" directive-id="modellistid" multi-select-drop-down open-drop-down="openModelList" close-drop-down="closeModelList" object-to-inject="clearModelList" change-display-label ="changeModelLabel" on-item-click="listSelect('model', 'full')" refresh-button-text="refreshButtonTextModel" is-desktop="isDesktop" input-model="modelList" output-model="selectedModel" max-height="166px" button-label="value" is-count-required=true item-label="value count" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangModel" min-search-length="1" output-properties="id integer_representation group value">
+											</div>
+										</div>
+									
+										<div class="search-by-price">
+											<div class="border-top"></div>
+											<div class="search-heading" ng-click="dropDownClick('price')" ng-class="true == price ? 'rangeSliderOpenClass' : ''">
+												<div class="heading-wrapper">
+													<h1> {{multiUnitData.price.displayFormat.price.label}} </h1>
+													<span class="question-icon"><img src="assets/images/question.png" ng-click = "pricePopupFunction(pricePopup)">
+														<div class="location-popup price" ng-show = "pricePopup">
+														    <div class="geo-heading">
+														    	<h3>Try this filter</h3>
+														    	<span><img src="assets/images/geo-close.png" ng-click = "pricePopupFunction('true')"></span>
+														    </div>
+															
+															<p>You can try setting a minimum price to filter out cars without a price.</p>
+															<div class="got-it-button" ng-click = "pricePopupFunction('true')">GOT IT</div>
+														</div>
+													</span>
+													<br>
+													<div class="slider-value" ng-if ="isPriceChanged"> {{minPrice}} - {{maxPrice}} </div>
+												</div>
+											</div>
+											<div class="oktpus-price-menu" ng-style="price ? rangeSliderShow : rangeSliderHide">
+												<ul class="slider-range-wrapper">
+													<li>
+														<rzslider rz-slider-model="multiUnitData.price.newValue.min" rz-slider-high="multiUnitData.price.newValue.max" rz-slider-options="multiUnitData.price.options"></rzslider>
+													</li>
+												</ul>
+												<ul class="price-dropdown-list">
+													<li>
+														<input type="text" id="price1" ng-model="minPrice" ng-focus="onFocusInputBox('minprice')" ng-blur="onBlurInputBox('minprice')" ng-change="onChangeInputBox('minprice')">
+		  												<input type="text" id="price2" ng-model="maxPrice" ng-focus="onFocusInputBox('maxprice')" ng-blur="onBlurInputBox('maxprice')" ng-change="onChangeInputBox('maxprice')">
+													</li>
+													<li>
+														<div ng-click="changeMultiUnit('price')" class="change-currency">
+															<span>Change to </span>
+															<b>{{multiUnitData.price.units.two}}</b>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+										
+										<div class="search-by-price">
+											<div class="search-heading"  ng-click="dropDownClick('year')" ng-class="true == year ? 'rangeSliderOpenClass' : ''">
+												<div class="heading-wrapper">
+													<h1> Year </h1><br>
+													<div class="slider-value" ng-if ="isYearChanged"> {{minYear}} - {{maxYear}}</div>
+												</div>
+											</div>
+											<div class="oktpus-price-menu" ng-style="year ? rangeSliderShow : rangeSliderHide">
+												<ul class="slider-range-wrapper">
+													<li>
+														<rzslider rz-slider-model="multiUnitData.year.newValue.min" rz-slider-high="multiUnitData.year.newValue.max" rz-slider-options="multiUnitData.year.options"></rzslider>
+													</li>
+												</ul>
+												<ul class="price-dropdown-list">
+													<li>
+														<input type="text" id="year1" ng-model="minYear" ng-focus="onFocusInputBox('minyear')" ng-blur="onBlurInputBox('minyear')" ng-change="onChangeInputBox('minyear')">
+		  												<input type="text" id="year2" ng-model="maxYear" ng-focus="onFocusInputBox('maxyear')" ng-blur="onBlurInputBox('maxyear')" ng-change="onChangeInputBox('maxyear')">
+													</li>
+												</ul>
+											</div>
+										</div>
+										
+										<div class="search-by-price">
+											<div class="search-heading" ng-click="dropDownClick('kilometers')" ng-class="true == kilometers ? 'rangeSliderOpenClass' : ''">
+												<div class="heading-wrapper">
+													<h1> {{multiUnitData.kilometers.displayFormat.kilometers.label}} </h1><br>
+													<div class="slider-value" ng-if ="isKmChanged"> {{minKilometers}} - {{maxKilometers}} </div>
+												</div>
+											</div>
+											<div class="oktpus-price-menu" ng-style="kilometers ? rangeSliderShow : rangeSliderHide">
+												<ul class="slider-range-wrapper">
+													<li>
+														<rzslider rz-slider-model="multiUnitData.kilometers.newValue.min" rz-slider-high="multiUnitData.kilometers.newValue.max" rz-slider-options="multiUnitData.kilometers.options"></rzslider>
+													</li>
+												</ul>
+												<ul class="price-dropdown-list">
+													<li>
+														<input type="text" id="kilometers1" ng-model="minKilometers" ng-focus="onFocusInputBox('minkilometers')" ng-blur="onBlurInputBox('minkilometers')" ng-change="onChangeInputBox('minkilometers')">
+		  												<input type="text" id="kilometers2" ng-model="maxKilometers" ng-focus="onFocusInputBox('maxkilometers')" ng-blur="onBlurInputBox('maxkilometers')" ng-change="onChangeInputBox('maxkilometers')">
+													</li>
+													<li>
+														<div ng-click="changeMultiUnit('kilometers')" class="change-currency">
+															<span>Change to </span>
+															<b>{{multiUnitData.kilometers.units.two}}</b>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+										
+										<div class="search-by-price">
+											<div class="search-heading" ng-click="dropDownClick('belowmarket')" ng-class="true == belowmarket ? 'rangeSliderOpenClass' : ''">
+												<div class="heading-wrapper">
+													<h1> {{multiUnitData.belowmarket.displayFormat.belowmarket.label}} </h1>
+													<span class="question-icon"><img src="assets/images/question.png" ng-click = "belowMarketAvarageFunction(belowMarketAvg)">
+														<div class="location-popup price-average" ng-show = "belowMarketAvg">
+														    <div class="geo-heading">
+														    	<h3>Try this filter</h3>
+														    	<span><img src="assets/images/geo-close.png" ng-click = "belowMarketAvarageFunction('true')"></span>
+														    </div>															
+															<p>Easily find good deals with our below market average filter</p>
+															<div class="got-it-button" ng-click = "belowMarketAvarageFunction('true')">GOT IT</div>
+														</div>
+													</span><br>
+													<div class="slider-value" ng-if ="isBmaChanged"> {{minBelowMarket}} - {{maxBelowMarket}} </div>
+												</div>
+											</div>
+											<div class="oktpus-price-menu" ng-style="belowmarket ? rangeSliderShow : rangeSliderHide">
+												<ul class="slider-range-wrapper">
+													<li>
+														<rzslider rz-slider-model="multiUnitData.belowmarket.newValue.min" rz-slider-high="multiUnitData.belowmarket.newValue.max" rz-slider-options="multiUnitData.belowmarket.options"></rzslider>
+													</li>
+												</ul>
+												<ul class="price-dropdown-list">
+													<li>
+														<input type="text" id="belowmarket1" ng-model="minBelowMarket" ng-focus="onFocusInputBox('minBelowMarket')" ng-blur="onBlurInputBox('minBelowMarket')" ng-change="onChangeInputBox('minBelowMarket')">
+		  												<input type="text" id="belowmarket2" ng-model="maxBelowMarket" ng-focus="onFocusInputBox('maxBelowMarket')" ng-blur="onBlurInputBox('maxBelowMarket')" ng-change="onChangeInputBox('maxBelowMarket')">
+													</li>
+												</ul>
+											</div>
+										</div>
+										
+										<!--Pop up-->
+										<!-- <div class="search-popup-wrapper">
+											<div class="search-popup popup" ng-show = "isPopupVisible==true">
+												<div class="close-btn" ng-click="hidePopup()">X</div>
+												<p>{{popupMessage}}</p>
+												<div class="popup-btn" ng-click="hidePopup()">OK</div>
+											</div>
+										</div> -->
+										
+										<div class="select-by-body">
+											<div class="border-top"></div>	
+											<div ng-click="dropDownClick('doors')" popup-name="Select Doors" directive-id="doorslistid" multi-select-drop-down open-drop-down="openDoorsList" close-drop-down="closeDoorsList" object-to-inject="clearDoorsList" on-item-click="listSelect('doors', 'full')" refresh-button-text="refreshButtonTextDoors" is-desktop="isDesktop" input-model="doorsList" output-model="selectedDoors" max-height="60px" button-label="value" is-count-required=false item-label="value" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangDoors" output-properties="id integer_representation group value">
+											</div>
+											<div ng-click="dropDownClick('drivetrain')" popup-name="Select Drivetrain" directive-id="drivetrainlistid" multi-select-drop-down open-drop-down="openDrivetrainList" close-drop-down="closeDrivetrainList" object-to-inject="clearDrivetrainList" on-item-click="listSelect('drivetrain', 'full')" refresh-button-text="refreshButtonTextDrivetrain" is-desktop="isDesktop" input-model="drivetrainList" output-model="selectedDrivetrain" max-height="60px" button-label="value" is-count-required=false item-label="value" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangDrivetrain" output-properties="id integer_representation group value">
+											</div>
+											<div ng-click="dropDownClick('usertype')" popup-name="Select User Type" directive-id="usertypelistid" multi-select-drop-down open-drop-down="openUserTypeList" close-drop-down="closeUserTypeList" object-to-inject="clearUserTypeList" on-item-click="listSelect('usertype', 'full')" refresh-button-text="refreshButtonTextUserType" is-desktop="isDesktop" input-model="userTypeList" output-model="selectedUserType" max-height="60px" button-label="value" is-count-required=false item-label="value" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangUserType" output-properties="id integer_representation group value">
+											</div>
+											<div ng-click="dropDownClick('body')" popup-name="Select Body" directive-id="bodylistid" multi-select-drop-down open-drop-down="openBodyList" close-drop-down="closeBodyList" object-to-inject="clearBodyList" on-item-click="listSelect('body', 'full')" refresh-button-text="refreshButtonTextBody" is-desktop="isDesktop" input-model="bodyList" output-model="selectedBody" max-height="166px" button-label="value" is-count-required=true item-label="value count" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangBody" min-search-length="1" output-properties="id integer_representation group value">
+											</div>
+											<div ng-click="dropDownClick('transmission')" popup-name="Select Transmission" directive-id="transmissionlistid" multi-select-drop-down open-drop-down="openTransmissionList" close-drop-down="closeTransmissionList" object-to-inject="clearTransmissionList" on-item-click="listSelect('transmission', 'full')" refresh-button-text="refreshButtonTextTransmission" is-desktop="isDesktop" input-model="transmissionList" output-model="selectedTransmission" max-height="166px" button-label="value" is-count-required=true item-label="value count" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangTransmission" min-search-length="1" output-properties="id integer_representation group value">
+											</div>
+											<div ng-click="dropDownClick('colour')" popup-name="Select Colour" directive-id="colourlistid" multi-select-drop-down open-drop-down="openColourList" close-drop-down="closeColourList" object-to-inject="clearColourList" on-item-click="listSelect('colour', 'full')" refresh-button-text="refreshButtonTextColour" is-desktop="isDesktop" input-model="colourList" output-model="selectedColour" max-height="166px" button-label="value" is-count-required=true item-label="value count" tick-property="ticked" helper-elements="filter" search-property="value" translation="localLangColour" min-search-length="1" output-properties="id integer_representation group value">
+											</div>
+										</div>
+										<div class="col-xs-12 condition-wrap-with-img">
+										<ul class="search-terms">
+											<li>
+												<div class="select-checkbox">
+													<span>Include Cars Without Images</span>
+													<!-- <label class="switch">		
+														<input type="checkbox" name="checkbox" ng-model="checkCarsWOImage">			
+														<div class="slider round"></div>
+													</label> -->
+													<label class="car-wt-color-check">		
+														<input type="checkbox" name="checkbox" ng-model="checkCarsWOImage">			
+													</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+									</div>
+									
+									<div class="bottom-wrapper" ng-class = "bottomWrapperPosition">
+									<div class="col-xs-12 condition-wrapper custom-wrapper">
+										<div class="buton-wrapper" ng-show='isSaveSearchEnable'>
+											<button type="submit" class="button button-large button-default"> Search </button>
+											<div class="tooltiptext" ng-show = "isPopupVisible">
+											   <div class="tooltip-img">
+											   		<img src="assets/images/tooltip_warning.png">
+											   </div>
+											   <p>Please select atleast one item before saving search.</p>
+											</div>		
+										</div>
+										<div class="buton-wrapper" ng-show='!isSaveSearchEnable'>
+											<button type="submit" class="button button-large button-default"> Save and Search </button>	
+											<div class="tooltiptext" ng-show = "isPopupVisible">
+											   <div class="tooltip-img">
+											   		<img src="assets/images/tooltip_warning.png">
+											   </div>
+											   <p>Please select atleast one item before saving search.</p>
+											</div>			
+										</div>
+										<div class="searchform-loader"  ng-show='scrollLoadData.busy && isDesktop'> 
+											<!-- <img src="assets/images/loading image.jpg" /> -->
+											Loading more results....
+										</div>
+									</div>
+									<div class="col-xs-12 condition-wrapper">
+										<ul class="search-terms search-bottom">
+											<li ng-show='isSaveSearchEnable'>
+												<div class="select-checkbox">
+													<span class="save-search"> Save this search</span>
+													<label class="switch">		
+														<input type="checkbox" name="checkbox" ng-model="checkStatus">			
+														<div class="slider round"></div>
+													</label>
+												</div>
+											</li>
+											<li>
+												<div class="select-checkbox">
+													<span class="notification"> Receive notifications*</span>
+													<span class="question-icon"><img src="assets/images/question.png"  ng-click = "receiveNotificationFunction(receiveNotification)">
+														<div class="location-popup receive-notification" ng-show = "receiveNotification" ng-class = "$parent.isLogin ? 'location-popup-after-login':''">
+														    <div class="geo-heading">
+														    	<h3>Email Notifications</h3>
+														    	<span><img src="assets/images/geo-close.png" ng-click = "receiveNotificationFunction('true')"></span>
+														    </div>
+															
+															<p>Select "Receive and notifications" and click on "Search" to save this search and receive notifications.
+																<p ng-show="!$parent.isLogin">Registration is required to receive email notification. <a ng-click = "showSignUp()" >Create New Account</a></p>
+															</p>
+															<div class="got-it-button" ng-click = "receiveNotificationFunction('true')">GOT IT</div>
+														</div>
+													</span>
+													<label class="switch">	
+														<input type="checkbox" name="checkbox" ng-model="checkNotificationStatus">
+														<div class="slider round"></div>
+													</label>
+												</div>
+											</li>
+											<!-- <li>
+												<span class="registration">*Registration is required to receive notifications. If you decide to 'Receive Notifications' for this search, you will start receiving email notifications when new car arrivals match your filters.</span>
+											</li> -->
+											<!-- <li class="arrow-up-button" ng-style="{ 'position' : position }">
+												<img class="arrow-up" src="assets/images/back_up_arrow.jpg" ng-click="scrollToTop()">
+											</li> -->
+										</ul>
+									</div>
+								 </div>
+								</div>
+							</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--************** Search Result  **************** -->
+	<div class="searchresult-page" ng-class="tempClassForMenu" ng-show="showSearchResult == true"  style="margin-left:{{newSearchResultMargin}}; width:{{newSearchResultSection}}{{px}}">	
+		<div class="header-detail desktop-view">
+			<div class="new-header-content">
+				<div class="menu-wrapper-btn" ng-show="rightArrowImage == true">
+					<img src="assets/images/arrow-with-bg.png" ng-click="hideSearchResult()">
+					<div class="location-popup search-shortcut" ng-show = "refineSearch">
+					    <div class="geo-heading">
+					    	<h3>Refine Search</h3>
+					    	<span><img src="assets/images/geo-close.png" ng-click="refineSearchFunction(refineSearch)"></span>
+					    </div>
+						<p>Click here to refine search filters</p>
+						<div class="got-it-button" ng-click="refineSearchFunction('true')">GOT IT</div>
+					</div>
+				</div>
+				<div class="geo-location">
+					<div class="wall-deals" ng-show = "wallOfDeals">
+						<h2>WALL OF DEALS <span class="question-icon"><img style="width: 18px !important; margin-top: 4px;" src="assets/images/question.png"   ng-click = "modelPopupFunction()"></h2>
+						<p>All cars 10% below market average</p>
+					</div>
+					Searching in and around  <a class="localCity" href="">{{defaultCity}}</a>
+					<span class="location-image">
+						<img src="assets/images/geo_ic.png" ng-click="getGeoLocation(true)">
+			<!--		<div class="location-popup geo" ng-style="popup">
+						    <div class="geo-heading">
+						    	<h3>Location</h3>
+						    	<span><img src="assets/images/geo-close.png"></span>
+						    </div>							
+							<p>Click this icon to get your precise location. Click "allow" when prompted</p>
+							<div class="got-it-button">GOT IT</div>
+						</div>  -->
+					</span>
+					<span class="location-image"   ng-show="geoLocationError">
+						<img src="assets/images/alert.png" ng-click="showGeoLocationErrorAlert()">
+						<div class="location-popup geo-subpart alert" ng-style ='geoLocationErrorPopup'>
+						    <div class="geo-heading">
+						    	<h3>Location Setting</h3>
+						    	<span><img src="assets/images/geo-close.png"></span>
+						    </div>
+						    							
+							<p>{{geoErrorMessage}}</p>
+							<div class="location-finder">
+								<img src="assets/images/location.jpg" ng-show = "accessDenied">
+							</div>
+							<div class="got-it-button" ng-show = "accessDenied">GOT IT</div>
+						</div> 	
+					<!--	<div class="location-popup alert" ng-show = "positionUnavailable == true" ng-style ='unavailablePopup'>
+							<div class="geo-heading">
+						    	<h3>Location Setting</h3>
+						    	<span><img src="assets/images/geo-close.png"></span>
+						    </div>
+							<p>Location information is unavailable. Please try aain later or select your city manually.</p>
+						</div> -->
+					</span>						
+				</div>
+				<div class="input-wrapper mobile">
+					<form class="form-btn" name="searchForm" ng-submit="searchSubmitKeyword('searchform')" role="form" method="post">
+						<input type="text" id="transcript" name="search" placeholder='Eg. "white bmw suv"' class="search-input" ng-model="keywordSearchValue" autocomplete="off">
+						<span class="micro-phone">						
+							<img class="mic" ng-click="startDictation()" src="assets/images/mic-icon.png" ng-show="(os == 'linux' || os == 'windows' || os == 'android') && (browser == 'chrome') && !keywordSearchValue.length"/>
+							<span class="clear-text-btn" ng-show="keywordSearchValue.length" ng-click="clearSearchText()"><img src="assets/images/clear-text.png"></span>
+							
+						</span>
+						<button class="search-icon">
+							<img ng-src="assets/images/search-icon.png" alt="assets/images/search-icon.png">
+						</button>
+					</form>
+					<div ng-message="required" class="search-bar-msg">{{emptySearchValue}}</div>
+				</div>
+				<div class="tag-list">
+					<span class="tag-content" ng-repeat="city in cityList" ng-if="city.ticked == true" ng-click="closeTag('city', city.integer_representation, searchSubmit)">
+						<label class="tag-name">{{splitCity(city.value)}}</label>
+						<span> X</span>
+					</span>
+					<span class="tag-content" ng-repeat="country in countryList" ng-if="country.ticked == true" ng-click="closeTag('country', country.integer_representation, searchSubmit, showSearchResult)">
+						<label class="tag-name">{{country.value}}</label>
+						<span> X</span>
+					</span>
+					<span class="tag-content" ng-repeat="make in makeList" ng-if="make.ticked == true" ng-click="closeTag('make', make.integer_representation, searchSubmit, showSearchResult)">
+						<label class="tag-name">{{make.value}}</label>
+						<span> X</span>
+					</span>
+					<span class="tag-content" ng-repeat="model in modelList" ng-if="model.ticked == true" ng-click="closeTag('model', model.integer_representation, searchSubmit, showSearchResult)">
+						<label class="tag-name">{{model.value}}</label>
+						<span> X</span>
+					</span>
+					<span class="tag-content" ng-repeat="doors in doorsList" ng-if="doors.ticked == true" ng-click="closeTag('doors', doors.integer_representation, searchSubmit, showSearchResult)">
+						<label class="tag-name">{{doors.value}}</label>
+						<span> X</span>
+					</span>
+					<span class="tag-content" ng-repeat="drivetrain in drivetrainList" ng-if="drivetrain.ticked == true" ng-click="closeTag('drivetrain', drivetrain.integer_representation, searchSubmit, showSearchResult)">
+						<label class="tag-name">{{drivetrain.value}}</label>
+						<span> X</span>
+					</span>
+					<span class="tag-content" ng-repeat="usertype in userTypeList" ng-if="usertype.ticked == true" ng-click="closeTag('usertype', usertype.integer_representation, searchSubmit, showSearchResult)">
+						<label class="tag-name">{{usertype.value}}</label>
+						<span> X</span>
+					</span>
+					<span class="tag-content" ng-repeat="body in bodyList" ng-if="body.ticked == true" ng-click="closeTag('body', body.integer_representation, searchSubmit, showSearchResult)">
+						<label class="tag-name">{{body.value}}</label>
+						<span> X</span>
+					</span>
+					<span class="tag-content" ng-repeat="transmission in transmissionList" ng-if="transmission.ticked == true" ng-click="closeTag('transmission', transmission.integer_representation, searchSubmit, showSearchResult)">
+						<label class="tag-name">{{transmission.value}}</label>
+						<span> X</span>
+					</span>
+					<span class="tag-content" ng-repeat="colour in colourList" ng-if="colour.ticked == true" ng-click="closeTag('colour', colour.integer_representation, searchSubmit, showSearchResult)">
+						<label class="tag-name">{{colour.value}}</label>
+						<span> X</span>
+					</span>
+					<span class="tag-content" ng-if="isPriceChanged" ng-click="closeTag('price','', searchSubmit, showSearchResult)">
+						<label class="tag-name">{{minPrice}} - {{maxPrice}}</label>
+						<span> X</span>
+					</span>
+					<span class="tag-content" ng-if="isYearChanged" ng-click="closeTag('year','', searchSubmit, showSearchResult)">
+						<label class="tag-name">{{minYear}} - {{maxYear}}</label>
+						<span> X</span>
+					</span>
+					<span class="tag-content" ng-if="isKmChanged" ng-click="closeTag('kilometers','', searchSubmit, showSearchResult)">
+						<label class="tag-name">{{minKilometers}} - {{maxKilometers}}</label>
+						<span> X</span>
+					</span>
+					<span class="tag-content" ng-if="isBmaChanged" ng-click="closeTag('belowmarket','', searchSubmit, showSearchResult)">
+						<label class="tag-name">{{minBelowMarket}} - {{maxBelowMarket}}</label>
+						<span> X</span>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="search-div" ng-init="onEnter();">
+			<div class="container-fluid search-result-page">
+				<div class="content-view">
+					<div class="right-content">
+						<div class="result-no">
+							{{totalCount | number}} results
+						</div>
+						<div class="modal-bg ng-scope dropdown-bg" ng-show="dropdownbg" ng-click="popupShowHideFunction()"></div>
+						<div class="filter-wrapper btn-group" ng-class="totalCount == 0 ? 'filter-blur' : ''">
+							<button data-toggle="dropdown" class="multiselect dropdown-toggle" type="button" title="{{sortSelected.label}}" ng-click="popupShowHideFunction()" ng-disabled = "sortDropDownDisable || totalCount == 0" ng-class="totalCount == 0 ? 'filter-blur' : ''">
+								<span class="multiselect-selected-text">
+									{{sortSelected.label}}
+								</span> 
+								<b class="caret"></b>
+							</button>
+							<ul class="multiselect-container dropdown-menu" ng-show="dropdownbg">
+								<li class="multiselect_sort_checkbox multiselect-checkbox active" ng-repeat="sortdata in sortList track by $index"  ng-click="sortSelectionChanged($index)" >
+									<div>
+									<label class="radio">
+										<input type="radio" value="sortdata.value" name="sort" ng-checked="sortdata.ticked" ng-true-value="true" ng-false-value="false" class="multiselect_sort_checkbox multiselect-checkbox"> <p class="label-name">{{sortdata.label}}</p>
+									</label></div>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="product-view" ng-controller="ShareController" scroll-load-data="(showSearchResult && !showSharePopUp) ? loadMore() : ''" scroll-load-data-disabled='busy' ng-class= "{'no-result-wrapper' : searchResult.length == 0 }" scroll-load-data-distance='1'>
+						<div ng-if="totalCount != 0">
+							<ul class="product-view-ul">
+								<li class="product-view-li" ng-repeat="(key, value) in searchResult" class="list-group-item" ng-style="fullWidthImg" style="width:{{newSearchResultBoxWidth}}"
+								  ng-class ="{'active-car-parts-popup' : (isSeeCarPartsClicked && productId == value.product_id),'forward' : (forward && carPartsPopups && (productId == value.product_id)),'forward-sub' : (forward && !carPartsPopups && (productId == value.product_id)), 'reverse' : (reverse && carPartsPopups && (productId == value.product_id)),'reverse-sub' : (reverse && !carPartsPopups && (productId == value.product_id))}">
+									<div class="product-wrapper">
+										<div class="image-wrapper">
+											<a href="{{value.href_url}}" target="_blank">
+												<img class="car-image" ng-src="{{value.image0}}" err-src="{{value.image0_default}}">
+											</a>
+										</div>
+										<div class="car-details">
+											<div class="car-info">
+												<div class="car-name">
+													<a href="{{value.href_url}}" target="_blank">{{value.item_title}}</a> 
+													<div class="date-location">
+														{{value.post_date}} in {{value.city}}
+													</div>
+												</div>
+											</div>
+											
+											<div class="car-price-details">
+												<div class="km-cdn">
+													<a href="{{value.href_url}}" target="_blank">
+														<div class="sell-price">
+															<div>
+																{{value.price_list[multiUnitData.price.displayFormat.price.keyName]}}
+															</div>
+														</div>
+													</a>
+													<div class="kilometer">
+														<div>
+															{{ changeDisplayFormat(value.kilometers_list[multiUnitData.kilometers.displayFormat.kilometers.keyName]) }}
+														</div>
+													</div>
+												</div>
+												<div class="current-price" ng-if = "value.ma_show" ng-class = "value.ma_keyword =='Above' ? 'color-toggle' : ''">
+													<div class="price-value">
+														{{value.ma_keyword}} market by
+													</div>
+													<div class="current-price-amount">
+														{{value.ma_difference_list[multiUnitData.price.displayFormat.price.keyName]}}
+													</div>													
+												</div>
+											</div>
+<!-- 											<div class="left-button">
+												<button class="like" ng-click="moreButtonClicked()"><span>&nbsp;&#8942;&nbsp;</span></button>
+											</div> -->
+											
+											<div class="car-parts-container" ng-show="isSeeCarPartsClicked" ng-click = "onSeeCarPartsClicked()">
+												<ul class="car-parts-popup" ng-show = "(isSeeCarPartsClicked && (productId == value.product_id))" >
+													<li class="light-lamp-subpart-list" ng-show ="(popupNo >1)">
+														<a class="light-lamp-subpart-link backward" href="" ng-click = 'backClicked()'>
+															<span class="back-img"></span>back
+														</a>
+													</li>
+													<li class="popup-list" ng-repeat ="(carPartKey, carPartValue) in carPartsResult">
+														<a class="popup-list-link" ng-href="{{(carPartValue.children.length == 0)? carPartValue.external_url : ''}}" ng-show ="carPartValue.name != 'See More'" ng-click = '(carPartValue.children.length != 0) && getSubPart(carPartKey, carPartValue)' target="_blank">{{carPartValue.name}}
+															<span class="light-bulbs-img" ng-show ="carPartValue.children.length != 0"></span>
+														</a>
+														<a class="popup-list-link" ng-show ="carPartValue.name == 'See More'" ng-click = '(carPartValue.children.length != 0) && getSubPart(carPartKey, carPartValue)' target="_blank">{{carPartValue.name}}
+															<span class="light-bulbs-img" ng-show ="carPartValue.children.length != 0"></span>
+														</a>												
+													</li>
+												</ul>
+												<ul class="light-lamp-subpart" ng-show = "(isSeeCarPartsClicked && (popupNo >1) && (productId == value.product_id))">
+													<li class="light-lamp-subpart-list" >
+														<a class="light-lamp-subpart-link backward" href="" ng-click = 'backClicked()'>
+															<span class="back-img"></span>back
+														</a>
+													</li>
+													
+													<li class="light-lamp-subpart-list" ng-repeat ="(carPartKey, carPartValue) in carPartsResult">
+														<a class="light-lamp-subpart-link" ng-href="{{(carPartValue.children.length == 0)? carPartValue.external_url : ''}}" ng-show ="carPartValue.name != 'See More'" ng-click ='(carPartValue.children.length != 0) && getSubPart(carPartKey, carPartValue)' target="_blank">{{carPartValue.name}}
+															<span class="light-bulbs-img"  ng-show ="carPartValue.children.length != 0"></span>
+														</a>
+														<a class="light-lamp-subpart-link" ng-show ="carPartValue.name == 'See More'" ng-click ='(carPartValue.children.length != 0) && getSubPart(carPartKey, carPartValue)' target="_blank">{{carPartValue.name}}
+															<span class="light-bulbs-img"  ng-show ="carPartValue.children.length != 0"></span>
+														</a>
+													</li>
+												</ul>
+											</div>
+											
+											<div class="like-hide-button">
+
+												<div class="button-adjust">
+													<span class="left-button" ng-click = "userHasProductFlag.hasOwnProperty(value.product_id)? updateFlagAction(value.product_id, 'favorite', 'unflag') : updateFlagAction(value.product_id, 'favorite', 'flag')">
+														<button class="like"><span><img ng-src = "{{userHasProductFlag.hasOwnProperty(value.product_id) && 'assets/images/favorited.png' || 'assets/images/favorite.png'}}" ></span> 
+														</button>
+														<span class="tooltip-favorite">favorite</span>
+													</span>
+													<span class="share-button">
+												       <button class="share" ng-click = "shareDetails(value.href_url, value.image0, value.item_title, value.city, value.make, value.model);">
+														   <span><img src="assets/images/share_button.png"></span>
+													   </button>
+													   <span class="tooltip-share">share</span>
+												    </span>
+													<span class="right-button"><button class="hide-button" ng-click = "updateFlagAction(value.product_id, 'hidden', 'flag')"><span><img src="assets/images/hide_icon.png"></span></button>
+														<span class="tooltip-hide">hide</span>
+													</span>
+													<span class="right-button already-comp" ><button class="hide-button" ng-click = "addToCompare(value.product_id ,value.href_url, value.image0, value.item_title, value.price_list[multiUnitData.price.displayFormat.price.keyName])"><span><img src="assets/images/compare_icon.png"></span></button>
+														<span class="tooltip-hide">compare</span>
+														<div class="already-add" ng-show = 'isAlreadyAdded && (productId == value.product_id)'><span>{{compareCarsMessage}}</span></div>
+													</span>	
+													<!-- <span class="left-button">
+														<button class="like" ng-click="moreButtonClicked()"><span><b>&nbsp;&#8942;&nbsp;</b></span></button>
+													</span>
+													<span>
+														<div class="car-parts" ng-show="isMoreButtonClicked">
+															<ul>
+																<li>
+																	<a ng-click = "getCarPartsDetails(value.product_id)">Car Parts&nbsp;</a>
+																	<span ng-show = "(seeCarPartsLoading && (productId == value.product_id))">
+																		<img src="assets/images/loading-img.gif">
+																	</span>
+																</li>
+																<li>
+																	<a ng-click="getCarReviewDetails(value.product_id)">Car Reviews&nbsp;</a>
+																</li>
+																<li>
+																	<a ng-click="getCarRecallDetails(value.product_id)">Car Recalls</a>
+																</li>
+															</ul>
+														</div>
+													</span> -->
+												</div>											 
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					
+						<!-- <div ng-class="searchResult.length == 0 ? 'center-loder-wrapper' : 'bottom-loder-wrapper'" ng-show='scrollLoadData.busy'>
+							<div ng-class="searchResult.length == 0 ? 'loader-center' : 'loader-bottom'">
+								<img src="assets/images/spinner.gif"><span> Loading more results... </span>
+							</div>
+						</div> -->
+						<li class="back-to-top" ng-style="{ 'position' : position }" ng-show='((totalCount >= 3 && isDesktop == false) || (totalCount >= 7 && isDesktop))'>
+							<img class="top-button" src="assets/images/up.png" ng-click="goToTop()">
+						</li>
+						<li class="arrow-up-button" ng-style="{ 'position' : position }" ng-show='((totalCount >= 3 && isDesktop == false) || (totalCount >= 7 && isDesktop))'>
+							<img class="arrow-up" src="assets/images/search_shortcut.png" ng-click="onFilterSearchClicked()">
+						</li>
+						
+						<div class="min" ng-style="(totalCount == 0 && scrollLoadData.busy == false) == true && {'height' : '{{popupHeight}}' } || {'height' : 'auto'}">
+							<div class="no-msg" ng-show='totalCount == 0 && scrollLoadData.busy == false'>
+								<p>No Results found</p>
+								<p>Try changing the search filters, you can also save this search and receive email notifications on new arrivals.</p> 
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-class="searchResult.length == 0 ? 'center-loder-wrapper' : 'bottom-loder-wrapper'" ng-show='scrollLoadData.busy && showSearchResult == true'>
+	<div ng-class="searchResult.length == 0 ? 'loader-center' : 'loader-bottom'" ng-style="fullSearchResultPage">
+		<img src="assets/images/spinner.gif"><span> Loading more results... </span>
+	</div>
+</div>	
+
+
+<div ng-show="menuShow==true">
+	<menu-list></menu-list>
+</div>
+<div ng-show ='showSharePopUp' class = "social-share-popup">
+	<oktpus-share></oktpus-share>
+</div>
+
+</div>
+
+
+<div class="modal-bg" ng-click="closeModelPopup()" ng-style="popup" ng-show = "modelPopUp"></div>
+<div class="modal-bg-load" ng-show = "modelPopUpLoad"></div>
+<div class="another-modal" ng-init="oktfunctionLoad()" ng-show="anotherModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<center>
+					<img class="okt-modal-logo" src="assets/images/logo_red.png">
+				</center>
+			</div>
+			<div class="modal-body">
+				<div>
+					<h1>Search engine for used cars at your fingertips.</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 
+
+
+<div class="modal" ng-style="popup" ng-show = "modelPopUp">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" type="button" ng-click="closeModelPopup()"><img src="assets/images/wmcw_close.png"></button>
+				<center>
+					<img class="okt-modal-logo" src="assets/images/logo_red.png">
+				</center>
+			</div>
+			<div class="modal-body">
+				<table>
+					<tr class="okt-modal-bull">
+						<td colspan="2">
+							<h1>Find the car that fits your budget and taste on Oktpus.</h1>
+						</td>
+					</tr>
+					<tr class="okt-modal-bull">
+						<td>
+							<img class="okt-modal-img" src="assets/images/good_deal.png">
+						</td>
+						<td>
+							<b>Easily find good deals</b>
+							  with our below market average filter.
+						</td>
+					</tr>
+					<tr class="okt-modal-bull">
+						<td>
+							<img class="okt-modal-img" src="assets/images/single_search.png">
+						</td>
+						<td>
+							<b>All used car sites in one</b>
+							  single search.
+						</td>
+					</tr>
+					<tr class="okt-modal-bull">
+						<td>
+							<img class="okt-modal-img" src="assets/images/notification.png">
+						</td>
+						<td>
+							<b>Never miss a deal</b>
+							  thanks to real time notifications.
+						</td>
+					</tr>
+				</table>
+			</div>
+		<div class="modal-footer">
+			<button class="button button-large button-default wall" ng-click = "closeModelPopup()">WALL OF DEALS</button>
+			<button class="button button-large button-default search" ng-click = "showSearch('search')">SEARCH</button>
+		</div>
+	</div>
+</div>

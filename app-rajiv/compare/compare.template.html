@@ -1,0 +1,257 @@
+
+<div class="compare-page-wrapper" ng-init="loadCompareData();onEnter()" ng-class="tempClassForMenu">
+<div class="search-header"><header-pane2></header-pane2></div>
+	<div class="compare-page-headng-wrapper">
+		<div class="back-button"  ng-click="backButtonClicked()">
+			<img class="back-icon" src="assets/images/arrow.png">
+		</div>
+		<h2 class="compare-page-heading">COMPARE CARS</h2>
+	</div>
+	<div ng-show="menuShow==true" class = "menu-bg" ng-click="menuOutClick()"></div>
+	<div class="clear-all-button"><div class = "selecte-item">Items Selected : {{selectedCarCount}} / 4</div><button ng-show = "selectedCarCount > 0" ng-click = "removeAllCompareCars()">Clear All</button></div>
+	
+	<div class="compare-page">
+	<div class="show-hide-panel" ng-click = "showFeatureLableBlock()"  ng-class = "{'show-feature-lables' : showFeatureLables }"><img src="assets/images/arrow-show-hide.png" ></div>
+	<div class="feature" ng-click = "hideFeatureLableBlock()" ng-class = "{'hide-feature-lables' : hideFeatureLables}">
+		<div class="car-ul">
+				<div>Features</div>
+				<div>Item Name</div>
+				<div class="feature-car-img"></div>
+				<div>Make</div>
+				<div>Model</div>
+				<div>Body</div>
+				<div>City</div>
+				<div>Post Date</div>
+				<div>Price</div>
+				<div>Distance</div>
+				<div>Engine</div>
+				<div>Derivetrain</div>
+				<div>Transmission</div>
+				<div>Colour</div>
+				<div>Interior Colour</div>
+				<div>Passanger</div>
+				<div>Doors</div>
+				<div>Fuel</div>
+				<div style="padding: 20px;"></div><!-- see details-->
+			</div>
+	</div>
+	
+		<div class="compare-car-list mobile" ng-class = "{'backward-feature' : hideFeatureLables, 'empty-car-list': (compareCars.length <=0)}">
+			<div class="compare-car">
+				<div class="car-ul" ng-repeat = "(key, value) in result">
+					<div class="remove yscroll" ng-click = "removeProductIdFromCompareList(value.product_id)"> <span>Remove</span> <span>x</span></div>
+					<div class="yscroll">{{value.item_title}}</div>
+					<div class="feature-car-img">
+						<div class="feature-car-img-sub">
+							<a href ="{{value.href_url}}" target="_blank"> <img ng-src="{{value.image0}}" err-src="{{value.image0_default}}"></a>
+						</div>
+					</div>
+					<div class="yscroll">{{(value.make !== '' && value.make !== undefined) ? value.make : '-'}}</div>
+					<div class="yscroll">{{(value.model !== '' && value.model !== undefined) ? value.model : '-'}}</div>
+					<div class="yscroll">-</div>
+					<div class="yscroll">{{(value.city !== '' && value.city !== undefined) ? value.city : '-'}}</div>
+					<div class="yscroll">{{(value.post_date !== '' && value.post_date !== undefined) ? value.post_date : '-'}}</div>
+					<div class="yscroll">{{(value.price_list.CAD !== '' && value.price_list.CAD !== undefined) ? value.price_list.CAD : '-'}}</div>
+					<div class="yscroll">{{(value.kilometers !== '' && value.kilometers !== undefined) ? value.kilometers : '-'}}</div>
+					<div class="yscroll">{{(value.engine !== '' && value.engine !== undefined) ? value.engine : '-'}}</div>
+					<div class="yscroll">{{(value.drivetrain !== '' && value.drivetrain !== undefined) ? value.drivetrain : '-'}}</div>
+					<div class="yscroll">{{(value.transmission !== '' && value.transmission !== undefined) ? value.transmission : '-'}}</div>
+					<div class="yscroll">{{(value.colour !== '' && value.colour !== undefined) ? value.colour : '-'}}</div>
+					<div class="yscroll">{{(value.interior_colour !== '' && value.interior_colour !== undefined) ? value.interior_colour : '-'}}</div>
+					<div class="yscroll">{{(value.passengers !== '' && value.passengers !== undefined) ? value.passengers : '-'}}</div>
+					<div class="yscroll">{{(value.doors !== '' && value.doors !== undefined) ? value.doors : '-'}}</div>
+					<div class="yscroll">{{(value.fuel !== '' && value.fuel !== undefined) ? value.fuel : '-'}}</div>
+
+					<div><a style="color: #337ab7 !important;" href ="{{value.href_url}}" target="_blank">See Details</a></div><!-- see details-->
+				</div>
+				
+				<div class="car-ul" ng-repeat="i in getRemainingPortion() track by $index">
+					<div class="remove">Add To Compare</div>
+					<div ng-class = "{'error-message': (isMessage && ($index == selectedColumn))}">{{(isMessage && ($index == selectedColumn)) ? message : '-' }}</div>
+					<div class="feature-car-img">
+						<div class="feature-car-img-sub">
+							<img src="assets/images/default-car-image.png">
+							<span ng-class ="{'compare-loader':(isLoading && ($index == selectedColumn))}" ng-show = "(isLoading && ($index == selectedColumn))">
+								<img src="assets/images/loading-img.gif">
+							</span>
+						</div>
+					</div>					
+					<div class="choose-make"><select ng-model="selectedMake" ng-change="onChangeMake(selectedMake,$index)">
+							<option  value="" disabled>{{chooseMake}}</option>
+							<option ng-repeat="(key,value) in makeList" value = "{{value.id}},{{value.group}},{{value.integer_representation}},{{value.value}}">{{value.value}}</option>
+						</select></div>
+					<div class="choose-make"><select ng-model="selectedModel" ng-change="onChangeModel(selectedModel)" ng-disabled ="(isModelDisable || ($index != selectedColumn))" style="margin-left: -16px !important;">
+							<option  value="" disabled>{{($index == selectedColumn) ? chooseModel : 'Choose Model'}}</option>							
+							<option ng-repeat="(key,value) in modelList" value = "{{value.integer_representation}}">{{value.value}}</option>
+						</select></div>
+					<div> <!--<span ng-show = "(isLoading && ($index == selectedColumn))"><img src="assets/images/loading-img.gif"></span>  --> -</div>
+					<div>-</div>
+					<div>-</div>
+					<div>-</div>
+					<div>-</div>
+					<div>-</div>
+					<div>-</div>
+					<div>-</div>
+					<div>-</div>
+					<div>-</div>
+					<div>-</div>
+					<div>-</div>
+					<div>-</div>
+					<div>-</div><!-- see details-->
+				</div>				
+			</div>
+	</div>
+	</div>
+
+	<div class="compare-desktop-page">
+	    <div class="compare-img-price-wrapper row1">
+	      <div class="compare-img-text">
+	        <div class="compare-img left">
+	          <div><span>Compare</span></div>
+	          <div class="item-count">items</div>
+	        </div>
+	        <div class="compare-img" ng-repeat = "(key, value) in result">
+	          <div class="remove-product" ng-click = "removeProductIdFromCompareList(value.product_id)">X</div>
+	          <div class="img-wrapper"><a href="{{value.href_url}}" target="_blank"><img ng-src="{{value.image0}}" err-src="{{value.image0_default}}"></a></div>
+	          <div class="price"><span>{{value.item_title}}</span><br><span>{{(value.price_list.CAD !== '' && value.price_list.CAD !== undefined) ? value.price_list.CAD : '-'}}</span></div>
+	        </div>
+	         <div class="compare-img" ng-repeat="i in getRemainingPortion() track by $index">
+	      <!--    <div class="remove-product"></div> -->
+				<div class="img-wrapper"><a href=""><img src="assets/images/default-car-image.png"></a></div>
+				<div class="price">
+					<div class ="compare-loading"><span ng-show = "(isLoading && ($index == selectedColumn))"><img src="assets/images/loading-img.gif"></span>
+					<span ng-show = "isMessage && ($index == selectedColumn)"> {{message}}</span></div>
+					<div class = "select-make-model">
+						<select  ng-model="selectedMake" ng-change="onChangeMake(selectedMake,$index)">
+							<option  value="" disabled>{{chooseMake}}</option>
+							<option ng-repeat="(key,value) in makeList" value = "{{value.id}},{{value.group}},{{value.integer_representation}},{{value.value}}">{{value.value}}
+							</option>
+						</select>
+					<!--	<select ng-options="make.value for make in makeList" ng-model="selectedMake" ng-change="onChangeMake($index)"> 
+								<option value="" disabled>Choose Make</option>									
+						 </select>  	 -->
+					</div>
+					<br><br>
+					<div class = "select-make-model">
+						<select ng-model="selectedModel" ng-change="onChangeModel(selectedModel)" ng-disabled ="(isModelDisable || ($index != selectedColumn))">
+							<option  value="" disabled>{{($index == selectedColumn) ? chooseModel : 'Choose Model'}}</option>							
+							<option ng-repeat="(key,value) in modelList" value = "{{value.integer_representation}}">{{value.value}}
+							</option>
+						</select>
+						<!--<select ng-options="model.value for model in modelList" ng-model="selectedModel" ng-change="onChangeModel()" ng-disabled ="(isModelDisable || ($index != selectedColumn))"> 
+							<option value="" disabled>{{ chooseModel }}</option>									
+						  </select> -->
+					</div>
+			</div>
+	        </div>
+	        
+	      </div>
+	      
+	    </div>
+	    <div class="compare-border"></div>
+	    <div class="row-1">
+	      <div class="row-1-sub">
+			<div class="column-1 left"><div>Make</div></div>
+	        <div class="column-1" ng-repeat = "(key, value) in result"><div>{{(value.make !== '' && value.make !== undefined) ? value.make : '-'}}</div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>	    
+	      </div>
+	      
+	      <div class="row-1-sub">
+			<div class="column-1 left "><div>Model</div></div>
+	        <div class="column-1"  ng-repeat = "(key, value) in result"><div>{{(value.model !== '' && value.model !== undefined) ? value.model : '-'}}</div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>	  
+	      </div>	   
+	         
+	      <div class="row-1-sub">
+			<div class="column-1 left"><div>Body</div></div>
+	        <div class="column-1" ng-repeat = "(key, value) in result"><div>{{(value.body !== '' && value.body !== undefined) ? value.body : '-'}}</div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>
+	      </div>
+	      
+	      <div class="row-1-sub">
+			<div class="column-1 left" ><div>City</div></div>
+	        <div class="column-1" ng-repeat = "(key, value) in result"><div>{{(value.city !== '' && value.city !== undefined) ? value.city : '-'}}</div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>
+	      </div>
+	      
+	      <div class="row-1-sub">
+			<div class="column-1 left"><div>Post Date</div></div>
+	        <div class="column-1" ng-repeat = "(key, value) in result"><div>{{(value.post_date !== '' && value.post_date !== undefined) ? value.post_date : '-'}}</div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>
+	      </div>
+	      
+	      <div class="row-1-sub">
+			<div class="column-1 left"><div>Price</div></div>
+	        <div class="column-1" ng-repeat = "(key, value) in result"><div>{{(value.price_list.CAD !== '' && value.price_list.CAD !== undefined) ?  value.price_list.CAD : '-'}}</div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>
+	      </div>
+	      
+	      <div class="row-1-sub">
+			<div class="column-1 left"><div>Distance</div></div>
+	        <div class="column-1" ng-repeat = "(key, value) in result"><div>{{(value.kilometers !== '' && value.kilometers !== undefined) ? value.kilometers : '-'}}</div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>
+	      </div>
+	      
+	      <div class="row-1-sub">
+			<div class="column-1 left"><div>Engine</div></div>
+	        <div class="column-1" ng-repeat = "(key, value) in result"><div>{{(value.engine !== '' && value.engine !== undefined) ? value.engine : '-'}}</div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>
+	      </div>
+	      
+	      <div class="row-1-sub">
+			<div class="column-1 left"><div>Drivetrain</div></div>
+	        <div class="column-1" ng-repeat = "(key, value) in result"><div>{{(value.drivetrain !== '' && value.drivetrain !== undefined) ? value.drivetrain : '-'}}</div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>
+	      </div>
+	      
+	      <div class="row-1-sub">
+			<div class="column-1 left"><div>Transmission</div></div>
+	        <div class="column-1" ng-repeat = "(key, value) in result"><div>{{(value.transmission !== '' && value.transmission !== undefined) ? value.transmission : '-'}}</div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>
+	      </div>
+	      
+	      <div class="row-1-sub">
+			<div class="column-1 left"><div>Colour</div></div>
+	        <div class="column-1" ng-repeat = "(key, value) in result"><div>{{(value.colour !== '' && value.colour !== undefined) ? value.colour : '-'}}</div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>
+	      </div>
+	      
+	      <div class="row-1-sub">
+			<div class="column-1 left"><div>Interior Colour</div></div>
+	        <div class="column-1" ng-repeat = "(key, value) in result"><div>{{(value.interior_colour !== '' && value.interior_colour !== undefined) ? value.interior_colour : '-'}}</div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>
+	      </div>
+	      
+	      <div class="row-1-sub">
+			<div class="column-1 left"><div>Passanger</div></div>
+	        <div class="column-1" ng-repeat = "(key, value) in result"><div>{{(value.passengers !== '' && value.passengers !== undefined) ? value.passengers : '-'}}</div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>
+	      </div>
+	      
+	      <div class="row-1-sub">
+			<div class="column-1 left"><div>Doors</div></div>
+	        <div class="column-1" ng-repeat = "(key, value) in result"><div>{{(value.doors !== '' && value.doors !== undefined) ? value.doors : '-'}}</div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>
+	      </div>
+	      
+	      <div class="row-1-sub">
+			<div class="column-1 left"><div>Fuel</div></div>
+	        <div class="column-1" ng-repeat = "(key, value) in result"><div>{{(value.fuel !== '' && value.fuel !== undefined) ? value.fuel : '-'}}</div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>
+	      </div>
+	      <!--********************************see details desktop view**************************************-->
+	      <div class="row-1-sub">
+			<div class="column-1 left" style="padding: 23px !important;"><div></div></div>
+	        <div class="column-1" ng-repeat = "(key, value) in result"><div><a style="color: #337ab7 !important;" href="{{value.href_url}}" target="_blank">See Details</a></div></div>
+	        <div class="column-1" ng-repeat="i in getRemainingPortion() track by $index"><div>-</div></div>	    
+	      </div>
+	      <!--********************************see details desktop view ends********************************-->
+	      
+	    </div>
+	</div>
+</div>
+
+<div ng-show="menuShow==true">
+	<menu-list></menu-list>
+</div>
+<!-- <footer-pane></footer-pane>	 -->

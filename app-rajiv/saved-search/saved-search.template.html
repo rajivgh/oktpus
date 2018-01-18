@@ -1,0 +1,92 @@
+<!-- ************Saved searches page***************** -->
+<div class="saved-search-block">
+<div class="inside-profile-page saved-search" ng-init="onEnter(); loadSavedSearchList();" ng-class="tempClassForMenu" ng-style="{'min-height' : '{{popupHeight}}'}">
+    <div class="save-search-bg" ng-show="showDetails == true"></div>
+	<div class="search-header"><header-pane2></header-pane2></div>
+	<div ng-show="menuShow==true" class = "save-search-bg" ng-click="menuOutClick()"></div>
+	<div class="saved-headng-wrapper">
+		<div class="back-button save-back-btn" ng-click="backButtonClicked()">
+			<img class="back-icon" src="assets/images/arrow.png">
+		</div>
+		<h2 class="page-heading saved-search-heading">Saved searches</h2>
+	</div>
+	<div class="form-wrapper">
+		<form>
+			<div class="select-wrapper"  ng-repeat="(key, value) in result">
+				<div class="label-heading" ng-click="showSearchDetails(value.id)" ng-style="(showDetails == true && id==value.id)=== true && {'background-color':'transparent'} || ''">
+					<label>{{getParsedLabel(value.id, value.serialized_values.attribute) | uppercase}}</label>
+					<span class="edit-icon" ng-show="showDetails == true && id==value.id"><img src="assets/images/edit-icon.png"> </span> 
+					<span class="down-arrow">
+						<img ng-show="id!=value.id || (showDetails == false && id==value.id)" src="assets/images/menu-down-arrow.png" > 
+						<img ng-show="showDetails == true && id==value.id" src="assets/images/menu-up-arrow.png"> 
+					</span> 
+				</div>
+				<div class="label-content-wrapper">
+					<div class="label-content" ng-repeat="(key1, value1) in value.search_values track by $index"  ng-style="(showDetails == true && id==value.id)=== true && transparent || ''">
+						{{value1}} <span ng-if="value.search_values.length != $index+1">&bull;</span>
+					</div>	
+				</div>	
+
+				<!-- *****************Inside page of saved search***************** -->
+				<div class="inside-saved-search popup" ng-show="showDetails == true && id==value.id">
+					<div class="saved-search-popup">
+						<div class="clicked-content mobile">
+							<label>{{getParsedLabel(value.id, value.serialized_values.attribute) | uppercase}}</label>
+							<span class="edit-icon-popup" ng-show="showDetails == true && id==value.id"><img src="assets/images/edit-icon.png"> </span> 
+							<span class="down-arrow">
+								<!--<img ng-click="showSearchDetails(value.id)" ng-show="showDetails == true && id==value.id" src="assets/images/menu-up-arrow.png"> -->
+								<div class="close-btn" ng-click="showSearchDetails(value.id)">X</div>
+							</span> 
+							<div class="label-wrapper-popup">
+								<div class="label-content" ng-repeat="(key1, value1) in value.search_values track by $index"  ng-style="(showDetails == true && id==value.id)=== true && transparent || ''">
+									{{value1}} <span ng-if="value.search_values.length != $index+1">&bull;</span>
+								</div>
+							</div>
+						</div>
+							
+						</div>
+						<div class="col-xs-12 saved-search-desktop">							
+							<span class="options">
+								<label>Receive notifications</label>
+								<label class="switch">								
+									<input type="checkbox" ng-model="value.status_id" ng-true-value="'2'" ng-false-value="'1'" ng-change="showPopup(1, value.status_id)">
+									<div class="slider round"></div>
+								</label>
+							</span>
+							<span class="options" ng-click="openSavedSearch(value.id)">
+								<label>Launch the search</label>
+								<a class="launch">Launch</a>
+							</span>
+							<span class="options"  ng-click="showPopup(2, value.status_id)">
+								<label>Delete the search</label>
+								<a class="delete">Delete</a>
+							</span>
+							<div class="popup sub-popup" ng-show = "IsVisible">
+								<div class="close-btn" ng-click="hidePopup(popupType, value.id, value.status_id)">X</div>
+								<div class="message-container" ng-bind-html=message></div>
+								<button ng-click="hidePopup(popupType, value.id, value.status_id)">Cancel</button>
+								<button ng-click="okClickedPopup(popupType, value.id, value, value.status_id)">OK</button>
+							</div> 						
+						</div>
+					</div>
+				</div>	
+			</div>	
+			<div class="center-loder-wrapper" ng-show = "busy">
+				<div class="loader-center" >
+					<img src="assets/images/spinner.gif"><span> Loading more results... </span>
+				</div>
+			</div> 
+			<div class="min" ng-show="(result.length == 0 && busy == false)">
+				<div class="no-msg"> No Saved searches found </div>
+			</div>	
+		</form>		
+	</div>		
+</div>
+</div>	
+
+<div ng-show="menuShow==true">
+	<menu-list></menu-list>
+</div>
+<div ng-class="(result.length == 0) == true ? 'no-result-footer' :''">
+	<footer-pane ng-show="busy == false"></footer-pane>	
+</div>

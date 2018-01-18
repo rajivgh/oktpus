@@ -1,0 +1,108 @@
+<div class="notification-wrapper" ng-class="tempClassForMenu" ng-disable-scroll = "showSharePopUp" ng-init="onEnter()" ng-style="{'min-height' : '{{popupHeight}}'}">
+
+	<div class="search-header"><header-pane2></header-pane2></div>
+
+<div class="compare-popup-show-hide" ng-mouseover= "displayCamparePopup()" ng-mouseleave = "hideCamparePopup()" ng-show = "compareCars.length > 0 ">
+	<div>COMPARE <div class="count-item">{{selectedCarCount}}</div></div>
+</div>
+<div class="compare-popup"  ng-class = "isCompareClicked ?'compare-popup-show':''"  ng-style="comparePopup"  ng-mouseover= "displayCamparePopup()" ng-mouseleave = "selectedCarCount && hideCamparePopup()">
+	<div class="selected-product">Compare Vehicles ({{selectedCarCount}} of 4)</div>
+	<div class = "compare-alert" ng-show = 'isCompareCarsMessage'>{{compareCarsMessage}}</div>
+	<ul class="compare-popup-sub-container">
+		<li class="product-detail" ng-repeat="(key, value) in compareCars">
+			<div class="close-product"><button ng-click = "removeProductIdFromCompareList(value.product_id)">x</button></div>
+			<div class="product-img">
+				<a href="{{value.url}}" target="_blank">
+					<img class="car-image" ng-src="{{value.image}}" err-src="">
+				</a>
+			</div>
+			<div class="product-name-price">
+                <a href="{{value.url}}" target="_blank">{{value.title}}</a> 
+				<span><br>{{value.price}}</span>
+			</div>
+		</li>
+	</ul>
+	<div class="compare-button-wrapper">
+		<button class="clear-button" ng-click="removeAllCompareCars()" ng-show="(selectedCarCount >= 1)">Clear All</button> 
+		<button class="compare-button" ng-show="(selectedCarCount > 1)" ng-click = "compareCarsList()"> compare</button>
+	</div>
+	<div class="no-selection" ng-show="(selectedCarCount == 0)">{{compareCarsMessage}}</div>
+</div>
+		
+	<div ng-show="menuShow==true" class = "menu-bg" ng-click="menuOutClick()"></div>
+
+	<div class="notification-container" ng-init="loadNotificationList()"  ng-controller="ShareController">
+		<div class="history_row1">
+			<div class="back-button save-back-btn" ng-click="backButtonClicked()">
+				<img src="assets/images/arrow.png">
+			</div>
+			<div class="notification">NOTIFICATION HISTORY</div>
+		<!--	<div class="dropdown-contain-model-date" ng-if='result.length > 0'>
+					<div class="model">MODEL </div> -->
+			<!--	<div class="date">DATE </div>
+				</div>-->
+			</div>
+		<div class="model-data-container" ng-show="isResult">
+			<div class="update">		     
+				<div class="new-date">DATE</div> <span></span>
+			</div>
+		</div>
+		<div class="model-data-container" ng-repeat="(key, value) in result | limitTo : 30">
+		    <div class="update">		     
+			   <div class="full-date">{{value.sent_date}}</div> 
+			</div>				
+			<div class="img-model-container">
+				<div class="img-model-sub-container">
+					<span class="img-container">
+						<a href="{{value.href_url}}" target="_blank"><img ng-src="{{value.image0}}" err-src="{{value.image0_default}}"></a>
+					</span>						
+					<span class="model-container">
+						<a href="{{value.href_url}}" target="_blank">
+							<div class="heading"><p>{{value.item_title}}</p></div>
+							<div class="text"><p class="city">{{value.city}} </p><p> {{value.price_list.CAD}} <span class="dot">.</span> {{getParsedKilometer(value.kilometers)}}</p>  <p class="link-color" ng-if = "value.ma_show">{{value.ma_keyword}} market by {{ value.ma_difference_list.CAD }} </p></div>
+						</a>					
+					</span>
+					
+					<div class="button-container">
+						<div class="already-add" ng-show = 'isAlreadyAdded && (productId == value.product_id)'><span>{{compareCarsMessage}}</span></div>
+						<div class="buttons">
+							<span class="left-button" ng-click = "userHasProductFlag.hasOwnProperty(value.product_id)? updateFlagAction(value.product_id, 'favorite', 'unflag') : updateFlagAction(value.product_id, 'favorite', 'flag')">
+								<button class="like"><img ng-src = "{{userHasProductFlag.hasOwnProperty(value.product_id) && 'assets/images/favorited.png' || 'assets/images/favorite.png'}}" ></button>
+								<span class="tooltip-favorite">favorite</span>
+							</span>
+							<span class="share-button">
+								<button class="share" ng-click = "shareDetails(value.href_url, value.image0, value.item_title, value.city, value.make, value.model)"><img src="assets/images/share_button.png"></button>
+								<span class="tooltip-share">share</span>
+							</span>
+							<span class="right-button">
+								<button class="hide-button" ng-click = "updateFlagAction(value.product_id, 'hidden', 'flag')"><img src="assets/images/hide_icon.png"></button>
+								<span class="tooltip-hide">hide</span>
+							</span>
+							<span class="right-button comp" ><button class="hide-button" ng-click = "addToCompare(value.product_id ,value.href_url, value.image0, value.item_title, value.price_list[multiUnitData.price.displayFormat.price.keyName])"><span><img src="assets/images/compare_icon.png"></span></button>
+								<span class="tooltip-hide">compare</span>
+							</span>	
+						</div>
+					</div>		
+				</div>	
+				<div class="border"></div>		
+			</div>			
+		</div>
+		<div class="min" ng-show="isResult == false">
+			<div class="no-msg" ng-show="isResult == false"> No notifications found </div>
+		</div>
+		<div ng-class="result.length == 0 ? 'center-loder-wrapper' : 'bottom-loder-wrapper'" ng-show='busy'>
+			<div ng-class="result.length == 0 ? 'loader-center' : 'loader-bottom'">
+				<img src="assets/images/spinner.gif"><span> Loading more results... </span>
+			</div>
+		</div>		
+	</div>	
+</div>
+<div ng-show="menuShow==true">
+	<menu-list></menu-list>
+</div>
+<div ng-show ='showSharePopUp' class = "social-share-popup">
+	<oktpus-share></oktpus-share>
+</div>
+<!-- <div ng-class="(result.length == 0) == true ? 'no-result-footer' :''"> -->
+<footer-pane ng-show="busy == false"></footer-pane>	
+</div>

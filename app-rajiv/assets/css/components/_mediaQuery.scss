@@ -1,0 +1,2089 @@
+/* common pexels ----------- */
+
+$adjustment-small: "only screen and (max-width: 400px)";
+$mobile:"only screen and (min-width: 319px) and (max-width: 1024px)";
+
+$Desktop: "only screen and (min-width: 1025px)";
+$large-desktop: "only screen and (min-width: 768px)";
+$Desktop-adjust:"only screen and (min-width: 1025px) and (max-width: 1142px)";
+
+/*******************************************/
+
+/* Smartphones (portrait and landscape) ----------- */
+
+$smart-phone: "only screen and (max-width : 480px)";
+$smart-phone-l: "only screen and (min-width : 319px)";
+$smart-phone-p:"only screen and (max-width : 320px)";
+$smart-phone-mini: "only screen and (min-width : 481px) and (max-width: 767px)";
+
+
+$tab-screen:"only screen and (max-width : 600px)";
+
+$landscape-common: "only screen and (min-width: 767px) and (max-height: 480px) and (orientation :landscape)";
+
+/****************** Others ***********************/
+$modal-view: "only screen and (min-device-width: 319px) and (max-device-height: 480px) and (orientation : landscape)";
+
+/* iPads (portrait and landscape) ----------- */
+
+$ipad-p: "only screen and (min-width : 768px) and (max-width: 991px)";
+$mini-ipad: "only screen and (min-width : 768px) and (max-width: 800px)";
+$ipad-p-l: "only screen and (max-width : 1024px) and (max-height: 768px)";
+
+
+/* large mobile screen ---------------*/
+$large-mobile: "only screen and (min-width: 768px) and (max-width: 1024px)";
+
+
+/* iPhone 4 ----------- */
+
+$iphone4-l: "only screen and (min-device-width : 319px) and (max-device-width : 480px) and (orientation : landscape)";
+$iphone4-p: "only screen and (min-device-width : 319px) and (max-device-width : 480px) and (orientation : portrait)";
+
+
+/* iPhone 5 ----------- */
+
+$iphone5-l: "only screen and (min-device-width: 319px) and (max-device-height: 568px) and (orientation : landscape)";
+$iphone5-p: "only screen and (min-device-width: 319px) and (max-device-height: 568px) and (orientation : portrait)";
+
+
+/* Android device ----------- */
+
+$android-device: "only screen and (max-device-height: 480px) and (orientation :landscape)";
+$android-device-l: "only screen and (min-device-width: 319px) and (max-device-height: 640px) and (orientation :landscape)";
+$android-device-p: "only screen and (min-device-width: 319px) and (max-device-height: 640px) and (orientation : portrait)";
+
+/* Nexus -------------------*/
+
+/* $nexus-device-l : "only screen and (min-width: 601px) and (max-height: 906px) and (orientation :landscape)";
+$nexus-device-p : "only screen and (min-width: 601px) and (max-height: 906px)"; */
+
+$nexus-device-l : "only screen and (min-width: 453px) and (max-height: 749px) and (orientation :landscape)";
+$nexus-device-p : "only screen and (min-width: 453px) and (max-height: 749px) and (orientation : portrait)";
+
+/* Device width 350**************************/
+
+$smalldevice : "only screen and (max-width: 420px)";
+
+
+/* popup for mobile devices ******************/
+
+$popup-mobile-devices : "only screen and (min-width: 480px)";
+
+/* popup for small devices ******************/
+
+$popup-small-devices : "only screen and (max-width: 372px)";
+/* kocaso *************/
+
+$kocaso-device-l : "only screen and (min-width: 1024px) and (max-height: 768px) and (orientation :landscape)";
+$kocaso-device-p : "only screen and (min-width: 1024px) and (max-height: 768px) and (orientation : portrait)";
+
+/* Ipad land scap **********/
+
+$ipad-l : "only screen and (max-width: 1024px) and (max-height: 768px) and (orientation :landscape)";
+
+
+
+/* ------------------------------------- Desktop view code start here ---------------------------------------- */
+
+
+
+/*****************************only screen and (min-width: 1025px)*******************************/
+@media #{$Desktop} {
+	.col-burger-menu, .col-logo{
+		display : none !important;
+	}
+
+	.header-detail.desktop-view {
+	    display: block;
+	}
+
+	.header-detail.mobile-view{
+		display: none;
+	}
+	
+	/***********Homeage & Header-Both********************/
+		
+	.header1, .header2{
+	 	background: rgb(60, 60, 68) none repeat scroll 0 0;
+	 	padding: 0 15px !important;
+	 	position : fixed;
+	 	z-index: 10000;
+
+
+	 	.col-logo.desktop{
+			 display: block !important;
+
+			img {
+			    max-width: 8vw !important;
+			}
+		}
+
+		.home-nav-bar {
+		    color: #fff;
+		    display: block;
+
+			.nav-menu {
+			    padding: 13px 15px;
+			    vertical-align: middle;
+			    display: inline-block;
+			    
+			    .menu-hover:hover {
+			    	color: #fbd265 !important;
+			    }
+
+			    .menu-name{
+			    	cursor: pointer;
+			    }
+
+			    span{
+			    	cursor: pointer;
+			    	font-family: Oswald-Regular;
+    				vertical-align: middle;
+
+
+			    	.img-padding {
+					    margin: 0 auto 4px;
+					    padding-right: 4px;
+					    width: 20px;
+					}
+
+					img{
+						width: 20px;
+						margin: 0 auto 4px;
+					    padding-right: 4px;
+					}
+			    }
+
+			    .afterlogin-list {
+    				padding: 17px 10px;
+    				position: relative;
+
+				    .menu-name{
+						vertical-align: middle;
+
+					 	a:hover{
+					 		text-decoration : none;
+					 		color: $color-default !important;
+					 	}
+					}
+					.menu-hover.on-hover{
+						display:inline-block;
+					}
+
+					.menu-hover.no-hover{
+						display:none;
+					}
+
+				}
+
+				.afterlogin-list.active{
+					background: #fed669;
+					color: #fff;
+
+					.menu-hover.on-hover{
+						display:none;
+					}
+
+					.menu-hover.no-hover{
+						display:inline-block;
+					}
+
+					.menu-hover.no-hover:hover {
+					    color: #fff !important;
+					}
+
+				}
+
+				.afterlogin-list.active-user{
+					background: #000 none repeat scroll 0 0;
+
+					.menu-hover.on-hover{
+						display:none;
+					}
+
+					.menu-hover.no-hover{
+						display:inline-block;
+					}
+
+					.menu-hover.no-hover:hover {
+					    color: #fff !important;
+					}
+				}
+
+				
+
+				nav-menu.afterlogin-view{ 
+					display : block !important;
+				}
+
+				.menu-hover.on-hover{
+					display:inline-block;
+				}
+
+				.menu-hover.no-hover{
+					display:none;
+				}
+				.login-email {
+				    display: inline-block;
+
+				    .user-clicked-content {
+					    background: #fff none repeat scroll 0 0;
+					    border: 1px solid #d5d6d8;
+					    box-shadow: 0 6px 12px #d5d6d8;
+					    color: #000;
+					    left: 0;
+					    margin: 13px auto 0;
+					    padding: 10px 0;
+					    position: absolute;
+					    top: 75%;
+					    width: 192px;
+
+					    .inside{
+					    	padding: 2px 15px;
+
+					    	span{
+					    		font-family: oswald-light !important;
+    							font-weight: 600;
+					    		img{
+					    		 padding-right: 5px;
+					    		}
+					    	}
+
+					    	&:hover{
+					    		background: #f0f0f0;
+					    	}
+					    }
+					    
+					}
+				}
+			}
+
+
+			.nav-menu.active{
+				background: #fbd265;
+				color: #fff;
+				
+				.menu-hover.on-hover{
+					display:none;
+				}
+
+				.menu-hover.no-hover{
+					display:block;
+				}
+				.menu-hover.no-hover:hover{
+					color:#fff !important;
+					
+			}
+				}
+		}
+	}
+
+	.container-fluid{
+		overflow: hidden !important;
+
+		.home-background{
+			.col-xs-12.desktop{
+				position : relative;
+
+				.logo-wrapper{
+					left: 50%;
+				    position: absolute;
+				    top: 50%;
+				    transform: translate(-50%, 90px);
+				    z-index:1;
+
+					img {
+			    		max-width: 8vw !important;
+			    	}
+				}
+			}
+			.container-position {
+			    padding-top: 75vh !important;
+
+			    .input-wrapper{
+			    	display: block !important;
+			    	transition: all 0.32s ease-in-out 0s;
+			    }
+
+			}
+			
+		}
+
+		/* .home-menu-page, .learn-more-page.home-background, .home-menu-page, .learn-more-page{
+			height : 115vh !important;
+			overflow: hidden !important;
+		} */
+
+		.home-background {
+			height : 100vh !important;
+			/* overflow: hidden !important; */
+			overflow-y: scroll !important;
+			overflow-x: hidden !important;
+		}
+	}
+
+
+     /******************* Signup page ********************/
+
+     .signup-page{
+     /*	height: 80vh !important; */
+     	overflow: hidden !important; 
+     	height: auto !important;
+     }	
+
+	/************Saved search form************/
+
+	.save-search-bg{
+		display: none;
+	}
+	.saved-search{
+	    .saved-headng-wrapper{
+	       width: 50% !important;
+	       margin: auto;
+	       float: none !important;
+
+	        .saved-search-heading{
+				width:100% !important;
+				margin-top: 30px !important;
+				top: 20px !important;
+	        }
+	    }
+	    .form-wrapper{
+           width: 50% !important;
+	       margin: auto !important;
+	       float: none !important;
+	       overflow: unset !important;
+
+       			.inside-saved-search{
+       				position:relative;
+
+       				.saved-search-popup{
+       					display: none;
+       				}
+       			}    
+       			.popup{
+       				background:transparent;
+       				transform: translate(-50%, 0%);
+       			} 
+
+       			.popup.sub-popup {
+				    background: rgba(0, 0, 0, 0.88) none repeat scroll 0 0 !important;
+				    transform: translate(-50%, -50%) !important;
+				}
+	    }
+    } 
+
+   
+	/*------------ Setting Page-----------*/
+
+	.inside-profile-page{
+		.setting-page{
+			.settings-email-id{
+				width: 525px !important;
+				margin: auto !important;
+			}
+			.form-wrapper{
+				h4{
+				   /* text-align: center !important; */
+				}
+				.pass-suggestion {
+				    max-width: 525px !important;
+			   	}		
+			}
+		}	
+	}     
+	    .search-header{
+			min-height: 50px !important;
+		}
+	.input-field{
+		max-width: 525px !important;
+	}
+
+	.error-msg{
+		max-width: 525px !important;
+	}
+   /*-------- Back button comman class ----------*/
+	
+	.back-button{
+		display: none !important;
+	}
+
+  /*------------ Notification Page-----------*/
+	.notification-container{
+			.model-data-container{
+				.border{
+					margin: 21px auto 18px !important;
+				}
+			}
+		.history_row1{
+			.notification{
+				width: 100% !important;
+			}
+		}
+    }
+
+
+    /************Full search form************/
+
+    .search-searchresult-container{
+    	width: 100%;
+    	float: left;
+    	background-color: #fff;
+
+    }
+
+    
+	.searchresult-page {
+	   display: inline-block;
+	   float: left;
+	  
+	   margin-left: 365px;
+	} 
+	
+	
+	.tab-button{
+		display: none;
+	}
+
+	.full-search-page{
+		width: 358px;
+		float: left;
+		min-width: 320px;
+		background-color: #fff !important;
+		position:fixed;
+		overflow: hidden;
+		border-right: 1px solid #f0f0f0;
+		padding-right: 0 !important;
+		height:94vh;
+		z-index: 1;
+	}
+
+	.full-search-page:hover{
+		overflow-y: scroll;
+		border-right: none;
+	}
+
+	.searchform-scroller-stop:hover{
+		overflow-y: hidden !important;
+	}
+
+	 .full-search-page:hover::-webkit-scrollbar {
+	    width: 8px !important;
+	    background-color:#fofofo;
+	}
+
+	.full-search-page:hover::-webkit-scrollbar-thumb {
+	    background-color: gray;
+	}
+
+	.full-search-page:hover::-webkit-scrollbar-track {
+	    background-clip: content-box;
+	} 
+
+	.container-fluid.search-result-page{
+		background-color: #fff !important;
+	}
+	.condition-wrapper.custom-wrapper{
+		background-color: #fff !important;
+	}
+
+	.condition-wrapper{
+		padding: 0;
+	}
+
+	.search-result-page{
+		.content-view{
+			.filter-wrapper{
+				.dropdown-toggle{
+					width: 150px !important;
+					font-weight: bold;
+
+					.caret{
+						margin-left: 39 !important;
+					}
+				}
+			}
+			.product-view{
+				min-height: 300px;
+				.product-view-ul{
+					.product-view-li{
+						width: 33.3%;
+						min-height: 395px;
+						max-height: 395px;
+
+						.product-wrapper{
+							
+								.car-price-details{
+									.current-price{
+										width: 48% !important;
+									}
+								}
+							  
+							.image-wrapper{
+								.car-image {
+									max-height: 200px;
+									min-height: 200px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	} 
+
+	/* .location-finder{
+		display: block;
+	}
+
+	.location-popup.geo-subpart::after {
+    	top: -2.5% !important;
+	}
+	.location-popup.geo-subpart {
+    	min-width: 290px !important;
+    	transform: translate(-64%, 6%) !important;
+	}
+
+	.location-popup.geo {
+    	transform: translate(-52%, 14%)!important;
+	} */
+
+	.modal-bg.dropdown-bg{
+		display: none !important;
+	}
+ .search-popup-wrapper{
+ 	.search-popup{
+ 		left: 170px !important;
+ 	}
+ 	
+ }
+  
+
+	    
+
+
+	/*----------- Footer links -----------------*/
+
+	%common{
+		overflow: unset !important;
+	}
+
+	/*----------- About page -----------------*/
+	
+	
+
+	.about-container{
+		@extend %common;
+
+		.right-para{
+			margin-left: 20px;
+		}
+
+		.question{
+
+		 	span{
+		 	  font-size: 13px !important;
+		 	  width: 227px !important;
+			}
+        }
+
+        h2{
+         margin-bottom: 0px !important;
+        }
+
+        .contact-container{
+        	.privacy-container{
+        		.terms-container{
+        			padding-left: 20px !important;
+        		} 
+	  		}
+        }
+	}
+
+ /*----------- Contact page -----------------*/
+
+	.contact-container{
+		@extend %common;
+
+		.content-data{
+			span {
+				font-size: 13px !important;
+				width: 227px !important;
+			}
+		}
+
+		h2{
+			margin-bottom: 0px !important;
+		}	
+	}
+
+ /*----------- Privacy page -----------------*/	 
+
+	.privacy-container{
+		@extend %common;
+
+		.content-data{
+			span {
+				width: 235px !important;
+				font-size: 13px !important;
+			}
+		}
+
+		h3{
+			margin: 24px 0 !important;
+			width: 505px !important;
+		}
+	}
+
+ /*----------- Terms and Conditions page -----------------*/	
+
+	.terms-container{
+		@extend %common;
+
+		.content-data{
+			span{
+			 width: 232px !important;
+			 font-size: 13px !important;
+			}
+		}
+		h2{
+			width: 523px !important;
+        }
+        h3{
+        	width: 475px !important;
+        }
+	}
+	/* .search-form{
+		.bottom-wrapper{
+			min-width: 320px;
+			width: 28%;
+		}
+	} */
+
+	.search-form-container{
+		.search-form{
+			.form-field-sec{
+				/* margin-bottom: 70% !important; */
+				max-width: 330px;
+				/* padding-right: 33px; */
+
+			}
+		}
+	}  
+
+	.bottom-wrapper{
+		bottom: 0;
+		position: fixed;
+		max-width:330px;
+		border-top: 1px solid #f0f0f0;
+		/* padding-top: 20px; */
+		background:#fff;
+	}  
+
+	.searchform-loader{
+		display: block;
+	}
+
+	.no-msg{
+		top: -30%;
+	}
+
+	.multiSelect{
+		.helperContainer{
+			top: -3px !important;
+		}
+	}
+
+	 .temp1ClassFoorHeight {
+        /* top: 105px !important; */
+        
+    }
+    .temp2ClassFoorHeight {
+        /* top: 53px !important; */
+       /* height: 211px !important; */
+    } 
+
+    .temp3ClassFoorHeight {
+       /* top: 88px !important; */
+    } 
+
+     /*temp4ClassFoorHeight {
+    	height: 175px !important;
+    } */
+
+    .multiSelect{
+		.checkBoxContainer {
+		    position: relative;
+		    top: 3px;
+		    padding-top: 3px;
+		    overflow-y: scroll;
+		    max-height: 211px;
+		}
+		.helperContainer{
+			padding: 3px 2px 0 !important;
+		}
+	} 
+
+	 .search-result-page{
+		.content-view{
+			.product-view{
+				.no-msg{
+					transform: translate(-68%, -95%) !important;
+					position: relative;
+					
+				}
+			}
+		}
+	} 
+
+	.form-field-margin{
+		margin-bottom: 0 !important;
+	} 
+
+	.bottom-wrapper-position{
+		position: relative !important;
+	} 
+
+	.form-field-moremargin{
+		margin-bottom: 51% !important;
+	}
+
+	.center-loder-wrapper{
+		
+	    left: 0 !important;
+	    width: 100% !important;
+
+	    .loader-center {
+		   
+		    transform: translate(-50%, -50%) !important;
+		    width: 100% !important;
+		}
+	}
+
+	.searchresult-page{
+			.center-loder-wrapper{
+				top: 279px !important;
+		    .loader-center {
+			   transform: translate(-37%, -100%) !important;
+			}
+		}
+	}
+
+	.filter-name-wrapper{
+	 	display: none;
+	}
+
+ /*****************like hide buttons***********************/
+ 	%like-hide-buttons{
+ 		background-color: #fff;
+	    border: none;
+	    color: black;
+	    padding: 4px 10px;
+	    text-align: center;
+	    text-decoration: none;
+	    cursor: pointer;
+	    transition-duration: 0.4s;
+	    border: 1px solid #e7e7e7;
+ 	}
+
+
+	.button-container{
+		margin-top: 20px;
+		width: 100%;
+	    float: left;
+	    margin-top: 10px;
+    	.buttons{
+    		.like, .hide-button, .share {
+    			@extend %like-hide-buttons;
+    		}
+
+    		.hide-button, .share, .like {
+    			img{
+    				width: 20px;
+    			}
+    		}
+
+    		.like{
+    			padding-bottom: 5px;
+    		}
+
+    		.share{
+    			margin: 0 4px;
+    		}
+
+
+
+
+    		.like:hover, .hide-button:hover, .share:hover {
+    			background-color: #e7e7e7;
+    		}
+        }
+    }
+
+ /*****************like hide buttons end ***********************/
+
+ /*****************like hide tooltip start ***********************/
+ 	%tooltip-text{
+ 		visibility: hidden;
+	    background-color: black;
+	    color: #fff;
+	    text-align: center;
+	    border-radius: 6px;
+	    padding: 5px 0;
+	    position: absolute;
+	    top: 35px;
+	    z-index: 1;
+	    left: 50%;
+	    margin-left: -24px; 
+
+ 	}
+ 	.like-hide-button{
+ 		 .left-button{
+ 			position: relative;
+
+ 			.tooltip-favorite{
+ 				@extend %tooltip-text;
+ 			}
+ 		} 
+
+ 		.right-button{
+ 			position: relative;
+
+ 			.tooltip-hide{
+ 				@extend %tooltip-text;
+ 			}
+ 		}
+
+ 		.left-button:hover{
+ 			.tooltip-favorite{
+ 				visibility: visible;
+ 				padding: 1px 8px;
+ 			}
+ 		} 
+
+ 		 .right-button:hover{
+ 			.tooltip-hide{
+ 				visibility: visible;
+ 				padding: 1px 8px;
+ 			}
+ 		}
+
+ 		.share-button{
+ 			position: relative;
+
+ 			.tooltip-share{
+ 				@extend %tooltip-text;
+ 			}
+ 		} 
+
+ 		.share-button:hover{
+ 			.tooltip-share{
+ 				visibility: visible;
+ 				padding: 1px 8px;
+ 			}
+ 		}
+    }
+
+    .button-container{
+    	.buttons{
+    		.left-button, .right-button, .share-button {
+    			position: relative;
+    			.tooltip-favorite, .tooltip-hide, .tooltip-share {
+	 				@extend %tooltip-text;
+	 			}
+    		}
+
+    		.left-button:hover, .right-button:hover, .share-button:hover{
+    			.tooltip-favorite, .tooltip-hide, .tooltip-share {
+	 				visibility: visible;
+ 					padding: 1px 8px;
+	 			}
+    		}
+
+    		.left-button .like img {
+    			width: 20px;
+    		}
+    	}
+    }
+
+
+ /*****************like hide tooltip end ***********************/
+
+
+    .back-to-top {
+	    bottom: 10%;
+	    right: 13%;
+	    float: left;
+	}
+    .multiSelect{
+    	.checkboxLayer{
+    		left: 0 !important;
+    		top: 0 !important;
+    		transform: translate(0px, 0px) !important;
+    	}
+    }
+
+    .new-search-clear{
+    	display: none;
+    }
+
+    .search-result-page{
+		.content-view{
+			.right-content{
+				 padding-right: 30px !important;
+			}
+		}
+	} 
+
+	/******* Compare page *******/
+
+	.compare-page{
+		display: none;
+	}
+
+
+	/* .full-search-page{
+		.search-page{
+			.search-popup{
+		    top: 45%;
+		    width: 290px;
+		    padding: 2px 7px 15px;
+
+		.close-btn {
+		    cursor: pointer;
+		    float: right;
+		    font-size: 20px;
+	    }
+	    p {
+		    font-family: roboto-light;
+		    font-size: 16px;
+		    margin-top: 20px;
+		    text-align: center;
+	    }
+
+		    .popup-btn {
+			    background-color: #3c3c44;
+			    border: medium none;
+			    color: #fff;
+			    cursor: pointer;
+			    font-family: Roboto-Regular;
+			    font-size: 19px;
+			    margin: 33px auto 0;
+			    padding-bottom: 3px;
+			    text-align: center;
+			    width: 100px;
+			}
+
+	    }
+		}
+	} */
+}
+
+
+/*********************** only screen and (min-width: 1025px) and (max-width: 1142px) **************************/
+@media #{$Desktop-adjust}{
+	/*.searchresult-page {
+   		width: 68% !important;
+	}*/
+}
+
+
+/* ------------------------------------- Desktop view code ends here ----------------------------------------- */
+
+@media #{$modal-view} {
+	.modal {
+		/* height : 100%; */
+	}
+
+	.multiSelect{
+		.checkBoxContainer {
+			 /* max-height: 40vh; */
+		}
+	}
+}
+
+
+
+
+/* -------------------------------------Mobile view code starts here ------------------------------------- */
+
+
+
+@media #{$mobile} {
+	.col-burger-menu, .col-logo{
+		display : block !important;
+	}
+	.home-nav-bar, .col-logo.desktop{
+		display: none !important;
+	}
+	.home-background{
+		 .header1{
+		 	background : transparent;
+		 }
+	}
+	.location-finder{
+		display: none;
+	}
+	.header-detail.mobile-view{
+		display: block;
+
+			.search-bar-msg{
+		   		color: red;
+			    float: left;
+			    font-size: 14px;
+			    margin-left: 10px;
+	   	}
+	}
+	.header-detail.desktop-view{
+		display: none;
+	}
+	.collapse-arrow{
+		display: none;
+	}
+
+
+ /*---------------------- saved search Pop up---------------------*/
+	.select-wrapper{
+		position: relative;
+
+		.inside-saved-search.popup {
+		    background-color: rgb(254, 254, 254);
+		    left: 50%;
+		    padding: 15px 0;
+		    position: absolute;
+		    top: 50%;
+		    transform: translate(-50%, 0%);
+		    width: 80% !important;
+		    z-index: 10000;
+		    position: fixed;
+		    top: 135px;
+		    max-width: 525px;
+		}
+	}
+
+	.clicked-content.mobile{
+		background-color: rgb(240, 240, 240);
+		padding: 5px 15px 0;
+		color: #000;
+		top: -15px;
+		position: relative;
+	}
+
+	.edit-icon-popup{
+	 	position:relative;
+	 	top: -2px;
+	}
+
+	.edit-icon-popup img {
+		width: 10px;
+	}
+
+	.saved-search-desktop{
+		padding: 0 !important;
+	}
+
+	.saved-search{
+		.form-wrapper{
+			margin: auto !important;
+			width: 80% !important;
+			float: unset !important;
+			.inside-saved-search{
+				.options{
+					padding: 12px 15px 0 !important;
+				}
+			}
+		}
+	} 
+
+	/*******************************search result page********************************************/
+	.search-result-page{
+		.content-view{
+			.right-content{
+				width: 100% !important;
+				padding-right: 12px !important;
+			}
+		}
+	}  
+	.search-result-page{
+		.content-view{
+			.result-no{
+				float:left !important;
+				width: 100px !important;
+				position: relative;
+				top:10px;
+			}
+		}
+	}
+	.search-result-page{
+		.content-view{
+			.right-content{
+				.filter-wrapper {
+					margin-right: 15px !important;
+					float: none;
+
+					.dropdown-menu{
+						top: 50% !important;
+						left: 50% !important;
+						position: fixed;
+						max-width: 250px;
+						min-width: 250px;
+						transform: translate(-50%, -50%) !important;
+						z-index: 10002;
+
+						li{
+							border: 1px solid gray;
+    						padding: 5px;
+						}
+					}
+
+					.dropdown-toggle{
+						width: 140px !important;
+						.caret{
+							margin-left: 6px !important;
+						}
+					} 
+				}
+			}
+			
+		}
+	}
+
+	.modal{
+		width: 65% !important;
+	}
+
+	.center-loder-wrapper{
+		
+	    left: 0 !important;
+	    width: 100% !important;
+
+	    .loader-center {
+		   
+		    transform: translate(-50%, -50%) !important;
+		    width: 100% !important;
+		}
+	}
+
+	.searchform-loader{
+		display: block;
+	}
+
+
+	.multiSelect{
+		.checkBoxContainer {
+		    background: #fff none repeat scroll 0 0;
+		    display: block;
+		    max-height: 75vh;
+		    overflow-y: scroll;
+		    padding: 7px 8px 10px;
+		    overflow-x: hidden;
+		    position: relative; 
+		    top: 3px;
+		}
+	} 
+
+	.multiSelect{
+		.checkboxLayer{
+			transform: translate(-50%, 7px) !important;
+			top: 7px !important;
+			min-height: 75vh;
+			height: auto;
+			float: left;
+		  	overflow: hidden;
+		}
+	} 
+
+	.temp1ClassFoorHeight {
+       /* height: 55vh !important; */
+    }
+    .temp2ClassFoorHeight {
+       height: 250px !important;
+    }
+
+    .searchScroller {
+    	height: 100vh !important;
+    	overflow-y: hidden !important;
+    } 
+
+    .center-loder-wrapper{
+	    .loader-center {
+		    top: 60% !important;
+		}
+	}
+	.no-result-wrapper{
+		height: 60vh !important;
+		background: #fff;
+	}
+
+	.search-form-scroller{
+		overflow-y: scroll;
+		height: 100vh;
+	}
+
+	.filter-name-wrapper{
+	    border-bottom: 2px solid #eaeaea;
+	    padding-bottom: 10px;
+	    padding-top: 10px;
+	    text-align: center;
+	}
+
+	.filter-name-wrapper .filter-name{
+	    font-weight: bold;
+	    font-size: 15px;
+	    font-family: roboto-light;
+	}
+
+	.filter-name-wrapper .filter-close{
+	    cursor: pointer;
+	    float: right;
+	    font-family: roboto-light;
+	    font-size: 15px;
+	    font-weight: bold;
+	    padding: 0 15px 10px 10px;
+	}
+	 .searchresult-page{
+		.center-loder-wrapper{
+			/* top: 345px !important;
+		    width: 93% !important;
+		    margin-left: 15px;
+		    margin-right: 15px; */
+		    top: 28vh !important;
+        }
+
+        .loader-center {
+		   top: 32vh !important;
+		}
+	}
+
+	.searchform-loader{
+		width: 100% !important;
+		max-width: 100% !important;
+	} 
+
+	.search-form{
+		padding: 0 !important;
+		.custom-wrapper{
+			.buton-wrapper{
+				max-width: 100% !important;
+			}
+		}
+    }
+
+    .search-form-container{
+    	.search-form.full-search-form{
+    		margin: 0 !important;
+    		padding: 0 !important;
+    	}
+    }  
+
+    .garage-wrapper{
+    	.details-container {
+	    	width: 50% !important
+	    }
+    } 
+
+    .button-container{
+    	/* border-top: 1px solid lightgray; */
+	    float: left;
+	    margin-top: 10px;
+	    width: 100%;
+    	.buttons{
+
+    	.left-button, .right-button, .share-button {
+			.tooltip-favorite, .tooltip-hide, .tooltip-share {
+ 				display: none;
+ 			}
+		}
+
+    		.like, .hide-button, .share {
+    			background-color: white;
+			    border: none;
+			    color: black;
+			    padding: 4px 10px;
+			    text-align: center;
+			    text-decoration: none;
+			    cursor: pointer;
+			    border-radius: 5px;
+    		}
+    	}
+    }
+
+    .product-wrapper {
+
+		.image-wrapper {
+					
+			.car-image {
+				 width: 100% !important; 
+			}
+		}
+	}
+
+	.back-to-top {
+	    bottom: 10%;
+	    text-align: center;
+	    width: 100%;
+	    padding-right: 30px;
+	    float: left;
+	}
+
+	.new-search-clear {
+	    float: left;
+
+	    .new-search-button {
+		    background-color: #3c3c44;
+		    border: 0 none;
+		    border-radius: 5px;
+		    color: #fff;
+		    font-size: 12px;
+		    margin-right: 5px;
+		    padding: 5px 14px;
+		    font-family: Roboto-Light;
+		    font-weight: 700;
+
+		}
+	}
+  /******************** tooltip hover start ************************/
+	.like-hide-button{
+ 		.left-button{
+
+ 			.tooltip-favorite{
+ 				display: none;
+ 			}
+ 		}
+
+ 		.share-button{
+
+ 			.tooltip-share{
+ 				display: none;
+ 			}
+ 		}
+
+ 		.right-button{
+
+ 			.tooltip-hide{
+ 				display: none;
+ 			}
+ 		}
+ 	}
+
+ 	.remove-padding{
+ 		/* overflow-y: scroll !important;
+ 		-webkit-overflow-scrolling: touch !important;
+ 		overflow-x: hidden !important; */
+ 	}
+  /******************** tooltip hover end ************************/
+    
+
+	/* .content-view{
+		.product-view{
+			ul{
+				li{
+					.product-wrapper{
+						.image-wrapper{
+							height: 50vh !important;
+						    max-width: 100% !important;
+						    text-align: center !important;
+						    .car-image{
+						    	height: 100% !important;
+						    	max-width: 100% !important;
+						    }
+						}	
+					}
+				}	
+			}	
+		}	
+	} */ 
+
+	.multiSelect{
+		.checkboxLayer{
+			z-index: 2147483647 !important;	
+		}
+	} 
+
+	/******** comper page *********/ 
+	.compare-desktop-page{
+		display: none;
+	}
+
+	/***** compare popup ********************/ 
+	.compare-popup-show-hide{
+		top: 195px !important;
+		width: 140px !important;
+	}
+
+	.compare-popup-show-hide{
+  		display: none !important;
+  	}  
+
+}
+
+/* -------------------------------------Mobile view code ends here ------------------------------------- */
+
+
+/*********************Ipad version only min-width 768px to max-width 991px********************/
+
+@media #{$ipad-p} {
+   .container-position{
+       padding-top: 60vh;
+    }
+	.content-view{
+		.product-view{
+			.product-view-ul	{
+
+				.product-view-li	{
+					width: 45%;
+
+					.product-wrapper {
+						.image-wrapper {
+							width: 100%;
+							height: 210px;
+						}
+					}
+				}
+			}
+		}
+	}
+	/* .modal{
+		width: 70% !important;
+	} */
+
+	/* .micro-phone {
+		.clear-text-btn{
+			top: 5px !important
+		}
+	} */
+
+	.multiSelect{
+		.checkboxLayer{
+			min-height: 95vh !important;
+		}
+
+		.checkBoxContainer {
+		    max-height: 88vh;
+		}
+	}
+}
+
+
+/* @media #{$android-device} {
+	.home-background, .home-menu-page, .forgot-pass-page, .learn-more-page {
+	   height: 120vh !important;
+
+    }
+} */
+
+
+/*****************************only screen and (min-width: 768px)*******************************/
+
+	@media #{$large-desktop} {
+
+		.home-background{
+			background: url("../images/2560.jpg");	
+			background-position: center 25% !important;
+			height: 100vh !important; 
+
+			.logo-wrapper{
+				img {
+		    		max-width: 14vw !important;
+		    		position: relative;
+		    		top: -28px;
+		    	}
+			}
+
+			.container-position {
+			    padding-top: 65vh;
+			}
+		}
+
+	    .login-page, .forgot-pass-page, .signup-page, .learn-more-page {
+		    
+	     	.logo-wrapper{		     	
+	     		img{
+					top: 20px;
+					max-width: 10vw !important;
+	    		}
+	       	}
+		}
+
+		/* .signup-page{
+			.logo-wrapper{
+				img{
+					top: 20px;
+					max-width: 10vw !important;
+				}
+					
+
+			}
+		} */
+	.search-form-container{
+		.search-form{
+			.form-field-sec{
+				margin-bottom: 48%;
+			}
+		}
+	}  
+
+	.bottom-wrapper{
+		position: fixed;
+	    bottom: 0;
+	    width: 100%;
+	    z-index: 1025;
+	}
+}
+
+
+/*********** For extra small devices like mobile max width 319px ********/
+
+@media #{$smart-phone-p} {
+	.search-input {
+		/*max-width: 250px;
+		width: 76% !important;*/
+	}
+	.buton-wrapper {
+	    margin: 0 auto;
+	    width: 100%;
+	}
+	.input-field{
+		/*max-width: 245px;
+		width: 85% !important;*/
+	}
+	
+	.content-view{
+		.product-view{
+			.product-view-ul	{
+
+				.product-view-li	{
+
+					.product-wrapper {
+						.image-wrapper {
+							width: 100%;
+							height: auto;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+/***********landscape view****************/
+
+
+ @media #{$android-device-l} {
+	
+	
+	
+ }
+
+/*****************(max-width: 400px)*************************/
+
+@media #{$adjustment-small} {
+	
+ /*****************************Notification page**************************************/	
+
+	.notification-container{
+		.model-data-container{
+			.img-model-container{
+				.model-container{
+					.heading{
+						font-size:11px !important;	
+					}
+
+					.text{
+						font-size:11px !important;
+					} 
+				}
+			}
+			.update{
+				.full-date{
+					font-size:11px !important;
+				}
+			}
+		}
+	}
+
+	.car-parts-popup, .light-lamp-subpart{
+    	width: 100% !important;
+	}
+
+	
+	     	
+}
+
+/************** For extra small devices like tablet min-width: 320px and max-width: 767px ********/
+
+@media #{$mobile} {
+	.content-view{
+		.product-view{
+			.product-view-ul	{
+
+				.product-view-li	{
+				     width: 100%;
+					.product-wrapper {
+						.image-wrapper {
+							width: 100%;
+							height: auto;
+						}
+					}
+				}
+			}
+		}
+	}
+	/************************Search page**************************/
+	.condition-wrapper.custom-wrapper {
+	    background: #f0f0f0 none repeat scroll 0 0;
+	    padding: 0;
+
+	    .buton-wrapper{
+	    	.button-large{
+	    		margin-bottom: 5px !important;
+    			margin-top: 10px !important;
+	    	}
+	    }
+	}
+	/***************************Search result page*********************************/
+
+	.menu-wrapper-btn{
+		/* display: none; */
+	}
+
+
+}
+
+/*************************** For extra all divices with min-width: 320px and max-width : 480px **************************/
+
+@media #{$smart-phone} {
+	.home-background{
+		background: url("../images/480x800.jpg");
+		height: auto !important;	
+	}
+
+	.logo-wrapper{
+		top: 20px;
+		position: relative;
+	}
+	.modal{
+		width: 90% !important;
+		/* height : 100%; */
+		font-size:	15px;
+
+		.modal-dialog{
+			.modal-content{
+				.okt-modal-bull{
+					h1{
+						font-size:18px !important;
+					}
+				}
+			}
+		}
+	}
+	.notification-container{
+		.model-data-container{
+			.img-model-container{
+				.model-container{
+					padding-left: 35px !important;
+					width: 45% !important;
+					height: 75px !important;
+				}
+				.img-container{
+					width: 153px !important;
+					height: 105px !important;
+				}
+				.border{
+					/* margin: 50px auto 18px !important; */
+				}
+			}
+		}
+	} 
+	.garage-wrapper{
+		.details-container {
+			width: 80% !important;
+
+			.car-detail {
+			    font-size: 12px !important;
+			    width: 45% !important;
+			    a{
+			    	.model-container {
+			    		.heading{
+			    			p{
+			    				font-size: 14px !important;
+			    			}
+			    		}
+			    	}
+			    }
+			}
+
+			.img-container{
+				width: 113px !important;
+				height: 90px !important;
+			}
+		}	   
+	}
+	.notification-container{
+		.model-data-container{
+			.img-model-container{
+				.border{
+					margin: 50px auto 18px;
+				}
+			}	
+		}
+	}   
+} 
+
+/********************************** for max-width : 350px ***********************************/
+ 
+ @media #{$smalldevice}{
+ 	.signup-page {
+ 		border-radius: 0 !important;
+	    max-width: 100% !important;
+	    top: -25px !important;
+ 	}
+
+ 	.login-page{
+	 border-radius: 0 !important;
+	 margin: 0 auto !important;
+	 max-width: 100% !important;
+  }
+
+	.forgot-pass-page{
+		border-radius: 0 !important;
+		 margin: 0 auto !important;
+		 max-width: 100% !important;
+	}  
+ }
+
+
+/*************************** For extra all divices with min-width: 481px and max-width : 767px***********************/
+
+@media #{$smart-phone-mini} {
+	.home-background{
+		background: url("../images/720x1280.jpg");	
+		background-position: center -75px !important;
+		height: 135vh; 
+
+		.logo-wrapper{
+			img {
+	    		max-width: 12vw !important;
+	    		top: 25px;
+	    		position: relative;
+
+	    	}
+		}
+
+		.container-position {
+		    padding-top: 75%;
+		}
+	}
+	.modal{
+		width: 80% !important;
+		overflow-y: scroll;
+		/* height: 100%; */
+	}
+	.garage-wrapper .details-container {
+		width: 75% !important
+	}
+}
+
+/*************************** For extra all divices with min-width: 321px **************************/
+
+@media #{$smart-phone-l} {
+	.search-input {
+	}
+	.buton-wrapper {
+	    margin: 0 auto;
+	    max-width: 525px;
+	}
+	.input-field{
+	}
+	.container-position{
+		padding-top: 80%;
+	    padding-bottom: 20px;
+	}
+	.buton-wrapper.padding-effect{
+		 padding:0 15px;
+		max-width: 525px;
+	}
+
+	.input-wrapper.padding-effect{
+		padding:0 15px;
+	}
+	
+
+}
+
+
+
+/********************Media query for max-width 600px screen **********************/
+
+@media #{$tab-screen} {
+
+	.home-background {
+		height: 100% !important;
+	}
+
+  	.question{
+     	span{
+	      max-width: 270px;
+	      width: 45%;
+    	}
+  	}
+
+  	.content-data {
+    	span{
+      		 max-width: 270px;
+       		width: 45%;
+    	}
+  	}
+  /********************** Compare page mobile*******************************/
+  	.compare-page-wrapper{
+  		.compare-car-list{
+  			.compare-car{
+  				width: 903px !important;
+  				.car-ul{
+  					width: 190px !important;
+  					font-size: 14px !important;
+  					.feature-car-img{
+  						.feature-car-img-sub{
+  							width: 158px !important;
+  						}
+  						.feature-car-img-sub{
+  							height: 123px !important;
+  						}
+  					}
+  					div{
+  						height: 21px !important;
+  					}
+
+  					.feature-car-img{
+  						height: 135px !important;
+  					}
+  				}
+  			}
+  		}
+  		.feature{
+  			font-size: 14px !important;
+  		}
+  	} 
+    
+} 
+
+
+/*****************(min-width: 601px) and (max-height: 906px)************/
+
+/* @media #{$nexus-device-p} {
+	.home-background {
+		height: 115vh !important;
+
+		.container-position {
+		    padding-top: 100% !important;
+
+		}
+	}
+} */
+
+
+/**********************************Lanscape view *************************************/
+
+	/*****************(min-width: 453px) and (max-height: 749px)************/
+
+	@media #{$nexus-device-l} {
+		.home-background.front-page {
+		    height: 100% !important;
+
+		    .logo-wrapper{
+				img {
+		    		max-width: 9vw;
+		    	}
+			}
+		}
+		.micro-phone {
+			.clear-text-btn{
+				top: -42px !important
+			}
+		}
+
+		/* .multiSelect{
+			.checkBoxContainer {
+			    max-height: 75vh !important;
+			 .checkboxLayer{
+			 	max-height: 70vh !important;
+			 }   
+
+			}
+	} */
+ }
+
+/****************************large mobile screen********************************/
+    /*******(min-width: 768px) and (max-width: 1024px)************/
+@media #{$large-mobile} {
+ 	.search-result-page{
+		.content-view{
+			.product-view{
+				.product-view-ul{
+					.product-view-li{
+						width: 50% !important;
+						.product-wrapper{
+							.image-wrapper{
+								.car-image{
+									max-height: 300px;
+    								min-height: 300px;
+								}
+							}
+						}
+					}
+				}
+			}	
+		}
+	} 
+
+	.search-form-container{
+		.search-form{
+			.form-field-sec{
+				margin-bottom: 20%;
+			}
+		}
+	}
+
+	.micro-phone {
+		.clear-text-btn{
+			top: 5px !important
+		}
+	} 
+
+	 /*.social-icon-wrapper .image ul {
+	    height: 60vh;
+	    overflow-y: scroll !important;
+	    
+	} 
+	
+	.social-icon-wrapper .image ul li div img{
+		width: 90% !important;
+	}  
+
+	.social-share-popup{
+		overflow-y: unset !important;
+		height: unset !important;
+	} */
+
+}
+
+/****************************popup for mobile screen********************************/
+                 /*******(min-width: 480px) ************/
+
+ @media #{$popup-mobile-devices} {
+ 	.location-finder{
+		/* display: block; */
+	}
+
+	.location-popup.geo-subpart::after {
+    	top: -7px !important;
+	}
+	.location-popup.geo-subpart {
+    	min-width: 290px !important;
+    	transform: translate(-64%, 6%) !important;
+    	border-bottom: 1px solid #c7c8c9;
+    	position: absolute;
+    	top: 20px;
+    	left: 12px;
+	}
+
+     .location-popup.geo-subpart.alert {
+    	border-bottom: 1px solid #c7c8c9;
+	    left: -54px;
+	    position: absolute;
+	    top: 22px;
+	}
+
+	/* .geo-subpart.alert::after{
+		top: -2.5% !important;	
+	} */
+
+	.location-popup.geo {
+    	transform: translate(-52%, 14%)!important;
+	}
+ }
+
+ /* popup for small devices ******************/
+
+ @media #{$popup-small-devices} {
+ 	.location-popup.alert{
+ 		transform: translate(-17%, 11%) !important;
+ 	}
+ 	.location-popup.alert::after {
+ 		right: -8.5% !important;
+ 	}
+
+ 	.social-icon-wrapper{
+ 		.image{
+ 			ul{
+ 				li{
+ 					width: 21% !important;
+ 				}
+ 			}
+ 		}
+ 	} 
+ }
+/*************** Land Scap ******************/
+
+@media #{$landscape-common}{
+	.multiSelect{
+		.checkBoxContainer{
+		/*	max-height: 55vh; */
+		}
+	}
+}
+
+
+/********************** Kocaso landscap **************************/
+@media #{$kocaso-device-p}{
+	/* .multiSelect{
+
+		.checkBoxContainer{
+			max-height: 10vh !important;
+		}
+		.checkboxLayer{
+			min-height: 10vh !important;
+			
+		}
+	} */
+}
+
+/********************** portrat and land scap in ipad *******************************/
+
+/* @media #{$ipad-p-l}{
+	.social-share-popup{
+		height: 100vh !important;
+		overflow: scroll !important;
+    } 
+} */
+
+/********************* ipad land scap *******************************/
+
+@media #{$ipad-l}{
+	.social-icon-wrapper{
+		.image{
+			ul{
+				li{
+					margin: 6px 15px !important;
+       				width: 12.5% !important;
+				}
+			}
+		}
+	}  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

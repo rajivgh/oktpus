@@ -1,0 +1,338 @@
+<div class="car-worth-page" ng-class="tempClassForMenu" ng-disable-scroll = "showSharePopUp" ng-init="onEnter()" ng-style="{'min-height' : '{{popupHeight}}'}">
+	<div class="search-header"><header-pane2></header-pane2></div>
+
+  <div class="wmcw-heading-wrapper">
+      <div class="back-button wmcw-back-btn" ng-click="backButtonClicked()">
+          <img class="back-icon" src="assets/images/arrow.png">
+      </div>
+      <h2 class="page-heading wmcw-heading">WHAT'S MY CAR WORTH?</h2>
+      <hr class="line_break">
+   </div>
+
+
+
+    <div ng-init="loadAttributeData('full');" class="form-container"">
+    
+
+
+
+      <div class="form-sub-container">
+    
+      	<div class="car-worth-heading">
+          <!--<div class="car-worth-heading-1">
+            <h2>WHAT'S MY CAR WORTH?</h2>
+            <hr class="line_break">
+          </div>-->
+          <div class="car-worth-heading-2"><span>Get the most out of your car with our expert market evaluation based on:</span></div>
+          <div class="feature_block">
+              <div class="features">
+                <span class="checkbox_img"> 
+                  <img src="assets/images/checkbox.png" alt="icon" width="20" height="18">
+                </span>
+                <span class="features_text"> 
+                  <p>your car's model and mileage</p>
+                </span>
+              </div>
+              <div class="features">
+                <span class="checkbox_img"> 
+                  <img src="assets/images/checkbox.png" alt="icon" width="20" height="18">
+                </span>
+                  
+                
+                <span class="features_text"> 
+                  <p>similar cars recently sold and currently for sale</p>
+                </span>
+              </div>
+              <div class="features">
+                <span class="checkbox_img"> 
+                  <img src="assets/images/checkbox.png" alt="icon" width="20" height="18">
+                </span>
+                  
+                
+                <span class="features_text"> 
+                  <p>your location</p>
+                </span>
+              </div>
+              
+            </div>
+            <hr class="line_break">
+        </div>
+
+        <div id="wmcwdiv"> <!-- custom -->
+          <div class="col-lg-12 col-sm-12 col-xs-12 alert alert-success ng-hide" ng-show="isDisplay">
+            <b>Thank you!</b> One of our experts will email you within 24 hours.<br/><br/>
+            For any queries, email us at <b>info@oktpus.com</b><br/>
+          </div>
+<!--           <div class="alert alert-danger error ng-hide" ng-show="wmcwForm.emailId.$error.required">
+            Email is mandatory
+          </div>
+          <div class="alert alert-danger error ng-hide" ng-show="wmcwForm.emailId.$error.email">
+            Invalid Email address
+          </div> -->
+
+        	<form class="car-worth-form" name="wmcwForm">
+            
+            <div>
+              <span class="filter-type-name">Vehicle</span>
+              <div class="input-field-row">
+                <span class="filter-name">MAKE</span>
+                <span class="car-worth-input-field selectdiv">
+                  <select class="selects" ng-model="makes" ng-change="onChangeMake(makes)">
+                    <option value="" disabled selected="selected">{{chooseMake}}</option>
+                    <option ng-repeat="make in makeList" value="{{make.id}}">{{make.value}}</option>
+                  </select>
+                  <span class="arrow-img"><img src="assets/images/select-down-arrow.png"></span>
+                  <!-- <span class="plus-img"><img src="assets/images/select-plus.png"></span> -->
+                </span>
+
+                <!--***************************make mobile view starts**********************************-->
+                <span class="car-worth-input-field selectdivmob">
+                     <input class="selects selectinput" name="" onfocus="this.blur()" ng-click="openselectMakePopup()" ng-model="carmakemodel">
+                     <span class="plus-img" style="pointer-events: none;"><img src="assets/images/select-plus.png"></span>
+                </span>
+                <div class="modal-bg" ng-click="closeSelectMakePopup()" ng-style="popup" ng-show = "showselectMakePopup"></div>
+                <div ng-show="showselectMakePopup" ng-style="popup" class="selectpopup" >
+                        <div class="selectheader">
+                            <button class="close closeselectpop" type="button" ng-click="closeSelectMakePopup()">
+                                <img src="assets/images/wmcw_close.png">
+                            </button>
+                            <h4 class="selectpopupname">Select Make</h4>
+                            
+                            <input class="search_filter_input" ng-model="searchFilter" placeholder="Type to filter" id="searchInput"/> 
+                            <img ng-click="clearFilter()" src="assets/images/search_remove.png" class="clearFilterimg"> 
+                          </div>
+                          <div class="selectcontentdiv">
+                          <div class="selectbody">
+                            <ul class="list-unstyled" class="list" ng-model="makes" ng-change="onChangeMake(makes)">
+                                <li ng-repeat="make in makeList |
+                                myfilter:searchFilter" ng-click="selectValueAction(make)"> <!-- make.value -->
+                                <input type="radio" class="selectradio" name="selection" value="{{make.value}}"/>{{make.value}}</li>
+                            </ul>
+                           </div>
+                           </div>
+                </div>
+                <!--***************************make mobile view ends**********************************-->
+
+              </div>
+              <div class="input-field-row">
+                <span class="filter-name">MODEL</span>
+                <span class="car-worth-input-field selectdiv">
+                  <select class="selects"  ng-model="model" ng-disable="isModelDisable" ng-class="{'model-bg': isModelDisable}">
+                    <option value="" disabled selected="selected">{{chooseModel}}</option>
+                    <option ng-repeat="model in modelList" value="{{model.id}}">{{model.value}}</option>
+                  </select>
+                  <span class="arrow-img"><img src="assets/images/select-down-arrow.png"></span>
+                  <!-- <span class="plus-img"><img src="assets/images/select-plus.png"></span> -->
+                </span>
+                 <!--***************************model mobile view starts**********************************-->
+                <span class="car-worth-input-field selectdivmob">
+                     <input class="selects selectinput" name="" onfocus="this.blur()" ng-click="openselectModelPopup()" ng-model="carmodelm" ng-class="{'model-bg': isModelDisable}">
+                     <span class="plus-img" style="pointer-events: none;"><img src="assets/images/select-plus.png"></span>
+                </span>
+                <div class="modal-bg" ng-click="closeSelectModelPopup()" ng-style="modelpopup" ng-show = "showselectModelPopup"></div>
+                <div ng-show="showselectModelPopup" ng-style="modelpopup" class="selectpopup">
+                          <div class="selectheader">
+                            <button class="close closeselectpop" type="button" ng-click="closeSelectModelPopup()">
+                                <img src="assets/images/wmcw_close.png">
+                            </button>
+                            <h4 class="selectpopupname">Select Model</h4>
+                            
+                            <input class="search_filter_input" ng-model="searchFilterModel" placeholder="Type to filter" id="searchInputModel"/> 
+                            <img ng-click="clearFilter()" src="assets/images/search_remove.png" class="clearFilterimg"> 
+                          </div>
+                          <div class="selectcontentdiv">
+                            <div class="selectbody">
+                              <ul class="list-unstyled" class="list">
+                                <li ng-repeat="model in modelList | myfilter:searchFilterModel"  ng-click="selectValueActionModel(model.value)">
+                                <input type="radio" class="selectradio" name="selectionmodel" value="{{model.value}}"/>{{model.value}}</li>
+                              </ul>
+                            </div> 
+                          </div>
+                </div>
+                <!--***************************model mobile view ends**********************************-->
+              </div>
+              <div class="input-field-row">
+                <span class="filter-name">TRANSMISSION</span>
+                <span class="car-worth-input-field selectdiv">
+                  <select class="selects" ng-model="transmission">
+                    <option value="" disabled selected="selected">Select</option>
+                    <option ng-repeat="transmission in transmissionList" value="{{transmission.id}}">{{transmission.value}}</option>
+                  </select>
+                  <span class="arrow-img"><img src="assets/images/select-down-arrow.png"></span>
+                  <!-- <span class="plus-img"><img src="assets/images/select-plus.png"></span> -->
+                </span>
+                <!--***************************Trans mobile view starts**********************************-->
+                <span class="car-worth-input-field selectdivmob">
+                     <input class="selects selectinput" name="" onfocus="this.blur()" ng-click="openselectTransPopup()" ng-model="cartransmodel"> 
+                     <span class="plus-img" style="pointer-events: none;"><img src="assets/images/select-plus.png"></span>
+                </span>
+                <div class="modal-bg" ng-click="closeSelectTransPopup()" ng-style="transpopup" ng-show="showselectTransPopup"></div>
+                <div ng-show="showselectTransPopup" ng-style="transpopup" class="selectpopup" >
+                          <div class="selectheader">
+                            <button class="close closeselectpop" type="button" ng-click="closeSelectTransPopup()">
+                                <img src="assets/images/wmcw_close.png">
+                            </button>
+                            <h4 class="selectpopupname">Select Transmission</h4>
+                            
+                            <input class="search_filter_input" ng-model="searchFilterTrans" placeholder="Type to filter" id="searchInputTrans"/> 
+                            <img ng-click="clearFilter()" src="assets/images/search_remove.png" class="clearFilterimg"> 
+                          </div>
+                          <div class="selectcontentdiv">
+                            <div class="selectbody">
+                              <ul class="list-unstyled" class="list" ng-model="transmission">
+                                <li ng-repeat="transmission in transmissionList | myfilter:searchFilterTrans"  ng-click="selectValueActionTrans(transmission.value)">
+                                <input type="radio" class="selectradio" name="selectiontrans" value="{{transmission.value}}"/>{{transmission.value}}</li>
+                              </ul>
+                            </div> 
+                          </div>
+                </div>
+                <!--***************************Trans mobile view ends**********************************-->
+              </div>
+              <div class="input-field-row">
+                <span class="filter-name">YEAR</span>
+                <span class="car-worth-input-field custom-width-input-set">
+                  <input class="ng-pristine ng-valid ng-empty ng-touched" name="" ng-model="year">
+                </span>
+              </div>
+              <div class="input-field-row km-input">
+                <span class="filter-name">MILEAGE</span>
+                <span class="car-worth-input-field mileage">
+                  <input class="mileage-input" type="text" name="" ng-model="mileage">
+                  <select class="selects mileage-select" ng-model="mileageIn" ng-init="mileageIn='kilometers'">
+                    <option value="kilometers">km</option>
+                    <option value="miles">miles</option>
+                  </select>
+                  <span class="arrow-img"><img src="assets/images/select-down-arrow.png"></span>
+                  <span class="mile-arrow-img"><img src="assets/images/select-down-arrow.png"></span>
+                </span>
+              </div>
+              <hr class="line_break">
+            </div>
+
+            <div>
+              <span class="filter-type-name">Contact</span>
+              <div class="input-field-row">
+                <span class="filter-name">EMAIL<span style="color:red"> * </span></span>
+                <span class="car-worth-input-field custom-width-input-set">
+                    <!-- <span class="alert-danger error" ng-show="wmcwForm.emailId.$error.required">(Required!)</span>
+                    <span class="alert-danger error" ng-show="wmcwForm.emailId.$error.email">Invalid!</span> -->
+                    <input type="text" name="emailId" ng-model="email" ng-blur="isFirstTime = isFirstTime + 1">
+                </span>
+              </div>
+              <div class="input-field-row">
+                <span class="filter-name">FIRST NAME</span>
+                <span class="car-worth-input-field custom-width-input-set">
+                  <input type="text" name="" ng-model="firstname">
+                </span>
+              </div>
+              <div class="input-field-row">
+                <span class="filter-name">LAST NAME</span>
+                <span class="car-worth-input-field custom-width-input-set">
+                  <input type="text" name="" ng-model="lastname">
+                </span>
+              </div>
+            </div>
+
+            <hr class="line_break">
+
+            <div>
+              <span class="filter-type-name">Location</span>
+              <div class="input-field-row">
+                <span class="filter-name">CITY</span>
+                <span class="car-worth-input-field custom-width-input-set">
+                  <input type="text" name="" ng-model="city">
+                </span>
+              </div>
+
+              <div class="input-field-row">
+                <span class="filter-name">STATE/PROVINCE</span>
+                <span class="car-worth-input-field custom-width-input-set">
+                  <input type="text" name="" ng-model="state">
+                </span>
+              </div>
+
+              <div class="input-field-row">
+                <span class="filter-name">COUNTRY</span>
+                <span class="car-worth-input-field selectdiv">
+                  <select class="selects" ng-model="country">
+                    <option ng-repeat="country in countryList" value="{{country.code}}">{{country.name}}</option>
+                  </select>
+                  <span class="arrow-img"><img src="assets/images/select-down-arrow.png"></span>
+                  <!-- <span class="plus-img"><img src="assets/images/select-plus.png"></span> -->
+                </span>
+                <!--***************************country mobile view starts**********************************-->
+                <span class="car-worth-input-field selectdivmob">
+                     <input class="selects selectinput" name="" onfocus="this.blur()" ng-click="openselectCountryPopup()" ng-model="carcntrymodel"> 
+                     <span class="plus-img" style="pointer-events: none;"><img src="assets/images/select-plus.png"></span>
+                </span>
+                <div class="modal-bg" ng-click="closeSelectCountryPopup()" ng-style="countrypopup" ng-show = "showselectCountryPopup"></div>
+                   <div ng-show="showselectCountryPopup" ng-style="countrypopup" class="selectpopup" >
+                          <div class="selectheader">
+                            <button class="close closeselectpop" type="button" ng-click="closeSelectCountryPopup()">
+                                <img src="assets/images/wmcw_close.png">
+                            </button>
+                            <h4 class="selectpopupname">Select Country</h4>
+                            
+                            <input class="search_filter_input" ng-model="searchFilterCountry" placeholder="Type to filter" id="searchInputCountry"/> 
+                            <img ng-click="clearFilter()" src="assets/images/search_remove.png" class="clearFilterimg"> 
+                          </div>
+                          <div class="selectcontentdiv">
+                            <div class="selectbody">
+                              <ul class="list-unstyled" class="list" ng-model="country">
+                                <li ng-repeat="country in countryList | mycountryfilter:searchFilterCountry"  ng-click="selectValueActionCntry(country.name)">
+                                <input type="radio" class="selectradio" name="selectioncntry" value="{{country.name}}"/>{{country.name}}</li>
+                              </ul>
+                            </div> 
+                          </div>
+                </div>
+                <!--***************************country mobile view ends**********************************-->
+              </div>
+            </div>
+
+            <div class="input-field-row">
+              <span class="car-worth-input-field custom-position">
+              
+			<span class="alert-danger error" ng-show="isEmailRequired">Email is mandatory</span>
+			<span class="alert-danger error" ng-show="isEmailInvalid">Invalid Email Address</span>
+			<span class="alert-danger error" ng-show="isTermsRequired">Please check Terms of Service to continue</span>
+            <span>
+              <input type="checkbox" name="terms" ng-model="termsOfService" required ng-change="validateTOS()"> I agreed to the 
+              <a class="blue_link" href="#terms" target="_blank">Terms of Service</a>
+               <!-- ng-click="gotoTermsOfService()" -->
+            </span>
+              </span>
+            </div>
+
+            <div class="input-field-row" ng-click="validateForm()">
+              <span class="car-worth-input-field valuation custom-valuation-btn">
+                <div class="valuation-button">
+                  <span>Get Evaluation</span>
+                  <span class="paypal-button-hide">
+                    <!-- <div ng-show="!wmcwForm.emailId.$error.required && !wmcwForm.emailId.$error.email && termsOfService"> -->
+                    <div ng-show="ValidateEmail(email) && termsOfService">
+                    <paypal-button env="opts.env" env="opts.redirect_urls" client="opts.client" payment="opts.payment" commit="opts.commit" on-authorize="opts.onAuthorize"></paypal-button>
+                    </div>
+                  </span>
+                </div>
+              </span>
+             <!--  <paypal-button env="opts.env" client="opts.client" payment="opts.payment" commit="opts.commit" on-authorize="opts.onAuthorize"></paypal-button> -->
+            </div>
+
+          </form>
+        </div> <!-- custom -->
+      </div>
+    </div>
+    <div class="img-container">
+      <img src="assets/images/wmcw-image3.jpg">
+    </div>
+</div>
+
+
+
+<div ng-show="menuShow==true">
+    <menu-list></menu-list>
+  </div>
+<!--   <div ng-show ='showSharePopUp' class = "social-share-popup">
+    <oktpus-share></oktpus-share>
+  </div>
+ -->

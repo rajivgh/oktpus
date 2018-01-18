@@ -1,0 +1,59 @@
+<!-- *************   Forgot Password  *************** -->
+<div class="home-background">
+<div class="search-header"><header-pane2></header-pane2></div>
+	<div class="forgot-pass-page">
+		<!-- <div class="close-button">
+			<a ng-click="hideForgotPwd()" href="javascript: void(0)">
+				<img src="assets/images/close.png" alt="Close Icon">
+			</a>
+		</div> -->
+		<div ng-show="menuShow==true" class = "menu-bg" ng-click="menuOutClick()"></div>
+		<div class="col-xs-12">
+			<div class="logo-wrapper">
+					<img ng-src="assets/images/logo_red.png" alt="Oktpus Logo" src="assets/images/logo_red.png">
+			</div>
+			<div class="border"></div>
+			<h2 class="page-heading">FORGOT PASSWORD</h2>
+			<div class="form-wrapper">
+				<form name="forgotPwdForm" ng-submit="forgotPwdSubmit()" role="form" novalidate>
+					<div class="input-wrapper">
+						<div class="forgot-pass-text">
+							Please enter your email below<br/> so we can send you a password reset link.
+						</div>
+						<div class="success-msg" style="color:red" ng-if='status == 0'>
+							{{message}}
+						</div>
+						<div class="success-msg" ng-if='status == 1'>
+							{{message}}
+						</div>
+						<!-- <label ng-class = "{'effect':(hasFocus==true || email.length > 0)}">E-mail</label> -->
+						<input placeholder="Email" required ng-model="email" type="email" name="email" id="email"  class="input-field" ng-focus="hasFocus=true" ng-blur="hasFocus=true" ng-pattern="emailFormat">
+						<div ng-messages="forgotPwdForm.email.$error" ng-if="forgotPwdForm.email.$valid == false">
+							<span ng-show="(forgotPwdForm.email.$dirty && forgotPwdForm.email.$error.required) || (forgotPwdForm.email.$touched) || (submitted && forgotPwdForm.email.$untouched)">
+								<div ng-message="required" class="error-msg">{{errorEmailMsg}}</div>
+							 </span>
+						</div>	
+					</div>
+
+					<!-- <div class="success-msg" ng-if='status == 1'>
+						{{message}}
+					</div> -->
+					<!-- <div class="success-msg" style="color:red" ng-if='status == 0'>
+						{{message}}
+					</div> -->
+				
+					<div class="buton-wrapper">
+						<button type="submit" class="button button-large button-reverse">CONTINUE</button>				
+					</div>						
+				</form>
+				<div class="create-acc"><a href="" ng-click = "showSignUp()">Create New Account</a></div>
+				<div class="back-login "><a href="" ng-click = "showLogIn()">Back To Login</a></div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-show="menuShow==true">
+	<menu-list></menu-list>
+</div>

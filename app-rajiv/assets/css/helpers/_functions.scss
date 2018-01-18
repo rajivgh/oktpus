@@ -1,0 +1,53 @@
+/*****   mixin function for border radius         ******/
+
+$prefixes: -webkit-, -moz-, -o-, "";
+
+@mixin border-radius($size...) {
+	@if length($size) == 1 {
+		@each $prefix in $prefixes {
+			#{$prefix}border-radius: $size;
+		}
+	} @else {
+		@include custom-border-radius($size...);
+	}
+}
+
+@mixin custom-border-radius($topLeft: 0, $topRight: 0, $bottomRight: 0, $bottomLeft: 0) {
+	@each $prefix in $prefixes {
+		@if $prefix == "-moz-" {
+			@if $topLeft != 0 { -moz-border-radius-topleft: $topLeft; }
+			@if $topRight != 0 { -moz-border-radius-topright: $topRight; }
+			@if $bottomRight != 0 { -moz-border-radius-bottomright: $bottomRight; }
+			@if $bottomLeft != 0 { -moz-border-radius-bottomleft: $bottomLeft; }
+		} @else {
+			@if $topLeft != 0 { #{$prefix}border-top-left-radius: $topLeft; }
+			@if $topRight != 0 { #{$prefix}border-top-right-radius: $topRight; }
+			@if $bottomRight != 0 { #{$prefix}border-bottom-right-radius: $bottomRight; }
+			@if $bottomLeft != 0 { #{$prefix}border-bottom-left-radius: $bottomLeft; }
+		}
+	}
+}
+
+/********************* Functin for mic and clear text *************************/
+
+@-moz-document url-prefix(){
+	.micro-phone {
+		.mic{
+			top: 4px !important;
+		}
+		.clear-text-btn{
+			top: 4px !important;
+		}
+	}
+	.location-popup.receive-notification::after {
+	    background-image: url("../images/popup_downarrow.png");
+	    top: 283px !important;
+	}
+
+	.location-popup.price-average::after{
+	    top: 171px !important;
+	}
+	.location-popup.price::after{
+	    top: 194px !important;
+	}	
+}

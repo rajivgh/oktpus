@@ -1,0 +1,67 @@
+<!-- *************   Log In  *************** -->
+<div class="home-background">
+<!-- <div><header-pane2></header-pane2></div>  -->
+<div class="search-header"><header-pane2></header-pane2></div>
+    <div class="login-page-container">
+		<div class="login-page">	
+			<div ng-show="menuShow==true" class = "menu-bg" ng-click="menuOutClick()"></div>
+		    <div class="col-xs-12">
+				<div class="logo-wrapper">
+					<img ng-src="assets/images/logo_red.png" alt="Oktpus Logo" src="assets/images/logo_red.png">
+				</div>
+			<div class="border"></div>
+			<h2 class="page-heading">Log In</h2>
+			<p class="error-length" ng-if='status == 0' style="color:red">{{message}}</p>
+			<p ng-if='status == 1' style="color:#008000" >{{message}}</p>
+			<div class="form-wrapper">
+				<form name="loginForm" ng-submit="loginSubmit()" role="form"   novalidate>				
+					<div class="input-wrapper">
+						<input placeholder="Email" required ng-model="email" type="email" name="email" id="email" class="input-field" ng-pattern="emailFormat" autocomplete ="off">
+					</div>
+					<div ng-messages="loginForm.email.$error" ng-if="loginForm.email.$valid == false">
+						<span ng-show="(loginForm.email.$dirty && loginForm.email.$error.required) || (loginForm.email.$touched) || (submitted && loginForm.email.$untouched)">
+							<div ng-message="required" class="error-msg">{{errorEmailMsg}}</div>
+						 </span>
+					</div>
+
+					<div class="input-wrapper">
+						<input placeholder="Password" required ng-model="password" type="password" name="password" id="password" class="input-field" autocomplete ="off">
+					</div>
+					<div ng-messages="loginForm.password.$error" ng-if="loginForm.password.$valid == false">
+						<span ng-show="(loginForm.password.$dirty && loginForm.password.$error.required) || (loginForm.password.$touched) || (submitted && loginForm.password.$untouched)">
+							<div ng-message="required" class="error-msg">{{errorPasswordMsg}}</div>
+						</span>
+					</div>
+					<div class="remember-id">
+						<div class="login-check">
+							<input id="login-check" type="checkbox" name="" checked>
+							<label for="login-check"></label>
+						</div>
+						<div class="login-check-text">
+							<span class="remember">Remember me.</span>
+							<span class="password"><a href="" ng-click = "showForgotPwd()">Forgot Password?</a></span>
+						</div>
+						
+					</div>
+
+					<div class="buton-wrapper">
+						<button type="submit" class="button button-large button-reverse">LOG IN</button>				
+					</div>						
+				</form>
+				<div class="create-account"><a href="" ng-click = "showSignUp()">Create New Account</a></div>
+			</div>
+		</div>	
+	</div>
+	</div>
+</div>
+<div ng-show="menuShow==true">
+	<menu-list></menu-list>
+</div>
+<footer-pane></footer-pane>
+
+
+
+
+
+
+

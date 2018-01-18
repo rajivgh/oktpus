@@ -1,0 +1,87 @@
+<!-- *************   Header Pane2  *************** -->
+<header>		
+	<div class="col-xs-12 header2">
+	<!--<div class="col-logo" ng-show = "(currentRoute === 'home')">	
+			<a ng-click="showLogIn()" href="javascript: void(0)" class="">
+				<img ng-src="assets/images/user-icon.png" alt="User Icon">
+			</a>
+		</div>-->
+		<div class="col-logo">	
+			<a ng-click="showHome()" href="javascript: void(0)" class="">
+				<img ng-src="assets/images/logo-search-page.png" alt="Oktpus Icon">
+			</a>
+		</div>	
+		<div class="col-burger-menu">	
+			<a ng-click="showMenu()" href="javascript: void(0)" class="burger-menu">
+				<img ng-src="assets/images/burger-menu-yellow.png" alt="Menu">				
+			</a>
+		</div>	
+
+		<div class="col-logo desktop">	
+			<a ng-click="showLogIn()" href="javascript: void(0)" class="">
+				<img ng-src="assets/images/logo_desktop.png" alt="User Icon">
+			</a>
+		</div>
+
+		<div class="home-nav-bar desktop" ng-show="!$parent.isLogin">
+			<div class="nav-menu common-nav-menu" ng-repeat = "menuItem in $ctrl.menu.menuItem" ng-class="navClass('{{menuItem.state}}')" ng-show="hideAboutTerms('{{menuItem.state}}')">
+				<span class="menu-hover on-hover" ng-click="redirectToUrl(menuItem.state)" href="javascript: void(0)" id="{{menuItem.id}}"  ng-init="itemsrc = menuItem.icon" ng-mouseover="itemsrc = menuItem.hover" ng-mouseout="itemsrc = menuItem.icon">
+				<img ng-src="{{itemsrc}}" class="img-padding"> {{menuItem.name}}</span>		
+
+				<span class="menu-hover no-hover" ng-click="redirectToUrl(menuItem.state)" href="javascript: void(0)" id="{{menuItem.id}}"  ng-init="itemsrc = menuItem.icon" >
+				<img ng-src="{{itemsrc}}" class="img-padding"> {{menuItem.name}}</span>				
+			</div>
+		</div>
+		
+		<div class="home-nav-bar desktop" ng-show="$parent.isLogin">		
+			<div class="nav-menu afterlogin-view" style="-webkit-margin-after: 1px !important;">	
+				
+				<span class="afterlogin-list" ng-repeat = "menuAfterLogin in $ctrl.menu.menuAfterLogin" ng-class="navClass('{{menuAfterLogin.state}}')"  ng-show = "hideAboutTerms('{{menuAfterLogin.state}}')" >
+					<span class="menu-hover on-hover" ng-click="redirectToUrl(menuAfterLogin.state)" href="javascript: void(0)" id="{{menuAfterLogin.id}}" ng-init="itemsrcLogin = menuAfterLogin.icon" ng-mouseover="itemsrcLogin = menuAfterLogin.hover" ng-mouseout="itemsrcLogin = menuAfterLogin.icon">
+					<img ng-src="{{itemsrcLogin}}" class="img-padding">{{menuAfterLogin.name}}</span>
+
+					<span class="menu-hover no-hover"  ng-click="redirectToUrl(menuAfterLogin.state)" href="javascript: void(0)" id="{{menuAfterLogin.id}}"  ng-init="itemsrc = menuAfterLogin.icon">
+					<img ng-src="{{itemsrc}}" class="img-padding"> {{menuAfterLogin.name}}</span>		
+					<!-- <span class="menu-name menu-hover">
+						<a ng-click="redirectToUrl(menuAfterLogin.state)" href="javascript: void(0)" id="{{menuAfterLogin.id}}"> {{menuAfterLogin.name}} </a>
+					</span> -->
+				</span>
+
+				<span class="afterlogin-list" ng-click = 'ShowHide()' ng-class = "IsVisible == true && 'active-user' || ''">
+					<span class="login-email">
+						<div class="menu-hover on-hover" ng-init="itemsrcLogin = 'assets/images/User.png'" ng-mouseover="itemsrcLogin = 'assets/images/User_hover.png'" ng-mouseout="itemsrcLogin = 'assets/images/User.png'">
+							<img class="email-icon" ng-src="{{itemsrcLogin}}">
+							
+							<span class="email-icon-name">{{emailId}} <b class="caret" style="margin-left: 4px;"></b> </span>
+						</div>
+						<div class="menu-hover no-hover" ng-init="itemsrcLogin = 'assets/images/User.png'">
+							<img class="email-icon" ng-src="{{itemsrcLogin}}">
+							<span class="email-icon-name" >{{emailId}}<b class="caret" style="margin-left: 4px;"></b> </span> 
+						</div>
+
+						<div class="user-clicked-content" ng-show = "IsVisible">
+							<div class="setting-menu inside"  ng-click="redirectToUrl('settings')" ng-class = "activeSettings == true && 'active-setting' || ''">
+								<span>
+									<img src="assets/images/setting.png">Setting
+								</span>
+							</div>
+							<div class="logout-menu inside" ng-click="showLogout()">
+								<span>
+									<img src="assets/images/logout_icon.png">Logout
+								</span>
+							</div>
+						</div>
+					</span>	
+				</span>
+			</div>
+		</div>
+
+<!-- **********  The below code is needed in future (for new notifications, don't delete it.) ***********
+		<div class="notification-popup">
+	  		<span class="notificationtext">0</span>
+		</div>
+-->	
+	</div>
+</header>
+
+
